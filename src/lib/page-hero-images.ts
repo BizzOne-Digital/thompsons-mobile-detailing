@@ -1,3 +1,4 @@
+import { CLIENT_IMAGES } from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
 const PAGE_HERO_IMAGES: Record<string, string> = {
@@ -8,7 +9,7 @@ const PAGE_HERO_IMAGES: Record<string, string> = {
   "/contact": SITE_IMAGES.mobileVanSetup,
   "/results": SITE_IMAGES.headlightRestoration,
   "/testimonials": SITE_IMAGES.ceramicCoating,
-  "/team": SITE_IMAGES.interiorExtraction,
+  "/team": CLIENT_IMAGES.teamGroup,
   "/faq": SITE_IMAGES.engineBay,
   "/blog": SITE_IMAGES.paintCorrection,
   "/privacy-policy": SITE_IMAGES.hero,

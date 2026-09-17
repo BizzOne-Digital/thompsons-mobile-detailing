@@ -20,9 +20,31 @@ export const CLIENT_IMAGES = {
   deepClean16: `${base}/deep-clean-16.jpg`,
   deepClean17: `${base}/deep-clean-17.jpg`,
   aboutEscalade: `${base}/about-escalade.jpg`,
-  /** Add owner photo as public/images/client/owner.jpg when provided */
+  /** Vernon — replace public/images/client/owner.jpg with email portrait */
   ownerPortrait: `${base}/owner.jpg`,
+  /** Vernon + crew — replace public/images/client/team-group.jpg */
+  teamGroup: `${base}/team-group.jpg`,
+  /** Electric blue Dodge Charger (tmdaz.com hero) — replace hero-electric-blue-charger.jpg */
+  heroElectricBlueCharger: `${base}/hero-electric-blue-charger.jpg`,
+  porscheTanInteriorBright: `${base}/porsche-tan-interior-bright.jpg`,
+  interiorWhiteLexusDashboard: `${base}/interior-white-lexus-dashboard.png`,
+  interiorWhiteLexusFsport: `${base}/interior-white-lexus-fsport.png`,
+  redLeatherBefore: `${base}/red-leather-before.jpg`,
+  redLeatherAfter: `${base}/red-leather-after.jpg`,
 } as const;
+
+export const CLIENT_WHITE_INTERIOR_GALLERY = [
+  {
+    src: CLIENT_IMAGES.interiorWhiteLexusDashboard,
+    alt: "Clean white and black Lexus interior after detailing",
+    label: "White Interior Detail",
+  },
+  {
+    src: CLIENT_IMAGES.interiorWhiteLexusFsport,
+    alt: "Lexus F Sport cabin restored to showroom condition",
+    label: "F Sport Interior",
+  },
+] as const;
 
 export const CLIENT_BEFORE_AFTER_PAIRS = [
   {
@@ -50,17 +72,17 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
     afterAlt: "Clean detailed engine bay after service",
   },
   {
-    title: "Exterior Mobile Detail",
-    category: "Exterior",
-    beforeSrc: CLIENT_IMAGES.baExteriorShowcase,
-    afterSrc: CLIENT_IMAGES.baExteriorShowcase,
-    beforeAlt: "Mobile detailing at customer home",
-    afterAlt: "Mobile detailing at customer home",
-    singleImage: true,
+    title: "Red Leather Seat Restoration",
+    category: "Leather & Seats",
+    beforeSrc: CLIENT_IMAGES.redLeatherBefore,
+    afterSrc: CLIENT_IMAGES.redLeatherAfter,
+    beforeAlt: "Leather seats before cleaning and conditioning",
+    afterAlt: "Red leather seats restored after professional detailing",
   },
 ] as const;
 
 export const CLIENT_INTERIOR_GALLERY = [
+  ...CLIENT_WHITE_INTERIOR_GALLERY,
   { src: CLIENT_IMAGES.interior06, alt: "Interior detailing — luxury SUV cabin", label: "Interior Detail" },
   { src: CLIENT_IMAGES.interior07, alt: "Escalade interior deep clean", label: "Deep Clean" },
   { src: CLIENT_IMAGES.interior08, alt: "Premium leather interior finish", label: "Leather & Trim" },

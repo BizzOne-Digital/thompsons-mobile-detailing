@@ -8,6 +8,7 @@ import {
   CLIENT_BEFORE_AFTER_PAIRS,
   CLIENT_ENGINE_GALLERY,
   CLIENT_INTERIOR_GALLERY,
+  CLIENT_WHITE_INTERIOR_GALLERY,
 } from "@/lib/client-images";
 import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
 import { AutoplayShowcaseVideo } from "@/components/media/AutoplayShowcaseVideo";
@@ -37,6 +38,17 @@ export function ResultsGalleryView() {
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {CLIENT_BEFORE_AFTER_PAIRS.map((item) => (
             <BeforeAfterPairCard key={item.title} item={item} />
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">White interior details</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {CLIENT_WHITE_INTERIOR_GALLERY.map((img) => (
+            <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="50vw" />
+            </div>
           ))}
         </div>
       </section>

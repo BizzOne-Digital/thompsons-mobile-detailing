@@ -1,5 +1,7 @@
+import { CLIENT_IMAGES } from "@/lib/client-images";
+
 export const SITE_IMAGES = {
-  hero: "/hero-bg.jpg",
+  hero: CLIENT_IMAGES.heroElectricBlueCharger,
   mobileSunsetSedan: "/images/mobile-sunset-sedan.jpg",
   interiorExtraction: "/images/interior-extraction.jpg",
   suvFullDetail: "/images/suv-full-detail.jpg",

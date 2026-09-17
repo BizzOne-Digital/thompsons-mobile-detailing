@@ -92,7 +92,7 @@ export function HomeLiveFootageSection() {
       >
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover brightness-[1.08] contrast-[1.04]"
           src={VIDEO_SRC}
           poster={CLIENT_IMAGES.homeMobileVan}
           muted={muted}
@@ -104,11 +104,11 @@ export function HomeLiveFootageSection() {
         />
 
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-black/45"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/35"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,12,28,0.45)_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,12,28,0.25)_100%)]"
           aria-hidden
         />
 

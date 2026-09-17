@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { HeroSection } from "@/components/home/HeroSection";
 import { ImageShowcaseStrip } from "@/components/home/ImageShowcaseStrip";
 import { HomeLiveFootageSection } from "@/components/home/HomeLiveFootageSection";
+import { HomePorscheInteriorSection } from "@/components/home/HomePorscheInteriorSection";
 import { MobileVanServicesSection } from "@/components/home/MobileVanServicesSection";
 import { CLIENT_BEFORE_AFTER_PAIRS, CLIENT_IMAGES } from "@/lib/client-images";
 import { PACKAGE_IMAGES, SITE_IMAGES } from "@/lib/site-images";
@@ -90,6 +91,8 @@ export function HomeView({
         className={`w-full min-w-0 overflow-x-clip ${introDone ? "opacity-100" : "opacity-0"}`}
       >
         <HeroSection introDone={introDone} />
+
+        <HomePorscheInteriorSection />
 
         <HomeLiveFootageSection />
 

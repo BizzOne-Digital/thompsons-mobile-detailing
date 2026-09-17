@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, ChevronRight, Leaf, MapPin, Star } from "lucide-react";
+import { CLIENT_IMAGES } from "@/lib/client-images";
 
 type HeroSectionProps = {
   introDone: boolean;
@@ -13,22 +14,22 @@ export function HeroSection({ introDone }: HeroSectionProps) {
   return (
     <section className="relative isolate min-h-[100svh] w-full overflow-hidden">
       <Image
-        src="/hero-bg.jpg"
-        alt="Luxury mobile auto detailing in Arizona"
+        src={CLIENT_IMAGES.heroElectricBlueCharger}
+        alt="Electric blue Dodge Charger after professional mobile detailing in Arizona"
         fill
         priority
-        className="object-cover object-center"
+        className="object-cover object-[center_40%] brightness-[1.05] contrast-[1.04] sm:object-center"
         sizes="100vw"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/70 to-black/25"
+        className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/45 to-black/15"
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"
+        className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/25"
         aria-hidden
       />
-      <div className="page-hero-mesh absolute inset-0 opacity-50" aria-hidden />
+      <div className="page-hero-mesh absolute inset-0 opacity-25" aria-hidden />
       <div
         className="absolute inset-0 carbon-bg opacity-[0.08]"
         aria-hidden
