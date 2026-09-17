@@ -9,14 +9,13 @@ import { BRAND, SERVICE_AREAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { HeroSection } from "@/components/home/HeroSection";
 import { ImageShowcaseStrip } from "@/components/home/ImageShowcaseStrip";
-import {
-  HOME_BEFORE_AFTER,
-  PACKAGE_IMAGES,
-  SITE_IMAGES,
-} from "@/lib/site-images";
+import { HomeLiveFootageSection } from "@/components/home/HomeLiveFootageSection";
+import { MobileVanServicesSection } from "@/components/home/MobileVanServicesSection";
+import { CLIENT_BEFORE_AFTER_PAIRS, CLIENT_IMAGES } from "@/lib/client-images";
+import { PACKAGE_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CinematicIntro } from "@/components/intro/CinematicIntro";
-import { BeforeAfterShowcaseCard } from "@/components/home/BeforeAfterShowcaseCard";
+import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
 import { FaqAccordion, type FaqItem } from "@/components/faq/FaqAccordion";
 import { formatCurrency } from "@/lib/utils";
 
@@ -92,6 +91,10 @@ export function HomeView({
       >
         <HeroSection introDone={introDone} />
 
+        <HomeLiveFootageSection />
+
+        <MobileVanServicesSection />
+
         <section className="border-y border-gold/20 bg-navy/60 py-6">
           <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-4 text-sm md:gap-8">
             {trustPoints.map((point) => (
@@ -110,15 +113,21 @@ export function HomeView({
             title="About Thompson's Mobile Detailing"
             subtitle="Restoring, protecting, and maintaining every vehicle with precision and professionalism."
           />
-          <div className="grid gap-10 lg:grid-cols-2">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl">
-              <Image
-                src={SITE_IMAGES.mobileSunsetSedan}
-                alt="Mobile detailing at a Phoenix area home at sunset"
-                fill
-                className="object-cover"
-                sizes="(max-width:1024px) 100vw, 50vw"
-              />
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,280px)_1fr] lg:items-start">
+            <div className="mx-auto w-full max-w-xs lg:mx-0">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-2 border-gold/40 shadow-[0_0_40px_rgba(255,201,40,0.12)]">
+                <Image
+                  src={CLIENT_IMAGES.ownerPortrait}
+                  alt="Vernon Thompson, owner of Thompson's Mobile Detailing AZ"
+                  fill
+                  className="object-cover"
+                  sizes="280px"
+                />
+              </div>
+              <p className="mt-4 text-center font-display text-lg text-bright-gold">
+                Vernon Thompson
+              </p>
+              <p className="text-center text-sm text-off-white/65">Owner & operator</p>
             </div>
             <div className="space-y-6">
               <p className="text-off-white/80">
@@ -127,7 +136,7 @@ export function HomeView({
                 professional equipment, and premium products directly to your home
                 or workplace.
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 {[
                   { label: "Mobile Service", value: "100%" },
                   { label: "Valley Cities", value: "14+" },
@@ -221,8 +230,8 @@ export function HomeView({
             align="center"
           />
           <div className="grid gap-8 md:grid-cols-2">
-            {HOME_BEFORE_AFTER.map((item) => (
-              <BeforeAfterShowcaseCard key={item.title} item={item} />
+            {CLIENT_BEFORE_AFTER_PAIRS.map((item) => (
+              <BeforeAfterPairCard key={item.title} item={item} />
             ))}
           </div>
           <div className="mt-8 text-center">

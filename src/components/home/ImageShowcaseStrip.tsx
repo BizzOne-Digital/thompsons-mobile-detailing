@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { HOME_GALLERY_STRIP } from "@/lib/site-images";
+import { CLIENT_INTERIOR_GALLERY, CLIENT_IMAGES } from "@/lib/client-images";
+import { CLIENT_VIDEOS } from "@/lib/client-videos";
+import { AutoplayShowcaseVideo } from "@/components/media/AutoplayShowcaseVideo";
 
 export function ImageShowcaseStrip() {
   const reduce = useReducedMotion();
@@ -13,8 +15,27 @@ export function ImageShowcaseStrip() {
         <p className="mb-8 text-center text-sm font-semibold uppercase tracking-[0.25em] text-bright-gold">
           Professional Mobile Detailing In Action
         </p>
+
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.55 }}
+          className="mb-8 overflow-hidden rounded-2xl gold-border"
+        >
+          <AutoplayShowcaseVideo
+            src={CLIENT_VIDEOS.interiorDeepClean}
+            poster={CLIENT_IMAGES.deepClean16}
+            aspectClassName="aspect-[21/9] min-h-[200px] sm:min-h-[280px]"
+            label="Interior deep clean in progress"
+          />
+          <div className="border-t border-gold/20 bg-navy/80 px-4 py-3 text-center text-sm font-semibold text-off-white">
+            Interior Deep Clean — real work on your vehicle
+          </div>
+        </motion.div>
+
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {HOME_GALLERY_STRIP.map((item, i) => (
+          {CLIENT_INTERIOR_GALLERY.map((item, i) => (
             <motion.figure
               key={item.src}
               initial={reduce ? false : { opacity: 0, y: 20 }}

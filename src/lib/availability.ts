@@ -82,27 +82,36 @@ export async function getAvailableSlots(dateStr: string) {
   const dayStart = new Date(dateStr + "T00:00:00");
   const dayEnd = new Date(dateStr + "T23:59:59");
 
-  const confirmed = await Booking.find({
-    preferredDate: { $gte: dayStart, $lte: dayEnd },
-    status: { $in: ["Confirmed", "In Progress"] },
-  }).select("preferredTime");
-
   const blocked = config.blockedTimeSlots.filter(
     (b: { date: Date }) =>
       new Date(b.date).toDateString() === date.toDateString()
   );
 
-  const taken = new Set([
-    ...confirmed.map((b: { preferredTime: string }) => b.preferredTime),
-    ...blocked.map((b: { time: string }) => b.time),
-  ]);
+  let taken = new Set<string>(blocked.map((b: { time: string }) => b.time));
 
-  const count = await Booking.countDocuments({
-    preferredDate: { $gte: dayStart, $lte: dayEnd },
-    status: { $nin: ["Cancelled", "No Show"] },
-  });
+  try {
+    const conn = await connectDB();
+    if (conn) {
+      const confirmed = await Booking.find({
+        preferredDate: { $gte: dayStart, $lte: dayEnd },
+        status: { $in: ["Confirmed", "In Progress"] },
+      }).select("preferredTime");
 
-  if (count >= config.maxBookingsPerDay) return [];
+      const count = await Booking.countDocuments({
+        preferredDate: { $gte: dayStart, $lte: dayEnd },
+        status: { $nin: ["Cancelled", "No Show"] },
+      });
+
+      if (count >= config.maxBookingsPerDay) return [];
+
+      taken = new Set([
+        ...taken,
+        ...confirmed.map((b: { preferredTime: string }) => b.preferredTime),
+      ]);
+    }
+  } catch {
+    // Still offer slots when DB is temporarily unavailable (dev/preview)
+  }
 
   return slots.filter((s) => !taken.has(s));
 }

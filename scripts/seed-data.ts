@@ -21,7 +21,7 @@ export const seedServices = [
     startingPrice: 149,
     featured: true,
     displayOrder: 1,
-    estimatedDuration: "3–5 hours",
+    estimatedDuration: "1.5–3 hours",
   },
   {
     name: "Restore Detail",

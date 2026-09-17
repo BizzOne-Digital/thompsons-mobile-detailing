@@ -14,16 +14,23 @@ const EXTRA_GALLERY: Record<string, string[]> = {
     SITE_IMAGES.interiorExtraction,
   ],
   "signature-foam-hand-wash": [
+    "/images/client/signature-foam-wash.jpg",
+    "/images/client/ba-05-exterior-showcase.jpg",
     SITE_IMAGES.foamWashArizona,
-    SITE_IMAGES.mobileSunsetSedan,
   ],
   "ceramic-coating": [
-    SITE_IMAGES.ceramicCoating,
+    "/images/client/ceramic-coating-finish.jpg",
+    "/images/client/ceramic-coating-finish-alt.jpg",
     SITE_IMAGES.paintCorrection,
   ],
   "paint-correction": [
     SITE_IMAGES.paintCorrection,
     SITE_IMAGES.headlightRestoration,
+  ],
+  "engine-bay-cleaning": [
+    "/images/client/engine-11-before.jpg",
+    "/images/client/engine-12-after.jpg",
+    "/images/client/engine-13-showcase.jpg",
   ],
 };
 

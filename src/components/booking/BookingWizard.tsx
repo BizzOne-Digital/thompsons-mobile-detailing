@@ -47,6 +47,12 @@ export function BookingWizard({
   const [photos, setPhotos] = useState<{ url: string; publicId?: string }[]>([]);
   const [submitting, setSubmitting] = useState(false);
 
+  const minBookingDate = useMemo(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().split("T")[0];
+  }, []);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema) as never,
     defaultValues: {
@@ -231,16 +237,35 @@ export function BookingWizard({
       )}
 
       {step === 3 && (
-        <input type="date" className={inputClass} {...form.register("preferredDate")} />
+        <div>
+          <input
+            type="date"
+            min={minBookingDate}
+            className={inputClass}
+            {...form.register("preferredDate")}
+          />
+          <p className="mt-2 text-xs text-off-white/55">
+            Appointments require at least 24 hours advance notice. We confirm
+            your request by phone or email — not live calendar booking.
+          </p>
+        </div>
       )}
 
       {step === 4 && (
-        <select className={inputClass} {...form.register("preferredTime")}>
-          <option value="">Select a time</option>
-          {slots.map((slot) => (
-            <option key={slot} value={slot}>{slot}</option>
-          ))}
-        </select>
+        <div>
+          <select className={inputClass} {...form.register("preferredTime")}>
+            <option value="">Select a time</option>
+            {slots.map((slot) => (
+              <option key={slot} value={slot}>{slot}</option>
+            ))}
+          </select>
+          {watch.preferredDate && slots.length === 0 && (
+            <p className="mt-2 text-sm text-bright-gold/90">
+              No open slots for this date. Try another day or call{" "}
+              <a href="tel:+16239997500" className="underline">623-999-7500</a>.
+            </p>
+          )}
+        </div>
       )}
 
       {step === 5 && (

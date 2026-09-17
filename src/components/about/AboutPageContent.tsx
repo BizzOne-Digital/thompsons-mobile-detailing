@@ -9,26 +9,22 @@ import {
   Truck,
 } from "lucide-react";
 import { BRAND, SERVICE_AREAS } from "@/lib/constants";
-import { SITE_IMAGES } from "@/lib/site-images";
+import {
+  CLIENT_DEEP_CLEAN_GALLERY,
+  CLIENT_IMAGES,
+} from "@/lib/client-images";
 import { Button } from "@/components/ui/Button";
 
-const aboutPhotos = [
-  {
-    src: SITE_IMAGES.mobileSunsetSedan,
-    alt: "Mobile detailing at a customer location in the Phoenix Metro",
-    caption: "We come to you — home, office, or driveway",
-  },
-  {
-    src: SITE_IMAGES.interiorExtraction,
-    alt: "Professional interior extraction and deep cleaning",
-    caption: "Interior restoration with professional equipment",
-  },
-  {
-    src: SITE_IMAGES.paintCorrection,
-    alt: "Paint correction and premium exterior finish",
-    caption: "Exterior refinement, protection, and lasting gloss",
-  },
-];
+const aboutPhotos = CLIENT_DEEP_CLEAN_GALLERY.map((photo, i) => ({
+  src: photo.src,
+  alt: photo.alt,
+  caption:
+    i === 0
+      ? "Interior deep clean — luxury and daily drivers"
+      : i === 1
+        ? "Full cabin service at your location"
+        : "Carpets, seats, and trim restored",
+}));
 
 const pillars = [
   {
@@ -60,6 +56,45 @@ const pillars = [
 export function AboutPageContent() {
   return (
     <div className="space-y-20">
+      <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start">
+        <div className="mx-auto w-full max-w-xs lg:mx-0">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-2 border-gold/40 shadow-[0_0_40px_rgba(255,201,40,0.15)]">
+            <Image
+              src={CLIENT_IMAGES.ownerPortrait}
+              alt="Vernon Thompson, owner of Thompson's Mobile Detailing AZ"
+              fill
+              className="object-cover"
+              sizes="280px"
+            />
+          </div>
+          <p className="mt-4 text-center font-display text-lg text-bright-gold">
+            Vernon Thompson
+          </p>
+          <p className="text-center text-sm text-off-white/65">Owner & operator</p>
+        </div>
+        <div className="max-w-3xl">
+          <p className="text-lg leading-relaxed text-off-white/90">
+            {BRAND.name} is built on hands-on quality, honest recommendations,
+            and factory-fresh results at your location — not a shop drop-off.
+          </p>
+          <p className="mt-6 leading-relaxed text-off-white/75">
+            From maintenance Refresh details to full Reset restorations, paint
+            refinement, ceramic protection, and engine bay cleaning, every job
+            is treated with the same care we would want on our own vehicles.
+          </p>
+        </div>
+      </div>
+
+      <div className="relative aspect-[21/9] overflow-hidden rounded-3xl border border-gold/20">
+        <Image
+          src={CLIENT_IMAGES.aboutEscalade}
+          alt="Professional mobile detailing results on a luxury SUV"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </div>
+
       <div className="max-w-3xl">
         <p className="text-lg leading-relaxed text-off-white/90">
           {BRAND.name} provides professional mobile auto detailing throughout the

@@ -1,7 +1,7 @@
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
 const PAGE_HERO_IMAGES: Record<string, string> = {
-  "/about": SITE_IMAGES.mobileVanSetup,
+  "/about": "/images/client/about-escalade.jpg",
   "/services": SITE_IMAGES.foamWashArizona,
   "/pricing": SITE_IMAGES.suvFullDetail,
   "/booking": SITE_IMAGES.mobileSunsetSedan,

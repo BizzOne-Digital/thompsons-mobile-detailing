@@ -4,7 +4,7 @@ export const SITE_IMAGES = {
   interiorExtraction: "/images/interior-extraction.jpg",
   suvFullDetail: "/images/suv-full-detail.jpg",
   foamWashArizona: "/images/foam-wash-arizona.jpg",
-  ceramicCoating: "/images/ceramic-coating.jpg",
+  ceramicCoating: "/images/client/ceramic-coating-finish.jpg",
   paintCorrection: "/images/paint-correction.jpg",
   engineBay: "/images/engine-bay.jpg",
   carpetExtraction: "/images/carpet-extraction.jpg",
@@ -13,18 +13,19 @@ export const SITE_IMAGES = {
 } as const;
 
 export const PACKAGE_IMAGES: Record<string, string> = {
-  "refresh-detail": SITE_IMAGES.foamWashArizona,
-  "restore-detail": SITE_IMAGES.suvFullDetail,
-  "reset-detail": SITE_IMAGES.carpetExtraction,
+  "refresh-detail": "/images/client/deep-clean-17.jpg",
+  "restore-detail": "/images/client/deep-clean-16.jpg",
+  "reset-detail": "/images/client/interior-10.jpg",
 };
 
 export const SERVICE_SLUG_IMAGES: Record<string, string> = {
-  "refresh-detail": SITE_IMAGES.foamWashArizona,
-  "restore-detail": SITE_IMAGES.suvFullDetail,
-  "reset-detail": SITE_IMAGES.carpetExtraction,
-  "signature-foam-hand-wash": SITE_IMAGES.foamWashArizona,
-  "ceramic-coating": SITE_IMAGES.ceramicCoating,
-  "paint-correction": SITE_IMAGES.paintCorrection,
+  "refresh-detail": "/images/client/deep-clean-17.jpg",
+  "restore-detail": "/images/client/deep-clean-16.jpg",
+  "reset-detail": "/images/client/interior-10.jpg",
+  "signature-foam-hand-wash": "/images/client/signature-foam-wash.jpg",
+  "ceramic-coating": "/images/client/ceramic-coating-finish.jpg",
+  "paint-correction": "/images/client/ba-04-headlight-after.jpg",
+  "engine-bay-cleaning": "/images/client/engine-12-after.jpg",
 };
 
 /** Side-by-side before/after composites for the home page results section */

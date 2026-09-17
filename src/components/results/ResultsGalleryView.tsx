@@ -3,11 +3,15 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { GALLERY_CATEGORIES } from "@/lib/constants";
+import { RESULTS_GALLERY } from "@/lib/site-images";
 import {
-  HOME_BEFORE_AFTER,
-  RESULTS_GALLERY,
-} from "@/lib/site-images";
-import { BeforeAfterShowcaseCard } from "@/components/home/BeforeAfterShowcaseCard";
+  CLIENT_BEFORE_AFTER_PAIRS,
+  CLIENT_ENGINE_GALLERY,
+  CLIENT_INTERIOR_GALLERY,
+} from "@/lib/client-images";
+import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
+import { AutoplayShowcaseVideo } from "@/components/media/AutoplayShowcaseVideo";
+import { CLIENT_VIDEOS } from "@/lib/client-videos";
 import { Button } from "@/components/ui/Button";
 
 type GalleryCategory = (typeof GALLERY_CATEGORIES)[number];
@@ -31,9 +35,78 @@ export function ResultsGalleryView() {
           extraction, paint refinement, and full resets.
         </p>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
-          {HOME_BEFORE_AFTER.map((item) => (
-            <BeforeAfterShowcaseCard key={item.title} item={item} />
+          {CLIENT_BEFORE_AFTER_PAIRS.map((item) => (
+            <BeforeAfterPairCard key={item.title} item={item} />
           ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">Interior services</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {CLIENT_INTERIOR_GALLERY.map((img) => (
+            <div key={img.src} className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-gold/20">
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="33vw" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">Engine bay cleaning</h2>
+        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
+          Degrease, detail, and dress — factory-clean bays without the shop visit.
+        </p>
+        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
+          <AutoplayShowcaseVideo
+            src={CLIENT_VIDEOS.engineBayCleaning}
+            poster="/images/client/engine-12-after.jpg"
+            aspectClassName="aspect-[21/9] min-h-[200px] md:min-h-[300px]"
+            label="Engine bay cleaning in action"
+          />
+        </div>
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          {CLIENT_ENGINE_GALLERY.map((img) => (
+            <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="33vw" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">Ceramic protection</h2>
+        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
+          Deep gloss, hydrophobic beading, and lasting defense against Arizona sun
+          and contaminants.
+        </p>
+        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
+          <AutoplayShowcaseVideo
+            src={CLIENT_VIDEOS.ceramicProtection}
+            poster={CLIENT_VIDEOS.ceramicProtectionPoster}
+            aspectClassName="aspect-[21/9] min-h-[200px] md:min-h-[300px]"
+            label="Ceramic coating finish and protection"
+          />
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20">
+            <Image
+              src="/images/client/ceramic-coating-finish.jpg"
+              alt="Ceramic coated paint finish with deep gloss"
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20">
+            <Image
+              src="/images/client/ceramic-coating-finish-alt.jpg"
+              alt="Close-up ceramic protection results on vehicle paint"
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
         </div>
       </section>
 

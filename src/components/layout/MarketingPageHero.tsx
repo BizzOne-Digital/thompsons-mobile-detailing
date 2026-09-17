@@ -15,6 +15,7 @@ type MarketingPageHeroProps = {
   title: string;
   subtitle?: string;
   heroImage?: string;
+  heroVideo?: string;
   eyebrow?: string;
 };
 
@@ -43,6 +44,7 @@ export function MarketingPageHero({
   title,
   subtitle,
   heroImage,
+  heroVideo,
   eyebrow,
 }: MarketingPageHeroProps) {
   const pathname = usePathname();
@@ -59,14 +61,28 @@ export function MarketingPageHero({
         animate={{ scale: 1 }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Image
-          src={imageSrc}
-          alt=""
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+        {heroVideo && !reduce ? (
+          <video
+            className="h-full w-full object-cover object-center"
+            src={heroVideo}
+            poster={imageSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden
+          />
+        ) : (
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        )}
       </motion.div>
 
       <div
