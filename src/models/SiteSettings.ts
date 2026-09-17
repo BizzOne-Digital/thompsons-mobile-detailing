@@ -18,6 +18,8 @@ export interface ISiteSettings {
   heroSubheadline: string;
   heroDescription: string;
   heroMediaUrl: string;
+  ownerPhotoUrl: string;
+  teamGroupPhotoUrl: string;
   announcementBar: string;
   defaultSeoTitle: string;
   defaultSeoDescription: string;
@@ -53,6 +55,8 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
         "We bring spotless water, power, professional equipment, and premium detailing products directly to your home, workplace, or preferred location.",
     },
     heroMediaUrl: { type: String, default: "" },
+    ownerPhotoUrl: { type: String, default: "" },
+    teamGroupPhotoUrl: { type: String, default: "" },
     announcementBar: { type: String, default: "" },
     defaultSeoTitle: {
       type: String,

@@ -69,7 +69,7 @@ export function AutoplayShowcaseVideo({
   return (
     <div
       className={cn(
-        "group relative w-full overflow-hidden bg-black",
+        "group relative w-full max-w-full min-w-0 overflow-hidden bg-black",
         aspectClassName,
         className
       )}

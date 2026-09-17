@@ -6,11 +6,14 @@ import { usePathname } from "next/navigation";
 import { ChevronRight, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BRAND, HEADER_NAV_LINKS, NAV_LINKS } from "@/lib/constants";
+import { HEADER_NAV_LINKS, NAV_LINKS } from "@/lib/constants";
+import { useSiteSettings } from "@/components/layout/SiteSettingsProvider";
+import { phoneHref } from "@/lib/public-settings";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
+  const site = useSiteSettings();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -35,8 +38,8 @@ export function SiteHeader() {
       <div className="mx-auto grid w-full min-w-0 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-2 px-3 sm:gap-3 sm:px-4 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
-            src="/logo.jpg"
-            alt={BRAND.name}
+            src={site.logoUrl || "/logo.jpg"}
+            alt={site.businessName}
             width={64}
             height={64}
             className="h-11 w-11 rounded-full ring-2 ring-gold/60 shadow-[0_0_24px_rgba(217,165,20,0.35)] sm:h-14 sm:w-14 md:h-16 md:w-16"
@@ -76,13 +79,13 @@ export function SiteHeader() {
 
         <div className="flex items-center justify-end gap-2 md:gap-3">
           <a
-            href={BRAND.phoneHref}
+            href={phoneHref(site.phone)}
             className={cn(
               "hidden items-center gap-2 rounded-full border border-gold/55 bg-black/25 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:border-bright-gold hover:bg-black/40 lg:inline-flex"
             )}
           >
             <Phone className="h-4 w-4 text-bright-gold" />
-            {BRAND.phone}
+            {site.phone}
           </a>
           <Link
             href="/booking"
@@ -125,8 +128,8 @@ export function SiteHeader() {
                   {link.label}
                 </Link>
               ))}
-              <a href={BRAND.phoneHref} className="rounded-lg px-3 py-3">
-                Call {BRAND.phone}
+              <a href={phoneHref(site.phone)} className="rounded-lg px-3 py-3">
+                Call {site.phone}
               </a>
               <Button href="/booking" className="mt-2 w-full">
                 Book Now

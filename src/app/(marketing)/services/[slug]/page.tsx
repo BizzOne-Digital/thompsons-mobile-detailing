@@ -6,7 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { buildServiceGallery } from "@/lib/service-gallery";
 import { SERVICE_SLUG_VIDEOS } from "@/lib/client-videos";
-import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
+import { resolveServiceCoverImage } from "@/lib/service-cover";
 
 export const dynamic = "force-dynamic";
 
@@ -45,16 +45,18 @@ export default async function ServiceDetailPage({
     .limit(3)
     .lean();
 
-  const cover =
-    SERVICE_SLUG_IMAGES[service.slug] ?? SITE_IMAGES.mobileSunsetSedan;
+  const coverImage = resolveServiceCoverImage(
+    service.slug,
+    service.images ?? []
+  );
   const slugVideo = SERVICE_SLUG_VIDEOS[service.slug];
   const heroVideo = slugVideo?.src;
-  const coverImage = slugVideo?.poster ?? cover;
+  const heroImage = slugVideo?.poster ?? coverImage;
 
   const galleryImages = buildServiceGallery(
     service.slug,
     service.name,
-    coverImage,
+    heroImage,
     service.images ?? []
   );
 
@@ -62,7 +64,7 @@ export default async function ServiceDetailPage({
     <PageShell
       title={service.name}
       subtitle={service.shortDescription}
-      heroImage={coverImage}
+      heroImage={heroImage}
       heroVideo={heroVideo}
       eyebrow="Service detail"
     >

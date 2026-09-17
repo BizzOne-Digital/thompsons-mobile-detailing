@@ -13,13 +13,13 @@ export function HomePorscheInteriorSection() {
       className="relative w-full overflow-hidden border-b border-gold/20 bg-midnight"
       aria-label="Porsche interior detailing results"
     >
-      <div className="relative aspect-[16/10] w-full min-h-[min(50vw,480px)] sm:aspect-[21/9] sm:min-h-[min(38vw,560px)]">
+      <div className="relative aspect-[16/10] w-full sm:aspect-[21/9]">
         <Image
-          src={CLIENT_IMAGES.porscheTanInteriorBright}
-          alt="Porsche interior with tan leather after professional mobile detailing"
+          src={CLIENT_IMAGES.porscheShowcaseBright}
+          alt="Porsche Cayenne with tan interior after professional mobile detailing"
           fill
           priority
-          className="object-cover object-center brightness-[1.06] contrast-[1.05] saturate-[1.08]"
+          className="object-cover object-[center_42%] brightness-[1.1] contrast-[1.06] saturate-[1.1]"
           sizes="100vw"
         />
         <div

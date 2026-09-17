@@ -11,9 +11,16 @@ import {
 import { BRAND, SERVICE_AREAS } from "@/lib/constants";
 import {
   CLIENT_DEEP_CLEAN_GALLERY,
+  CLIENT_ESCALADE_GALLERY,
   CLIENT_IMAGES,
+  CLIENT_PORSCHE_GALLERY,
 } from "@/lib/client-images";
 import { Button } from "@/components/ui/Button";
+import {
+  ABOUT_VIDEO_ASPECT,
+  AboutPhotoPair,
+  AboutShowcaseVideo,
+} from "@/components/about/AboutShowcaseMedia";
 
 const aboutPhotos = CLIENT_DEEP_CLEAN_GALLERY.map((photo, i) => ({
   src: photo.src,
@@ -53,14 +60,22 @@ const pillars = [
   },
 ];
 
-export function AboutPageContent() {
+export function AboutPageContent({
+  aboutText,
+  ownerPhotoUrl,
+  teamGroupPhotoUrl,
+}: {
+  aboutText?: string;
+  ownerPhotoUrl?: string;
+  teamGroupPhotoUrl?: string;
+}) {
   return (
-    <div className="space-y-20">
+    <div className="w-full min-w-0 space-y-14 md:space-y-20">
       <div className="grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start">
         <div className="mx-auto w-full max-w-xs lg:mx-0">
           <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-2 border-gold/40 shadow-[0_0_40px_rgba(255,201,40,0.15)]">
             <Image
-              src={CLIENT_IMAGES.ownerPortrait}
+              src={ownerPhotoUrl || CLIENT_IMAGES.ownerPortrait}
               alt="Vernon Thompson, owner of Thompson's Mobile Detailing AZ"
               fill
               className="object-cover"
@@ -74,8 +89,8 @@ export function AboutPageContent() {
         </div>
         <div className="max-w-3xl">
           <p className="text-lg leading-relaxed text-off-white/90">
-            {BRAND.name} is built on hands-on quality, honest recommendations,
-            and factory-fresh results at your location — not a shop drop-off.
+            {aboutText?.trim() ||
+              `${BRAND.name} is built on hands-on quality, honest recommendations, and factory-fresh results at your location — not a shop drop-off.`}
           </p>
           <p className="mt-6 leading-relaxed text-off-white/75">
             From maintenance Refresh details to full Reset restorations, paint
@@ -85,7 +100,35 @@ export function AboutPageContent() {
         </div>
       </div>
 
-      <div className="relative aspect-[21/9] overflow-hidden rounded-3xl border border-gold/20">
+      <section aria-labelledby="about-team-heading" className="space-y-6">
+        <div>
+          <h2
+            id="about-team-heading"
+            className="font-display text-2xl text-bright-gold md:text-3xl"
+          >
+            Meet the team
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-off-white/70">
+            Family owned and operated — the people behind every factory-fresh finish.
+          </p>
+        </div>
+        <div className="overflow-hidden rounded-3xl border border-gold/25">
+          <div className="relative aspect-[4/5] w-full max-h-[min(70vh,560px)] sm:aspect-[16/10] sm:max-h-none md:aspect-[21/9]">
+            <Image
+              src={teamGroupPhotoUrl || CLIENT_IMAGES.teamGroup}
+              alt="Thompson's Mobile Detailing AZ team at your service"
+              fill
+              className="object-cover object-[center_35%] sm:object-center"
+              sizes="(max-width: 768px) 100vw, 1280px"
+              priority
+            />
+          </div>
+        </div>
+      </section>
+
+      <AboutShowcaseVideo index={0} poster={CLIENT_IMAGES.homeMobileVan} />
+
+      <div className="relative aspect-[16/10] min-h-[200px] overflow-hidden rounded-3xl border border-gold/20 sm:aspect-[21/9]">
         <Image
           src={CLIENT_IMAGES.aboutEscalade}
           alt="Professional mobile detailing results on a luxury SUV"
@@ -110,6 +153,25 @@ export function AboutPageContent() {
         </p>
       </div>
 
+      <AboutPhotoPair
+        images={[
+          {
+            src: CLIENT_PORSCHE_GALLERY[1].src,
+            alt: CLIENT_PORSCHE_GALLERY[1].alt,
+          },
+          {
+            src: CLIENT_ESCALADE_GALLERY[0].src,
+            alt: CLIENT_ESCALADE_GALLERY[0].alt,
+          },
+        ]}
+      />
+
+      <AboutShowcaseVideo
+        index={1}
+        poster={CLIENT_IMAGES.porscheShowcaseBright}
+        aspectClassName={ABOUT_VIDEO_ASPECT}
+      />
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {pillars.map((item) => (
           <article
@@ -126,6 +188,8 @@ export function AboutPageContent() {
           </article>
         ))}
       </div>
+
+      <AboutShowcaseVideo index={2} poster={CLIENT_IMAGES.baExteriorShowcase} />
 
       <section aria-labelledby="about-gallery-heading">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -213,7 +277,7 @@ export function AboutPageContent() {
           {BRAND.tagline}
         </p>
         <p className="mx-auto mt-4 max-w-lg text-sm text-off-white/75">
-          Ready for factory-fresh results at your location? Book online or call
+          Ready for factory-fresh results at your location? Book online or call{" "}
           {BRAND.phone}.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">

@@ -8,6 +8,8 @@ import {
   CLIENT_BEFORE_AFTER_PAIRS,
   CLIENT_ENGINE_GALLERY,
   CLIENT_INTERIOR_GALLERY,
+  CLIENT_ESCALADE_GALLERY,
+  CLIENT_PORSCHE_GALLERY,
   CLIENT_WHITE_INTERIOR_GALLERY,
 } from "@/lib/client-images";
 import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
@@ -17,7 +19,23 @@ import { Button } from "@/components/ui/Button";
 
 type GalleryCategory = (typeof GALLERY_CATEGORIES)[number];
 
-export function ResultsGalleryView() {
+export type ManagedGalleryItem = {
+  _id?: string;
+  title: string;
+  category?: string;
+  beforeImage: { url: string; alt?: string };
+  afterImage: { url: string; alt?: string };
+  caption?: string;
+};
+
+export function ResultsGalleryView({
+  managedGallery = [],
+}: {
+  managedGallery?: ManagedGalleryItem[];
+}) {
+  const fromAdmin = managedGallery.filter(
+    (item) => item.beforeImage?.url && item.afterImage?.url
+  );
   const [category, setCategory] = useState<GalleryCategory | "">("");
 
   const photos = useMemo(() => {
@@ -27,6 +45,32 @@ export function ResultsGalleryView() {
 
   return (
     <div className="w-full min-w-0 space-y-12 md:space-y-16">
+      {fromAdmin.length > 0 && (
+        <section>
+          <h2 className="font-display text-2xl text-bright-gold md:text-3xl">
+            Latest from the shop
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-off-white/70">
+            Recently published before-and-after work from admin gallery.
+          </p>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
+            {fromAdmin.map((item) => (
+              <BeforeAfterPairCard
+                key={String(item._id ?? item.title)}
+                item={{
+                  title: item.title,
+                  category: item.category || "Gallery",
+                  beforeSrc: item.beforeImage.url,
+                  afterSrc: item.afterImage.url,
+                  beforeAlt: item.beforeImage.alt || `${item.title} before`,
+                  afterAlt: item.afterImage.alt || `${item.title} after`,
+                }}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
       <section>
         <h2 className="font-display text-2xl text-bright-gold md:text-3xl">
           Before & after transformations
@@ -47,6 +91,59 @@ export function ResultsGalleryView() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {CLIENT_WHITE_INTERIOR_GALLERY.map((img) => (
             <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="50vw" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">Signature foam wash</h2>
+        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
+          Safe foam, hand-finished panels, and a deep gloss — ideal maintenance
+          between full details.
+        </p>
+        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
+          <AutoplayShowcaseVideo
+            src={CLIENT_VIDEOS.signatureFoamWash}
+            poster={CLIENT_VIDEOS.signatureFoamWashPoster}
+            aspectClassName="aspect-[16/10] min-h-[200px] max-h-[min(56vh,480px)] md:aspect-[21/9]"
+            label="Signature foam hand wash showcase"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">Exterior detailing</h2>
+        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
+          Real mobile work on luxury exteriors — wash, decon, and gloss refinement.
+        </p>
+        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
+          <AutoplayShowcaseVideo
+            src={CLIENT_VIDEOS.clip4080}
+            poster="/images/client/vernon-13-porsche-front-outdoor.jpg"
+            aspectClassName="aspect-[16/10] min-h-[200px] max-h-[min(56vh,480px)] md:aspect-[21/9]"
+            label="Exterior mobile detailing"
+          />
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-bright-gold">Porsche detailing</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CLIENT_PORSCHE_GALLERY.map((img) => (
+            <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="25vw" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-gold">Luxury SUV exterior</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {CLIENT_ESCALADE_GALLERY.map((img) => (
+            <div key={img.src} className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20">
               <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="50vw" />
             </div>
           ))}

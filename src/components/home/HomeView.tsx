@@ -9,6 +9,7 @@ import { BRAND, SERVICE_AREAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { HeroSection } from "@/components/home/HeroSection";
 import { ImageShowcaseStrip } from "@/components/home/ImageShowcaseStrip";
+import { HomeAdditionalShowcase } from "@/components/home/HomeAdditionalShowcase";
 import { HomeLiveFootageSection } from "@/components/home/HomeLiveFootageSection";
 import { HomePorscheInteriorSection } from "@/components/home/HomePorscheInteriorSection";
 import { MobileVanServicesSection } from "@/components/home/MobileVanServicesSection";
@@ -19,6 +20,7 @@ import { CinematicIntro } from "@/components/intro/CinematicIntro";
 import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
 import { FaqAccordion, type FaqItem } from "@/components/faq/FaqAccordion";
 import { formatCurrency } from "@/lib/utils";
+import type { PublicSiteSettings } from "@/lib/public-settings";
 
 type Service = {
   _id: string;
@@ -72,10 +74,19 @@ export function HomeView({
   services,
   faqs,
   testimonials,
+  siteSettings,
+  ownerPhotoUrl,
+  teamGroupPhotoUrl,
 }: {
   services: Service[];
   faqs: FaqItem[];
   testimonials: Testimonial[];
+  siteSettings: Pick<
+    PublicSiteSettings,
+    "heroMediaUrl" | "heroHeadline" | "heroSubheadline" | "heroDescription" | "aboutText"
+  >;
+  ownerPhotoUrl: string;
+  teamGroupPhotoUrl: string;
 }) {
   const [introDone, setIntroDone] = useState(false);
   const onIntroComplete = useCallback(() => setIntroDone(true), []);
@@ -90,7 +101,7 @@ export function HomeView({
       <div
         className={`w-full min-w-0 overflow-x-clip ${introDone ? "opacity-100" : "opacity-0"}`}
       >
-        <HeroSection introDone={introDone} />
+        <HeroSection introDone={introDone} settings={siteSettings} />
 
         <HomePorscheInteriorSection />
 
@@ -111,6 +122,8 @@ export function HomeView({
 
         <ImageShowcaseStrip />
 
+        <HomeAdditionalShowcase />
+
         <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
           <SectionHeading
             title="About Thompson's Mobile Detailing"
@@ -120,7 +133,7 @@ export function HomeView({
             <div className="mx-auto w-full max-w-xs lg:mx-0">
               <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-2 border-gold/40 shadow-[0_0_40px_rgba(255,201,40,0.12)]">
                 <Image
-                  src={CLIENT_IMAGES.ownerPortrait}
+                  src={ownerPhotoUrl || CLIENT_IMAGES.ownerPortrait}
                   alt="Vernon Thompson, owner of Thompson's Mobile Detailing AZ"
                   fill
                   className="object-cover"
@@ -153,6 +166,30 @@ export function HomeView({
                 ))}
               </div>
               <Button href="/about">Learn More</Button>
+            </div>
+          </div>
+          <div className="mt-12 w-full min-w-0 overflow-hidden rounded-3xl border border-gold/25 bg-navy/30">
+            <div className="relative aspect-[4/5] w-full max-h-[min(70vh,520px)] sm:aspect-[16/10] sm:max-h-none md:aspect-[21/9]">
+              <Image
+                src={teamGroupPhotoUrl || CLIENT_IMAGES.teamGroup}
+                alt="Thompson's Mobile Detailing AZ team and family"
+                fill
+                className="object-cover object-[center_35%] sm:object-center"
+                sizes="(max-width: 768px) 100vw, 1280px"
+              />
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-midnight/80 via-midnight/15 to-transparent"
+                aria-hidden
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-bright-gold sm:text-xs">
+                  Family owned & operated
+                </p>
+                <p className="mt-2 max-w-xl text-sm text-white/90 sm:text-base">
+                  Vernon and the crew bring the same care to every detail — at your
+                  driveway, office, or job site across the Valley.
+                </p>
+              </div>
             </div>
           </div>
         </section>

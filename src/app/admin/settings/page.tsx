@@ -80,13 +80,41 @@ export default function AdminSettingsPage() {
           />
           Maintenance mode
         </label>
-        <div>
-          <p className="text-sm mb-2">Logo</p>
-          <ImageUploadField
-            folder="settings"
-            value={String(settings.logoUrl ?? "")}
-            onChange={(url) => setSettings({ ...settings, logoUrl: url })}
-          />
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <p className="text-sm mb-2">Logo</p>
+            <ImageUploadField
+              folder="settings"
+              value={String(settings.logoUrl ?? "")}
+              onChange={(url) => setSettings({ ...settings, logoUrl: url })}
+            />
+          </div>
+          <div>
+            <p className="text-sm mb-2">Home hero image (e.g. blue Charger)</p>
+            <ImageUploadField
+              folder="settings"
+              value={String(settings.heroMediaUrl ?? "")}
+              onChange={(url) => setSettings({ ...settings, heroMediaUrl: url })}
+            />
+          </div>
+          <div>
+            <p className="text-sm mb-2">Owner portrait</p>
+            <ImageUploadField
+              folder="settings"
+              value={String(settings.ownerPhotoUrl ?? "")}
+              onChange={(url) => setSettings({ ...settings, ownerPhotoUrl: url })}
+            />
+          </div>
+          <div>
+            <p className="text-sm mb-2">Team group photo</p>
+            <ImageUploadField
+              folder="settings"
+              value={String(settings.teamGroupPhotoUrl ?? "")}
+              onChange={(url) =>
+                setSettings({ ...settings, teamGroupPhotoUrl: url })
+              }
+            />
+          </div>
         </div>
         <button type="button" onClick={save} className="rounded-full bg-gold px-4 py-2 text-midnight">
           Save Settings

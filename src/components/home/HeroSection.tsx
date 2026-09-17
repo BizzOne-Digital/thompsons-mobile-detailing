@@ -2,25 +2,137 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Calendar, ChevronRight, Leaf, MapPin, Star } from "lucide-react";
 import { CLIENT_IMAGES } from "@/lib/client-images";
+import { CLIENT_VIDEOS } from "@/lib/client-videos";
+import type { PublicSiteSettings } from "@/lib/public-settings";
 
 type HeroSectionProps = {
   introDone: boolean;
+  settings: Pick<
+    PublicSiteSettings,
+    "heroMediaUrl" | "heroHeadline" | "heroSubheadline" | "heroDescription"
+  >;
 };
 
-export function HeroSection({ introDone }: HeroSectionProps) {
+function isVideoMediaUrl(url: string) {
+  return /\.(mp4|webm|mov)(\?|#|$)/i.test(url);
+}
+
+/** Old stock / placeholder heroes — never override the live Charger */
+function isLegacyStockHero(url: string) {
+  const u = url.toLowerCase();
   return (
-    <section className="relative isolate min-h-[100svh] w-full overflow-hidden">
-      <Image
-        src={CLIENT_IMAGES.heroElectricBlueCharger}
-        alt="Electric blue Dodge Charger after professional mobile detailing in Arizona"
-        fill
-        priority
-        className="object-cover object-[center_40%] brightness-[1.05] contrast-[1.04] sm:object-center"
-        sizes="100vw"
-      />
+    u.includes("unsplash") ||
+    u.includes("mobile-sunset") ||
+    u.includes("suv-full-detail") ||
+    u.includes("foam-wash-arizona") ||
+    u.includes("/images/hero") ||
+    u.includes("hero-bg")
+  );
+}
+
+function resolveHeroVideoSrc(heroMediaUrl: string) {
+  const custom = heroMediaUrl.trim();
+  if (custom && isVideoMediaUrl(custom) && !isLegacyStockHero(custom)) {
+    return custom;
+  }
+  return CLIENT_VIDEOS.heroElectricBlueCharger;
+}
+
+const HERO_MEDIA_CLASS =
+  "absolute inset-0 h-full w-full object-cover object-[center_48%] brightness-[1.06] contrast-[1.05] saturate-[1.08] sm:object-[center_42%] md:object-center";
+
+export function HeroSection({ introDone, settings }: HeroSectionProps) {
+  const reduceMotion = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
+  const poster = CLIENT_IMAGES.heroElectricBlueCharger;
+  const videoSrc = resolveHeroVideoSrc(settings.heroMediaUrl ?? "");
+  const useLiveVideo = !reduceMotion;
+
+  const tryPlay = useCallback(async () => {
+    const el = videoRef.current;
+    if (!el || !useLiveVideo || !introDone) return;
+    el.muted = true;
+    try {
+      await el.play();
+    } catch {
+      /* poster remains visible under video */
+    }
+  }, [useLiveVideo, introDone]);
+
+  useEffect(() => {
+    if (!useLiveVideo || !introDone) return;
+    tryPlay();
+  }, [useLiveVideo, introDone, tryPlay, videoReady]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    const root = sectionRef.current;
+    if (!el || !root || !useLiveVideo) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && introDone) tryPlay();
+        else el.pause();
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, [useLiveVideo, introDone, tryPlay]);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative isolate min-h-[100svh] w-full overflow-hidden"
+    >
+      {useLiveVideo ? (
+        <>
+          <Image
+            src={poster}
+            alt=""
+            fill
+            priority
+            className={HERO_MEDIA_CLASS}
+            sizes="100vw"
+            aria-hidden
+          />
+          <video
+            ref={videoRef}
+            className={`${HERO_MEDIA_CLASS} transition-opacity duration-500 ${
+              introDone && videoReady ? "opacity-100" : "opacity-0"
+            }`}
+            src={videoSrc}
+            poster={poster}
+            muted
+            loop
+            playsInline
+            autoPlay={introDone}
+            preload="auto"
+            onLoadedData={() => setVideoReady(true)}
+            onCanPlay={() => {
+              setVideoReady(true);
+              if (introDone) tryPlay();
+            }}
+            aria-hidden
+          />
+        </>
+      ) : (
+        <Image
+          src={poster}
+          alt="Electric blue Dodge Charger after professional mobile detailing in Arizona"
+          fill
+          priority
+          className={HERO_MEDIA_CLASS}
+          sizes="100vw"
+        />
+      )}
       <div
         className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/45 to-black/15"
         aria-hidden
@@ -47,15 +159,14 @@ export function HeroSection({ introDone }: HeroSectionProps) {
           </p>
 
           <h1 className="mt-4 max-w-full break-words font-display text-[2rem] font-bold leading-[1.05] tracking-tight sm:mt-5 sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="block text-white">Factory Fresh</span>
+            <span className="block text-white">{settings.heroHeadline}</span>
             <span className="mt-1 block bg-gradient-to-r from-soft-gold via-bright-gold to-gold bg-clip-text text-transparent">
-              Results Guaranteed
+              {settings.heroSubheadline}
             </span>
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
-            Professional mobile auto detailing in Avondale and across the Phoenix
-            metro—delivered to your home, office, or preferred location.
+            {settings.heroDescription}
           </p>
 
           <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium text-bright-gold">

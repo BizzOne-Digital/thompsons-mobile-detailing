@@ -9,6 +9,7 @@ import { VEHICLE_TYPES, type VehicleTypeId } from "@/lib/constants";
 import { bookingSchema } from "@/lib/validations";
 import { formatCurrency } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { useSiteSettings } from "@/components/layout/SiteSettingsProvider";
 
 type Service = {
   _id: string;
@@ -42,6 +43,7 @@ export function BookingWizard({
   services: Service[];
   addOns: AddOn[];
 }) {
+  const { bookingNotice } = useSiteSettings();
   const [step, setStep] = useState(0);
   const [slots, setSlots] = useState<string[]>([]);
   const [photos, setPhotos] = useState<{ url: string; publicId?: string }[]>([]);
@@ -170,8 +172,7 @@ export function BookingWizard({
       <div className="glass-panel rounded-3xl p-8 text-center">
         <h2 className="font-display text-3xl text-bright-gold">Request Submitted</h2>
         <p className="mt-4 text-off-white/80">
-          Your booking request is pending review. We will contact you to confirm your
-          appointment. A confirmation email has been sent if SMTP is configured.
+          {bookingNotice}
         </p>
       </div>
     );
@@ -347,7 +348,7 @@ export function BookingWizard({
           <p>Service: {service?.name}</p>
           <p>Estimated total: {formatCurrency(estimated)}</p>
           <p className="text-off-white/60">
-            This is a request pending review — not a confirmed appointment.
+            {bookingNotice}
           </p>
         </div>
       )}

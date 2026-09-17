@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
-import { getTeam } from "@/lib/data";
+import { getSettings, getTeam } from "@/lib/data";
 import { CLIENT_IMAGES } from "@/lib/client-images";
+import { toPublicSiteSettings } from "@/lib/public-settings";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 
@@ -10,19 +11,24 @@ export const metadata = buildMetadata({ title: "Our Team", path: "/team" });
 export const dynamic = "force-dynamic";
 
 export default async function TeamPage() {
-  const team = await getTeam();
+  const [team, settingsRaw] = await Promise.all([getTeam(), getSettings()]);
+  const site = toPublicSiteSettings(settingsRaw);
+  const teamGroupPhoto =
+    site.teamGroupPhotoUrl?.trim() || CLIENT_IMAGES.teamGroup;
+  const ownerPhotoUrl =
+    site.ownerPhotoUrl?.trim() || CLIENT_IMAGES.ownerPortrait;
 
   return (
     <PageShell
       title="Our Team"
       subtitle="Meet the professionals behind Thompson's Mobile Detailing AZ."
-      heroImage={CLIENT_IMAGES.teamGroup}
+      heroImage={teamGroupPhoto}
     >
       <div className="space-y-12">
         <section className="overflow-hidden rounded-3xl border border-gold/25 gold-border">
           <div className="relative aspect-[21/9] min-h-[220px] w-full md:min-h-[320px]">
             <Image
-              src={CLIENT_IMAGES.teamGroup}
+              src={teamGroupPhoto}
               alt="Thompson's Mobile Detailing AZ team"
               fill
               className="object-cover object-center"
@@ -46,7 +52,7 @@ export default async function TeamPage() {
           <div className="mx-auto w-full max-w-xs lg:mx-0">
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border-2 border-gold/40">
               <Image
-                src={CLIENT_IMAGES.ownerPortrait}
+                src={ownerPhotoUrl}
                 alt="Vernon Thompson, owner"
                 fill
                 className="object-cover"
