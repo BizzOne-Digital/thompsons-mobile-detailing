@@ -4,18 +4,11 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import { GALLERY_CATEGORIES } from "@/lib/constants";
 import { RESULTS_GALLERY } from "@/lib/site-images";
-import {
-  CLIENT_BEFORE_AFTER_PAIRS,
-  CLIENT_ENGINE_GALLERY,
-  CLIENT_INTERIOR_GALLERY,
-  CLIENT_ESCALADE_GALLERY,
-  CLIENT_PORSCHE_GALLERY,
-  CLIENT_WHITE_INTERIOR_GALLERY,
-} from "@/lib/client-images";
+import { CLIENT_BEFORE_AFTER_PAIRS } from "@/lib/client-images";
 import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
-import { AutoplayShowcaseVideo } from "@/components/media/AutoplayShowcaseVideo";
-import { CLIENT_VIDEOS } from "@/lib/client-videos";
 import { Button } from "@/components/ui/Button";
+import { ExteriorPortfolioSection } from "@/components/portfolio/ExteriorPortfolioSection";
+import { ClientVideoGallerySection } from "@/components/results/ClientVideoGallerySection";
 
 type GalleryCategory = (typeof GALLERY_CATEGORIES)[number];
 
@@ -71,6 +64,10 @@ export function ResultsGalleryView({
         </section>
       )}
 
+      <ExteriorPortfolioSection />
+
+      <ClientVideoGallerySection />
+
       <section>
         <h2 className="font-display text-2xl text-bright-gold md:text-3xl">
           Before & after transformations
@@ -83,139 +80,6 @@ export function ResultsGalleryView({
           {CLIENT_BEFORE_AFTER_PAIRS.map((item) => (
             <BeforeAfterPairCard key={item.title} item={item} />
           ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">White interior details</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {CLIENT_WHITE_INTERIOR_GALLERY.map((img) => (
-            <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="50vw" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">Signature foam wash</h2>
-        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
-          Safe foam, hand-finished panels, and a deep gloss — ideal maintenance
-          between full details.
-        </p>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
-          <AutoplayShowcaseVideo
-            src={CLIENT_VIDEOS.signatureFoamWash}
-            poster={CLIENT_VIDEOS.signatureFoamWashPoster}
-            aspectClassName="aspect-[16/10] min-h-[200px] max-h-[min(56vh,480px)] md:aspect-[21/9]"
-            label="Signature foam hand wash showcase"
-          />
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">Exterior detailing</h2>
-        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
-          Real mobile work on luxury exteriors — wash, decon, and gloss refinement.
-        </p>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
-          <AutoplayShowcaseVideo
-            src={CLIENT_VIDEOS.clip4080}
-            poster="/images/client/vernon-13-porsche-front-outdoor.jpg"
-            aspectClassName="aspect-[16/10] min-h-[200px] max-h-[min(56vh,480px)] md:aspect-[21/9]"
-            label="Exterior mobile detailing"
-          />
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">Porsche detailing</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {CLIENT_PORSCHE_GALLERY.map((img) => (
-            <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="25vw" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-gold">Luxury SUV exterior</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {CLIENT_ESCALADE_GALLERY.map((img) => (
-            <div key={img.src} className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="50vw" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">Interior services</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CLIENT_INTERIOR_GALLERY.map((img) => (
-            <div key={img.src} className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-gold/20">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="33vw" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">Engine bay cleaning</h2>
-        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
-          Degrease, detail, and dress — factory-clean bays without the shop visit.
-        </p>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
-          <AutoplayShowcaseVideo
-            src={CLIENT_VIDEOS.engineBayCleaning}
-            poster="/images/client/engine-12-after.jpg"
-            aspectClassName="aspect-[21/9] min-h-[200px] md:min-h-[300px]"
-            label="Engine bay cleaning in action"
-          />
-        </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {CLIENT_ENGINE_GALLERY.map((img) => (
-            <div key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-gold/20">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="33vw" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="font-display text-2xl text-bright-gold">Ceramic protection</h2>
-        <p className="mt-2 max-w-2xl text-sm text-off-white/70">
-          Deep gloss, hydrophobic beading, and lasting defense against Arizona sun
-          and contaminants.
-        </p>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
-          <AutoplayShowcaseVideo
-            src={CLIENT_VIDEOS.ceramicProtection}
-            poster={CLIENT_VIDEOS.ceramicProtectionPoster}
-            aspectClassName="aspect-[21/9] min-h-[200px] md:min-h-[300px]"
-            label="Ceramic coating finish and protection"
-          />
-        </div>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20">
-            <Image
-              src="/images/client/ceramic-coating-finish.jpg"
-              alt="Ceramic coated paint finish with deep gloss"
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
-          </div>
-          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20">
-            <Image
-              src="/images/client/ceramic-coating-finish-alt.jpg"
-              alt="Close-up ceramic protection results on vehicle paint"
-              fill
-              className="object-cover"
-              sizes="50vw"
-            />
-          </div>
         </div>
       </section>
 

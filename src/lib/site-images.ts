@@ -1,17 +1,25 @@
-import { CLIENT_IMAGES } from "@/lib/client-images";
+import { CLIENT_IMAGES, CLIENT_SPOTLIGHT_GALLERY } from "@/lib/client-images";
+import {
+  CLIENT_EXTERIOR_PORTFOLIO,
+  CLIENT_EXTERIOR_PORTFOLIO_FEATURED,
+} from "@/lib/client-portfolio";
+import { RESULTS_GALLERY_PHOTO_COUNT } from "@/lib/client-media-curation";
+
+const portfolio = (id: string, fallback: string) =>
+  CLIENT_EXTERIOR_PORTFOLIO.find((p) => p.id === id)?.coverSrc ?? fallback;
 
 export const SITE_IMAGES = {
   hero: CLIENT_IMAGES.heroElectricBlueCharger,
-  mobileSunsetSedan: "/images/mobile-sunset-sedan.jpg",
-  interiorExtraction: "/images/interior-extraction.jpg",
-  suvFullDetail: "/images/suv-full-detail.jpg",
-  foamWashArizona: "/images/foam-wash-arizona.jpg",
+  mobileSunsetSedan: portfolio("ford-edge", "/images/portfolio/ford-edge/01-sunset.jpg"),
+  interiorExtraction: CLIENT_IMAGES.deepClean15,
+  suvFullDetail: portfolio("black-cadillac-escalade", CLIENT_IMAGES.aboutEscalade),
+  foamWashArizona: portfolio("classic-car-foam-wash", CLIENT_IMAGES.aboutFoamWash),
   ceramicCoating: "/images/client/ceramic-coating-finish.jpg",
-  paintCorrection: "/images/paint-correction.jpg",
-  engineBay: "/images/engine-bay.jpg",
-  carpetExtraction: "/images/carpet-extraction.jpg",
-  headlightRestoration: "/images/headlight-restoration.jpg",
-  mobileVanSetup: "/images/mobile-van-setup.jpg",
+  paintCorrection: CLIENT_IMAGES.paintAfter,
+  engineBay: CLIENT_IMAGES.engineAfter,
+  carpetExtraction: CLIENT_IMAGES.deepClean16,
+  headlightRestoration: CLIENT_IMAGES.baHeadlightAfter,
+  mobileVanSetup: CLIENT_IMAGES.aboutMobileSetup,
 } as const;
 
 export const PACKAGE_IMAGES: Record<string, string> = {
@@ -62,91 +70,38 @@ export const HOME_BEFORE_AFTER = [
   },
 ] as const;
 
-/** Public results / gallery page showcase photos */
-export const RESULTS_GALLERY = [
-  {
-    id: "exterior-sedan-sunset",
-    title: "Exterior finish at golden hour",
+/** Public results / gallery — curated Vernon portfolio stills */
+export const RESULTS_GALLERY = CLIENT_EXTERIOR_PORTFOLIO_FEATURED.slice(
+  0,
+  RESULTS_GALLERY_PHOTO_COUNT
+).map(
+  (project, index) => ({
+    id: project.id,
+    title: project.vehicle,
     category: "Exterior" as const,
-    imageSrc: "/images/gallery/exterior-sedan-sunset.jpg",
+    imageSrc: project.coverSrc,
     imageAlt:
-      "Glossy black luxury sedan after mobile detailing in the Arizona desert at sunset",
-    featured: true,
-  },
-  {
-    id: "interior-luxury-suv",
-    title: "Premium interior detail",
-    category: "Interior" as const,
-    imageSrc: "/images/gallery/interior-luxury-suv.jpg",
-    imageAlt:
-      "Clean leather interior of an SUV detailed on location in the desert",
-    featured: true,
-  },
-  {
-    id: "paint-refinement-studio",
-    title: "Paint refinement & clarity",
-    category: "Paint Correction" as const,
-    imageSrc: "/images/gallery/paint-refinement-studio.jpg",
-    imageAlt: "Mirror-finish blue paint after professional paint refinement",
-    featured: false,
-  },
-  {
-    id: "ceramic-hydrophobic",
-    title: "Hydrophobic ceramic protection",
-    category: "Ceramic Coating" as const,
-    imageSrc: "/images/gallery/ceramic-hydrophobic-finish.jpg",
-    imageAlt:
-      "Water beading on a detailed black sedan after ceramic coating",
-    featured: false,
-  },
-  {
-    id: "headlight-clarity",
-    title: "Headlight clarity & finish",
-    category: "Headlights" as const,
-    imageSrc: "/images/gallery/headlight-clarity.jpg",
-    imageAlt: "Crystal-clear headlight on a refined navy blue luxury sedan",
-    featured: false,
-  },
-  {
-    id: "interior-full-cabin",
-    title: "Full cabin interior reset",
-    category: "Carpets and Seats" as const,
-    imageSrc: "/images/gallery/interior-full-cabin.jpg",
-    imageAlt:
-      "Spotless SUV interior with doors open after deep cleaning in Arizona",
-    featured: false,
-  },
-] as const;
+      project.media[0]?.type === "image"
+        ? project.media[0].alt
+        : `${project.vehicle} after mobile detailing`,
+    featured: index < 4,
+  })
+);
 
 export const HOME_GALLERY_STRIP = [
   {
-    src: SITE_IMAGES.mobileVanSetup,
-    alt: "Fully equipped mobile detailing van in Arizona",
+    src: CLIENT_IMAGES.aboutMobileSetup,
+    alt: "Mobile detailing setup at a customer's driveway",
     label: "Fully Mobile",
   },
+  ...CLIENT_SPOTLIGHT_GALLERY.map((item) => ({
+    src: item.src,
+    alt: item.alt,
+    label: item.label,
+  })),
   {
-    src: SITE_IMAGES.interiorExtraction,
-    alt: "Interior seat extraction detailing",
-    label: "Interior Deep Clean",
-  },
-  {
-    src: SITE_IMAGES.paintCorrection,
-    alt: "Paint correction with professional polisher",
-    label: "Paint Correction",
-  },
-  {
-    src: SITE_IMAGES.ceramicCoating,
-    alt: "Ceramic coating water beading on luxury paint",
-    label: "Ceramic Protection",
-  },
-  {
-    src: SITE_IMAGES.engineBay,
-    alt: "Engine bay detailing service",
-    label: "Engine Bay",
-  },
-  {
-    src: SITE_IMAGES.headlightRestoration,
-    alt: "Headlight restoration and paint refinement",
+    src: CLIENT_IMAGES.baHeadlightAfter,
+    alt: "Headlight restoration results",
     label: "Headlights",
   },
 ] as const;

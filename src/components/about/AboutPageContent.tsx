@@ -126,6 +126,19 @@ export function AboutPageContent({
         </div>
       </section>
 
+      <AboutPhotoPair
+        images={[
+          {
+            src: CLIENT_IMAGES.aboutMobileSetup,
+            alt: "Thompson's mobile detailing equipment set up at a customer's home",
+          },
+          {
+            src: CLIENT_IMAGES.aboutFoamWash,
+            alt: "Team member foam-washing a vehicle on site",
+          },
+        ]}
+      />
+
       <AboutShowcaseVideo index={0} poster={CLIENT_IMAGES.homeMobileVan} />
 
       <div className="relative aspect-[16/10] min-h-[200px] overflow-hidden rounded-3xl border border-gold/20 sm:aspect-[21/9]">

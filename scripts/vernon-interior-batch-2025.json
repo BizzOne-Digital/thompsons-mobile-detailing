@@ -1,0 +1,95 @@
+{
+  "source": "Client Vernon — chat batch after interior feedback (Sep 2025)",
+  "publicBase": "/images/client/vernon-batch-2025",
+  "notes": [
+    "Three red-leather shots are BEFORE only (same job); pair with existing red-leather-after.jpg until a matching after is provided.",
+    "Use only one red-leather before on site; others are alternates for portfolio.",
+    "Videos: pending — user will send one folder in next chat."
+  ],
+  "images": [
+    {
+      "file": "interior-red-leather-before-wide.jpg",
+      "role": "before",
+      "subject": "Red leather rear interior — wide angle",
+      "use": "primary before for leather/pet-hair B&A (once)"
+    },
+    {
+      "file": "interior-red-leather-before-pet-hair-floor.jpg",
+      "role": "before",
+      "subject": "Red leather — pet hair on carpet",
+      "use": "alternate before — do not repeat on home/results"
+    },
+    {
+      "file": "interior-red-leather-before-rear-bench.jpg",
+      "role": "before",
+      "subject": "Red leather rear bench stains",
+      "use": "alternate before"
+    },
+    {
+      "file": "exterior-black-camry-after-rear-01.jpg",
+      "role": "after",
+      "subject": "Black Toyota Camry XSE — garage gloss",
+      "use": "results / exterior portfolio"
+    },
+    {
+      "file": "exterior-black-camry-after-rear-02.jpg",
+      "role": "after",
+      "subject": "Black Camry — second angle",
+      "use": "pick one Camry hero; avoid duplicate on same page"
+    },
+    {
+      "file": "interior-bmw-tan-front-after.jpg",
+      "role": "after",
+      "subject": "BMW tan leather front",
+      "use": "home interior strip / results gallery"
+    },
+    {
+      "file": "interior-bmw-tan-rear-after.jpg",
+      "role": "after",
+      "subject": "BMW tan rear footwell",
+      "use": "home interior strip / results gallery"
+    },
+    {
+      "file": "interior-chevrolet-captain-rear-after.jpg",
+      "role": "after",
+      "subject": "Chevrolet SUV captain chairs",
+      "use": "interior variety"
+    },
+    {
+      "file": "interior-chevrolet-front-passenger-after.jpg",
+      "role": "after",
+      "subject": "Chevrolet front passenger",
+      "use": "interior variety"
+    },
+    {
+      "file": "interior-chevrolet-dashboard-after.jpg",
+      "role": "after",
+      "subject": "Chevrolet dash and carpet",
+      "use": "interior variety"
+    },
+    {
+      "file": "interior-genesis-cream-front-after.jpg",
+      "role": "after",
+      "subject": "Genesis cream front cabin",
+      "use": "interior variety"
+    },
+    {
+      "file": "interior-genesis-cream-rear-after.jpg",
+      "role": "after",
+      "subject": "Genesis cream rear",
+      "use": "interior variety"
+    },
+    {
+      "file": "interior-genesis-cabin-wide-after.jpg",
+      "role": "after",
+      "subject": "Genesis wide interior",
+      "use": "interior variety"
+    },
+    {
+      "file": "interior-suv-cargo-after.jpg",
+      "role": "after",
+      "subject": "SUV cargo area vacuum lines",
+      "use": "deep clean / cargo"
+    }
+  ]
+}

@@ -1,47 +1,63 @@
-/** Client-provided footage in /public/videos/ */
-const base = "/videos";
-const engineBase = "/videos2";
-const ceramicBase = "/videos3";
-const signatureBase = "/videos4";
-const aboutShowcaseBase = "/videos5";
-const heroVideoBase = "/videos6";
+/**
+ * Client video sources — primary library: /public/videos7/
+ * Regenerate list: node scripts/generate-videos7-manifest.mjs
+ */
+import { FEATURED_RESULTS_VIDEO_KEYS } from "@/lib/client-media-curation";
+import {
+  VIDEOS7_ABOUT,
+  VIDEOS7_CERAMIC,
+  VIDEOS7_CLIP_C,
+  VIDEOS7_CLIP_D,
+  VIDEOS7_ENGINE,
+  VIDEOS7_EXTERIOR_A,
+  VIDEOS7_EXTERIOR_B,
+  VIDEOS7_HERO,
+  VIDEOS7_HOME_LIVE,
+  VIDEOS7_INTERIOR,
+  VIDEOS7_SIGNATURE_FOAM,
+} from "@/lib/client-videos7.generated";
 
-/** Client clips in /public/videos5/ — used on About page */
-export const ABOUT_PAGE_VIDEOS = [
-  {
-    src: `${aboutShowcaseBase}/AQMq5diBc9zT94BqOPAxyf9eib8IvIph8fBepmwepTwypkX7iHfGRRGvpE6Ja0-e_hoDxe7ncwsPeP5sCTsdKXDMsCPrmSKsdNcenkFPyg.mp4`,
-    label: "Thompson's mobile detailing — on-site service",
-  },
-  {
-    src: `${aboutShowcaseBase}/AQORYjwFXplj4IquNG_xPHPi_jMg3knsAD2t1n72vAfBkPazCp1AhmAiUx9Wr4iig9xlgV7SGs8MhpS4YQlk3tdI2Jo_cyoJFYiuuNLihw.mp4`,
-    label: "Professional detailing process and finish",
-  },
-  {
-    src: `${aboutShowcaseBase}/AQOTCmzlhW0X9NrTT2AVcRB-hL_qNfoVf5VYn3Oyh-YnP2KfR-fCwHCJ8-UH6gauYXxqpWWJZl7OLsgvyH1UtbbsgIvks9oBDoptFiMEXA.mp4`,
-    label: "Factory-fresh results at your location",
-  },
-] as const;
+const clientBase = "/videos7";
+
+/** About page showcase clips (from Vernon videos7 folder) */
+export const ABOUT_PAGE_VIDEOS = VIDEOS7_ABOUT.map((clip) => ({
+  src: clip.src,
+  label: clip.label,
+}));
 
 export const CLIENT_VIDEOS = {
-  /** Home hero — electric blue Dodge Charger */
-  heroElectricBlueCharger: `${heroVideoBase}/hero-electric-blue-charger.mp4`,
+  /** Home hero — Vernon videos7 (largest showcase clip) */
+  heroElectricBlueCharger: VIDEOS7_HERO,
   /** Full-width home section below hero */
-  homeLiveFootage: `${base}/IMG_4077.MOV`,
+  homeLiveFootage: VIDEOS7_HOME_LIVE,
   /** Interior deep clean — service pages & home showcase */
-  interiorDeepClean: `${base}/IMG_7914.MOV`,
+  interiorDeepClean: VIDEOS7_INTERIOR,
   /** Engine bay cleaning — service hero & results */
-  engineBayCleaning: `${engineBase}/IMG_4162.MOV`,
-  /** Ceramic coating — 6s H.264 web clip + finish still */
-  ceramicProtection: `${ceramicBase}/ceramic-showcase.mp4`,
+  engineBayCleaning: VIDEOS7_ENGINE,
+  /** Ceramic coating showcase */
+  ceramicProtection: VIDEOS7_CERAMIC,
   ceramicProtectionPoster: "/images/client/ceramic-coating-finish.jpg",
   /** Signature foam hand wash */
-  signatureFoamWash: `${signatureBase}/signature-foam-showcase.mp4`,
-  signatureFoamWashPoster: "/images/client/signature-foam-wash.jpg",
-  /** Additional clips (swap in admin/content later if needed) */
-  clip2862: `${base}/IMG_2862.MOV`,
-  clip4080: `${base}/IMG_4080.MOV`,
-  clip4344: `${base}/IMG_4344.MOV`,
+  signatureFoamWash: VIDEOS7_SIGNATURE_FOAM,
+  signatureFoamWashPoster: "/images/portfolio/classic-car-foam-wash/01-foam.jpg",
+  clip4080: VIDEOS7_EXTERIOR_A,
+  clip4344: VIDEOS7_EXTERIOR_B,
+  clip2862: VIDEOS7_CLIP_C,
+  clipExtra: VIDEOS7_CLIP_D,
 } as const;
+
+const VIDEO_LABELS: Record<(typeof FEATURED_RESULTS_VIDEO_KEYS)[number], string> = {
+  signatureFoamWash: "Signature foam hand wash",
+  clip4080: "Exterior mobile detailing",
+  engineBayCleaning: "Engine bay cleaning",
+  ceramicProtection: "Ceramic protection finish",
+};
+
+/** Curated clips for /results (not the full videos7 library) */
+export const CLIENT_VIDEO_GALLERY = FEATURED_RESULTS_VIDEO_KEYS.map((key) => ({
+  src: CLIENT_VIDEOS[key],
+  label: VIDEO_LABELS[key],
+}));
 
 /** Service page heroes — poster is the static fallback image */
 export const SERVICE_SLUG_VIDEOS: Partial<
@@ -49,7 +65,7 @@ export const SERVICE_SLUG_VIDEOS: Partial<
 > = {
   "restore-detail": {
     src: CLIENT_VIDEOS.interiorDeepClean,
-    poster: "/images/client/deep-clean-16.jpg",
+    poster: "/images/client/vernon-11-porsche-tan-cabin.jpg",
   },
   "engine-bay-cleaning": {
     src: CLIENT_VIDEOS.engineBayCleaning,
@@ -65,7 +81,7 @@ export const SERVICE_SLUG_VIDEOS: Partial<
   },
   "refresh-detail": {
     src: CLIENT_VIDEOS.clip4080,
-    poster: "/images/client/vernon-19-escalade-front.jpg",
+    poster: "/images/portfolio/toyota-tundra-trd/02-front.jpg",
   },
   "reset-detail": {
     src: CLIENT_VIDEOS.clip4344,
@@ -76,3 +92,5 @@ export const SERVICE_SLUG_VIDEOS: Partial<
     poster: "/images/client/vernon-16-paint-hood-after.jpg",
   },
 };
+
+export { clientBase as CLIENT_VIDEOS_ROOT };

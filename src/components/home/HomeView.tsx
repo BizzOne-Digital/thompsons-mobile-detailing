@@ -274,6 +274,10 @@ export function HomeView({
               <BeforeAfterPairCard key={item.title} item={item} />
             ))}
           </div>
+          <p className="mt-6 text-center text-sm text-off-white/65">
+            Exterior shots by vehicle — Charger, Escalade, Porsche, and more on
+            our results page.
+          </p>
           <div className="mt-8 text-center">
             <Button href="/results">View Full Results Gallery</Button>
           </div>

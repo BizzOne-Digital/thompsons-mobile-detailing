@@ -6,8 +6,10 @@ const v = (name: string) => `${base}/${name}`;
 export const CLIENT_IMAGES = {
   baInteriorBefore: `${base}/ba-02-interior-before.jpg`,
   baInteriorAfter: `${base}/ba-01-interior-after.jpg`,
-  baHeadlightBefore: v("vernon-06-taillight-before.jpg"),
-  baHeadlightAfter: v("vernon-07-taillight-after.jpg"),
+  baHeadlightBefore: `${base}/ba-03-headlight-before.jpg`,
+  baHeadlightAfter: `${base}/ba-04-headlight-after.jpg`,
+  baTaillightBefore: `${base}/ba-02-interior-before.jpg`,
+  baTaillightAfter: `${base}/ba-01-interior-after.jpg`,
   baExteriorShowcase: v("vernon-18-escalade-angle.jpg"),
   interior06: v("vernon-01-lexus-white-dash.jpg"),
   interior07: v("vernon-04-lexus-interior.jpg"),
@@ -34,6 +36,9 @@ export const CLIENT_IMAGES = {
   redLeatherAfter: v("red-leather-after.jpg"),
   paintBefore: v("vernon-12-paint-hood-before.jpg"),
   paintAfter: v("vernon-16-paint-hood-after.jpg"),
+  aboutMobileSetup:
+    "/images/portfolio/ford-fusion-mobile-process/01-equipment.jpg",
+  aboutFoamWash: "/images/portfolio/classic-car-foam-wash/01-foam.jpg",
 } as const;
 
 export const CLIENT_WHITE_INTERIOR_GALLERY = [
@@ -98,18 +103,18 @@ export const CLIENT_SPOTLIGHT_GALLERY = [
 
 export const CLIENT_BEFORE_AFTER_PAIRS = [
   {
-    title: "Interior Deep Clean",
-    category: "Interior",
-    beforeSrc: CLIENT_IMAGES.baInteriorBefore,
-    afterSrc: CLIENT_IMAGES.baInteriorAfter,
-    beforeAlt: "Vehicle interior before professional deep cleaning",
-    afterAlt: "Restored luxury SUV interior after deep clean",
+    title: "Headlight Restoration",
+    category: "Exterior",
+    beforeSrc: CLIENT_IMAGES.baHeadlightBefore,
+    afterSrc: CLIENT_IMAGES.baHeadlightAfter,
+    beforeAlt: "Oxidized headlight lens before restoration",
+    afterAlt: "Clear headlight lens after polish and restoration",
   },
   {
     title: "Tail Light Restoration",
     category: "Exterior",
-    beforeSrc: CLIENT_IMAGES.baHeadlightBefore,
-    afterSrc: CLIENT_IMAGES.baHeadlightAfter,
+    beforeSrc: CLIENT_IMAGES.baTaillightBefore,
+    afterSrc: CLIENT_IMAGES.baTaillightAfter,
     beforeAlt: "Cloudy taillight lens before restoration",
     afterAlt: "Clear taillight after polish and restoration",
   },

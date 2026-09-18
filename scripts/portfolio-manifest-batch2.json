@@ -1,0 +1,302 @@
+﻿[
+    {
+        "uuid":  "02abe767-6d65-47c9-9ef5-629ed763b317",
+        "slug":  "blue-nissan-rogue",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "04ad45dd-8dd2-4b47-8020-7b1a2b36c294",
+        "slug":  "blue-honda-civic",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "0aa4a935-9618-4b94-8f1b-adf07928cdad",
+        "slug":  "chevy-tahoe-setina",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "1a3ad231-bca7-4249-b717-6cb2fd92fac8",
+        "slug":  "silver-mercedes-e-class",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "2b7bd050-2763-4be6-87d0-c02edaa03fbd",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "33c9dbca-1197-4a12-a096-4030c226ccc6",
+        "slug":  "chevy-tahoe-setina",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "4d6e7854-ebf0-42f4-b179-defbedb7118c",
+        "slug":  "lime-green-toyota-4runner",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "4d96d560-ba4b-4713-9c29-007fd52d3624",
+        "slug":  "gray-ford-super-duty",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "563356dc-a228-42dd-b265-8bc821f6b849",
+        "slug":  "logo-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "584ea71d-9c63-4855-a830-b36127d3e8ad",
+        "slug":  "blue-honda-civic",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "5b411eb6-6ba8-4ad4-b4d3-381e10288c74",
+        "slug":  "silver-chevy-colorado",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "5b8ce4d7-c114-4b35-a7f9-8644ed4d04a3",
+        "slug":  "chevy-tahoe-setina",
+        "destFile":  "03-wash.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "5c709a53-98b6-4629-abaf-76a1a8f98a52",
+        "slug":  "white-acura-mdx",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "5f100ea7-48b0-44a9-9069-4208eadc3a49",
+        "slug":  "gmc-yukon-denali-gray",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "62ede759-71ca-4032-b3c5-b4e35041c4b6",
+        "slug":  "white-ford-super-duty-lifted",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6556f8ca-a73d-4de0-b59a-7a0fc212d75d",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "02-hood.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "659b0b34-381a-4f50-a3b9-a2baa8220c88",
+        "slug":  "black-fiat-124-spider",
+        "destFile":  "01-angle.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "66cb51da-f96a-456a-b432-95203570a72a",
+        "slug":  "logo-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "701b40c6-7fbe-482c-9dc3-9fc8133ce8b7",
+        "slug":  "skip-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "75c865dd-6195-4766-9516-aafdfff2c574",
+        "slug":  "blue-nissan-rogue",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "76112371-cac7-48ba-808f-bd6b2c8b1744",
+        "slug":  "gmc-yukon",
+        "destFile":  "01-hood.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "7aa17561-4381-40ac-a8ee-5d8465bd9aad",
+        "slug":  "chevy-tahoe-setina",
+        "destFile":  "04-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "80ad28c4-a893-4c79-a183-ea54c53273e3",
+        "slug":  "skip-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "8733fbbd-6f93-4671-a12b-7de661fd37a4",
+        "slug":  "blue-nissan-rogue",
+        "destFile":  "03-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "8b6d597f-d8cb-4ace-a91a-718acf917971",
+        "slug":  "skip-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "8f11210a-49e6-4a1a-9caa-f9db1eaa6e0e",
+        "slug":  "skip-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "9009f010-dd62-470e-98dd-620cf18a5d33",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "96c3d479-6c6c-4b4a-aa74-8e1d955dd284",
+        "slug":  "logo-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "98c8a92c-d877-401e-8aaf-473bcf901bf2",
+        "slug":  "gmc-yukon-denali-gray",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "9fe7fafd-5a58-40d4-bdca-eabc2f4b0718",
+        "slug":  "white-acura-mdx",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "a51f856d-080b-4843-8242-006f76a894cf",
+        "slug":  "gray-ford-super-duty",
+        "destFile":  "02-angle.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "a542726e-79a8-433b-9799-a897a0237191",
+        "slug":  "logo-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "a619c797-7d92-436d-bf2b-a64fbd3dd776",
+        "slug":  "logo-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "ad52f5d1-fb27-4f6d-b321-0f3504c64f60",
+        "slug":  "gray-ford-super-duty",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "bf247076-ba89-4d0d-9167-3e4fa5583686",
+        "slug":  "skip-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "bf3d0698-56ef-4a8d-9d12-d6c75af2e55a",
+        "slug":  "tesla-model-3-gray",
+        "destFile":  "01-open.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c9665a71-495b-48d7-a32b-148089fd687c",
+        "slug":  "white-ford-super-duty-lifted",
+        "destFile":  "02-low.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d2a460df-b219-43fc-a5ed-c894f4ab48f3",
+        "slug":  "logo-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "d3b02c8a-001f-497b-8928-0f99452ec056",
+        "slug":  "gray-ford-super-duty",
+        "destFile":  "04-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d6650ab3-d16d-420d-b274-057748de8c37",
+        "slug":  "gmc-yukon",
+        "destFile":  "02-grille.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d7fd0300-ccba-4f8f-ba73-160186523b07",
+        "slug":  "gmc-yukon-denali-gray",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "dd9fc967-3349-4f4c-995e-07be2cc02194",
+        "slug":  "black-mazda-miata",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "df00a199-3c73-4b82-b7d2-78d60862e1dc",
+        "slug":  "gray-ford-super-duty",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "e3bb3aff-07f9-458c-9d17-1936d9e64daf",
+        "slug":  "gray-ford-super-duty",
+        "destFile":  "05-rear-alt.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "e3e99e0d-26d6-4784-b5da-db372d5e21bc",
+        "slug":  "skip-asset",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "e8944314-8bea-4e74-bd52-2f568036a945",
+        "slug":  "white-acura-tlx",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "ed04191d-d7c0-407d-ae97-62f2299d616e",
+        "slug":  "white-acura-mdx",
+        "destFile":  "03-process.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "f9099803-c576-4269-b609-a35a9351788a",
+        "slug":  "white-mazda-cx5",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "f91c4fe9-a243-4727-a28e-82caa82415fd",
+        "slug":  "silver-mercedes-e-class",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "fe4fe3b1-70c6-4965-8988-b7e0db426868",
+        "slug":  "black-fiat-124-spider",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    }
+]
