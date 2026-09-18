@@ -2,14 +2,15 @@
 const base = "/images/client";
 
 const v = (name: string) => `${base}/${name}`;
+const batch = (name: string) => `${base}/vernon-batch-2025/${name}`;
 
 export const CLIENT_IMAGES = {
   baInteriorBefore: `${base}/ba-02-interior-before.jpg`,
   baInteriorAfter: `${base}/ba-01-interior-after.jpg`,
   baHeadlightBefore: `${base}/ba-03-headlight-before.jpg`,
   baHeadlightAfter: `${base}/ba-04-headlight-after.jpg`,
-  baTaillightBefore: `${base}/ba-02-interior-before.jpg`,
-  baTaillightAfter: `${base}/ba-01-interior-after.jpg`,
+  baTaillightBefore: v("vernon-06-taillight-before.jpg"),
+  baTaillightAfter: v("vernon-07-taillight-after.jpg"),
   baExteriorShowcase: v("vernon-18-escalade-angle.jpg"),
   interior06: v("vernon-01-lexus-white-dash.jpg"),
   interior07: v("vernon-04-lexus-interior.jpg"),
@@ -58,14 +59,14 @@ export const CLIENT_WHITE_INTERIOR_GALLERY = [
     label: "Rear Seat Reset",
   },
   {
-    src: v("vernon-04-lexus-interior.jpg"),
-    alt: "Luxury white interior finish",
-    label: "Cabin Detail",
+    src: batch("interior-genesis-cabin-wide-after.jpg"),
+    alt: "Genesis cabin restored after deep interior detail",
+    label: "Genesis Cabin",
   },
   {
-    src: v("vernon-05-lexus-fsport.jpg"),
-    alt: "F Sport white leather interior",
-    label: "F Sport Finish",
+    src: batch("interior-chevrolet-captain-rear-after.jpg"),
+    alt: "Chevrolet SUV captain chairs after interior reset",
+    label: "Captain Chairs",
   },
 ] as const;
 
@@ -127,12 +128,14 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
     afterAlt: "Deep gloss hood after paint refinement",
   },
   {
-    title: "Leather Seat Restoration",
+    title: "Red Leather & Pet Hair Reset",
     category: "Leather & Seats",
     beforeSrc: CLIENT_IMAGES.redLeatherBefore,
     afterSrc: CLIENT_IMAGES.redLeatherAfter,
-    beforeAlt: "Leather seats before cleaning and conditioning",
-    afterAlt: "Leather seats restored after professional detailing",
+    beforeAlt:
+      "Red leather rear seats and carpet with pet hair before interior detail",
+    afterAlt:
+      "Rear footwell and leather restored after deep interior cleaning",
   },
   {
     title: "Engine Bay Cleaning",

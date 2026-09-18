@@ -1,8 +1,16 @@
 /**
- * Client video sources — primary library: /public/videos7/
- * Regenerate list: node scripts/generate-videos7-manifest.mjs
+ * Client video sources — /public/videos7/ + curated /public/videos/videos/
+ * Regenerate: node scripts/generate-videos7-manifest.mjs
+ *            node scripts/generate-videos-library-manifest.mjs
  */
-import { FEATURED_RESULTS_VIDEO_KEYS } from "@/lib/client-media-curation";
+import {
+  FEATURED_RESULTS_VIDEO_KEYS,
+  INCLUDE_LIBRARY_VIDEOS_ON_RESULTS,
+} from "@/lib/client-media-curation";
+import {
+  VIDEOS_LIBRARY_FEATURED,
+  VIDEOS_LIBRARY_INTERIOR_SHOWCASE,
+} from "@/lib/client-videos-library.generated";
 import {
   VIDEOS7_ABOUT,
   VIDEOS7_CERAMIC,
@@ -31,7 +39,7 @@ export const CLIENT_VIDEOS = {
   /** Full-width home section below hero */
   homeLiveFootage: VIDEOS7_HOME_LIVE,
   /** Interior deep clean — service pages & home showcase */
-  interiorDeepClean: VIDEOS7_INTERIOR,
+  interiorDeepClean: VIDEOS_LIBRARY_INTERIOR_SHOWCASE || VIDEOS7_INTERIOR,
   /** Engine bay cleaning — service hero & results */
   engineBayCleaning: VIDEOS7_ENGINE,
   /** Ceramic coating showcase */
@@ -53,11 +61,15 @@ const VIDEO_LABELS: Record<(typeof FEATURED_RESULTS_VIDEO_KEYS)[number], string>
   ceramicProtection: "Ceramic protection finish",
 };
 
-/** Curated clips for /results (not the full videos7 library) */
-export const CLIENT_VIDEO_GALLERY = FEATURED_RESULTS_VIDEO_KEYS.map((key) => ({
+const videos7ResultsGallery = FEATURED_RESULTS_VIDEO_KEYS.map((key) => ({
   src: CLIENT_VIDEOS[key],
   label: VIDEO_LABELS[key],
 }));
+
+/** Curated clips for /results (videos7 + hand-picked from /videos/videos) */
+export const CLIENT_VIDEO_GALLERY = INCLUDE_LIBRARY_VIDEOS_ON_RESULTS
+  ? [...videos7ResultsGallery, ...VIDEOS_LIBRARY_FEATURED]
+  : videos7ResultsGallery;
 
 /** Service page heroes — poster is the static fallback image */
 export const SERVICE_SLUG_VIDEOS: Partial<

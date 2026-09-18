@@ -31,3 +31,6 @@ export const FEATURED_RESULTS_VIDEO_KEYS = [
   "engineBayCleaning",
   "ceramicProtection",
 ] as const;
+
+/** Extra clips from public/videos/videos (see generate-videos-library-manifest.mjs) */
+export const INCLUDE_LIBRARY_VIDEOS_ON_RESULTS = true;

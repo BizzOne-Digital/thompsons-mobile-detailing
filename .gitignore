@@ -37,6 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Client video assets (too large for GitHub; keep locally or host on CDN)
+/public/videos.zip
+/public/videos/videos/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
