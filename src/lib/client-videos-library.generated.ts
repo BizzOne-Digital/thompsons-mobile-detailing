@@ -210,21 +210,22 @@ export const VIDEOS_LIBRARY_ALL: VideosLibraryClip[] = [
   }
 ];
 
-/** Curated from public/videos/videos (prefer clips not duplicated in videos7) */
+/** Extra /results clips — hosted under /videos7 (not in git: /videos/videos) */
 export const VIDEOS_LIBRARY_FEATURED: VideosLibraryClip[] = [
   {
-    "src": "/videos/videos/AQM52G0h5SFXH4urF6GEhyKR13ntI97ZHd_mhoMBdQkNIRP4iVCo9PiObluHjvSIdOEEr60oz-nLCiIGZMviPNT8irrbgevFLfnt8UM5og.mp4",
+    "src": "/videos7/AQPyrIFk0cl-YxIHJI0Q8eVarpRDBoSGzaJB5ZHb_0r6291X0fotvj8kua8EQD6XpkY9EtLbNh1etGGdfjXzMzYnehmhou0MxWDe5bV67w.mp4",
     "label": "Interior deep clean in progress"
   },
   {
-    "src": "/videos/videos/AQP2MuSJiABnizSMX2kGNk6Oitxju4HVnWht1Dp-Vmq7u5C_cR-OnCZUsLidfTHc3rAM_m5uA0mt1WGOWBj1cMIUNc6dZ45D8NnOX6WX-Q.mp4",
-    "label": "Exterior mobile detailing"
+    "src": "/videos7/AQPavau6648U94q6TGN4O_vIY8mpu38i9SffX5Sh8gKLQzIuLGzyiHHXLf79VmsdrP9XlzHdcgCdRQzkCVi9qA-jZCTqhfugY1thif1TYg.mp4",
+    "label": "Factory Fresh finish on site"
   },
   {
-    "src": "/videos/videos/AQPdCBWVeZ4LPyA7WJDuPiILYO9zPpbbz_4IWepDxEqB3JU_-nC_WLYk6XYPUrZWhFfANhH6xfk9Mu60eUoWRUIk1l_WsSWwWrmxr9AYOg.mp4",
-    "label": "Factory Fresh finish on site"
+    "src": "/videos7/AQPPWCISPTG6gghgrZuwE_9gubKRqsCWPj60V9PD_IelSLXCZ5-9eskyWSGrBGeRpoEcpGluBScn1J-tAj1XN5VQcJcekqhMGZWqg70kbQ.mp4",
+    "label": "On-site mobile detailing"
   }
 ];
 
 /** Alternate interior showcase — home / services */
-export const VIDEOS_LIBRARY_INTERIOR_SHOWCASE = "/videos/videos/AQMItSYhzXjBp6Ig9Pj1MlymFr11jannE7Rbk6PEnDoOv2y6-30xKz7pTYzHun0LJmfh3QiN6k7U8WRWayGKfGPGZy2VzsZYe4Y0c8IxSw.mp4";
+export const VIDEOS_LIBRARY_INTERIOR_SHOWCASE =
+  "/videos7/AQPyrIFk0cl-YxIHJI0Q8eVarpRDBoSGzaJB5ZHb_0r6291X0fotvj8kua8EQD6XpkY9EtLbNh1etGGdfjXzMzYnehmhou0MxWDe5bV67w.mp4";

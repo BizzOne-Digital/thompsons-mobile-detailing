@@ -135,7 +135,7 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
     beforeAlt:
       "Red leather rear seats and carpet with pet hair before interior detail",
     afterAlt:
-      "Rear footwell and leather restored after deep interior cleaning",
+      "Clean red leather rear seats and carpet after pet hair removal",
   },
   {
     title: "Engine Bay Cleaning",
