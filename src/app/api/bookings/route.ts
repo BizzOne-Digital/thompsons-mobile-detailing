@@ -10,6 +10,10 @@ import {
   sendMail,
 } from "@/lib/email";
 import { calculateBookingTotal } from "@/lib/pricing";
+import {
+  normalizeBookingBody,
+  shouldVerifySlot,
+} from "@/lib/booking-normalize";
 import { bookingSchema } from "@/lib/validations";
 import { apiError } from "@/lib/utils";
 import { AddOn } from "@/models/AddOn";
@@ -19,14 +23,12 @@ import { Service } from "@/models/Service";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const parsed = bookingSchema.safeParse(body);
-    if (!parsed.success) {
-      const issue = parsed.error.issues[0];
-      const path = issue?.path?.join(".") || "field";
-      return apiError(issue?.message ?? `Invalid ${path}`, 400);
+    if (!bookingSchema.safeParse(body).success) {
+      return apiError("Invalid booking request", 400);
     }
 
-    const data = parsed.data;
+    const data = normalizeBookingBody(body as Record<string, unknown>);
+
     const conn = await connectDB();
     if (!conn) {
       return apiError(
@@ -35,20 +37,36 @@ export async function POST(request: Request) {
       );
     }
 
-    const service = await Service.findById(data.serviceId);
-    if (!service || !service.active) {
-      return apiError("Selected service is not available", 400);
+    let service = mongoose.isValidObjectId(data.serviceId)
+      ? await Service.findById(data.serviceId)
+      : null;
+    if (!service?.active) {
+      service = await Service.findOne({ active: true }).sort({
+        displayOrder: 1,
+      });
     }
-
-    const available = await isSlotAvailable(
-      data.preferredDate,
-      data.preferredTime
-    );
-    if (!available) {
+    if (!service) {
       return apiError(
-        "Selected time slot is no longer available. Please choose another time.",
-        409
+        "No services are configured. Please call us at 623-999-7500.",
+        503
       );
+    }
+    data.serviceId = String(service._id);
+
+    if (shouldVerifySlot(data.preferredTime)) {
+      const available = await isSlotAvailable(
+        data.preferredDate,
+        data.preferredTime
+      );
+      if (!available) {
+        data.customerNotes = [
+          data.customerNotes,
+          `Requested time "${data.preferredTime}" — please confirm availability.`,
+        ]
+          .filter(Boolean)
+          .join("\n");
+        data.preferredTime = "To be confirmed";
+      }
     }
 
     const validAddOnIds = data.addOnIds.filter((id) =>

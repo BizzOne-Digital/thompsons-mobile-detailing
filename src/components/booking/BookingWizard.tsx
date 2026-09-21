@@ -2,11 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { toast } from "sonner";
 import { VEHICLE_TYPES, type VehicleTypeId } from "@/lib/constants";
-import { bookingSchema } from "@/lib/validations";
 import { formatCurrency } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { useSiteSettings } from "@/components/layout/SiteSettingsProvider";
@@ -29,13 +26,34 @@ type AddOn = {
   serviceSlugs?: string[];
 };
 
-const formSchema = bookingSchema.extend({
-  vehicleYear: z.string().min(2),
-  vehicleMake: z.string().min(1),
-  vehicleModel: z.string().min(1),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = {
+  serviceId?: string;
+  vehicleType?: VehicleTypeId;
+  addOnIds?: string[];
+  preferredDate?: string;
+  preferredTime?: string;
+  alternateDate?: string;
+  alternateTime?: string;
+  vehicleYear?: string;
+  vehicleMake?: string;
+  vehicleModel?: string;
+  vehicleColor?: string;
+  vehicleCondition?: string;
+  customerName?: string;
+  email?: string;
+  phone?: string;
+  preferredContactMethod?: "email" | "phone" | "text";
+  address?: string;
+  city?: string;
+  zip?: string;
+  locationType?: string;
+  accessInstructions?: string;
+  petHair?: boolean;
+  majorStains?: boolean;
+  odorTreatment?: boolean;
+  customerNotes?: string;
+  photos?: { url: string; publicId?: string }[];
+};
 
 export function BookingWizard({
   services,
@@ -50,17 +68,7 @@ export function BookingWizard({
   const [photos, setPhotos] = useState<{ url: string; publicId?: string }[]>([]);
   const [submitting, setSubmitting] = useState(false);
 
-  const minBookingDate = useMemo(() => {
-    const d = new Date();
-    d.setHours(d.getHours() + 24);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    return `${y}-${m}-${day}`;
-  }, []);
-
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema) as never,
     defaultValues: {
       preferredContactMethod: "phone",
       vehicleType: "sedan",
@@ -139,57 +147,29 @@ export function BookingWizard({
     });
   };
 
-  const fieldStep: Partial<Record<keyof FormValues, number>> = {
-    serviceId: 0,
-    vehicleType: 1,
-    preferredDate: 3,
-    preferredTime: 4,
-    vehicleYear: 5,
-    vehicleMake: 5,
-    vehicleModel: 5,
-    customerName: 6,
-    email: 6,
-    phone: 6,
-    address: 7,
-    city: 7,
-    zip: 7,
-    locationType: 7,
-  };
-
-  const onSubmit = form.handleSubmit(
-    async (values) => {
-      setSubmitting(true);
-      try {
-        const payload = {
-          ...values,
-          photos: values.photos?.length ? values.photos : photos,
-        };
-        const res = await fetch("/api/bookings", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Booking failed");
-        toast.success(data.message);
-        setStep(11);
-      } catch (e) {
-        toast.error(e instanceof Error ? e.message : "Booking failed");
-      } finally {
-        setSubmitting(false);
-      }
-    },
-    (errors) => {
-      const firstKey = Object.keys(errors)[0] as keyof FormValues | undefined;
-      const message =
-        (firstKey && errors[firstKey]?.message) ||
-        "Please complete all required fields.";
-      toast.error(String(message));
-      if (firstKey && fieldStep[firstKey] !== undefined) {
-        setStep(fieldStep[firstKey]!);
-      }
+  const submitBooking = async () => {
+    setSubmitting(true);
+    try {
+      const values = form.getValues();
+      const payload = {
+        ...values,
+        photos: photos.length ? photos : values.photos ?? [],
+      };
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Booking failed");
+      toast.success(data.message);
+      setStep(11);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Booking failed");
+    } finally {
+      setSubmitting(false);
     }
-  );
+  };
 
   const steps = [
     "Service",
@@ -207,22 +187,8 @@ export function BookingWizard({
 
   const next = async () => {
     if (step === 10) {
-      await onSubmit();
+      await submitBooking();
       return;
-    }
-    if (step === 0 && !watch.serviceId) {
-      toast.error("Please select a service.");
-      return;
-    }
-    if (step === 3 && !watch.preferredDate) {
-      toast.error("Please choose a date.");
-      return;
-    }
-    if (step === 4) {
-      if (!watch.preferredTime) {
-        toast.error("Please choose an available time.");
-        return;
-      }
     }
     setStep((s) => Math.min(s + 1, 10));
   };
@@ -257,10 +223,7 @@ export function BookingWizard({
       </div>
 
       {step === 0 && (
-        <select
-          className={inputClass}
-          {...form.register("serviceId", { required: true })}
-        >
+        <select className={inputClass} {...form.register("serviceId")}>
           <option value="">Select a service</option>
           {services.map((s) => (
             <option key={s._id} value={s._id}>{s.name}</option>
@@ -304,29 +267,43 @@ export function BookingWizard({
         <div>
           <input
             type="date"
-            min={minBookingDate}
             className={inputClass}
             {...form.register("preferredDate")}
           />
           <p className="mt-2 text-xs text-off-white/55">
-            Appointments require at least 24 hours advance notice. We confirm
-            your request by phone or email — not live calendar booking.
+            Pick any date that works for you. We confirm by phone or email.
           </p>
         </div>
       )}
 
       {step === 4 && (
-        <div>
-          <select className={inputClass} {...form.register("preferredTime")}>
-            <option value="">Select a time</option>
-            {slots.map((slot) => (
-              <option key={slot} value={slot}>{slot}</option>
-            ))}
-          </select>
+        <div className="space-y-4">
+          <input
+            placeholder="Preferred time (e.g. 10am, afternoon, call me)"
+            className={inputClass}
+            {...form.register("preferredTime")}
+          />
+          {slots.length > 0 && (
+            <select
+              className={inputClass}
+              value={
+                slots.includes(watch.preferredTime || "")
+                  ? watch.preferredTime
+                  : ""
+              }
+              onChange={(e) => {
+                if (e.target.value) form.setValue("preferredTime", e.target.value);
+              }}
+            >
+              <option value="">Or pick an available slot</option>
+              {slots.map((slot) => (
+                <option key={slot} value={slot}>{slot}</option>
+              ))}
+            </select>
+          )}
           {watch.preferredDate && slots.length === 0 && (
-            <p className="mt-2 text-sm text-bright-gold/90">
-              No open slots for this date. Try another day or call{" "}
-              <a href="tel:+16239997500" className="underline">623-999-7500</a>.
+            <p className="text-sm text-off-white/60">
+              Type your preferred time above — we will confirm with you.
             </p>
           )}
         </div>
@@ -389,7 +366,7 @@ export function BookingWizard({
             accept="image/*"
             onChange={(e) => {
               const file = e.target.files?.[0];
-              if (file) uploadPhoto(file).catch((err) => toast.error(String(err)));
+              if (file) uploadPhoto(file).catch(() => {});
             }}
           />
           <p className="mt-2 text-sm text-off-white/60">
