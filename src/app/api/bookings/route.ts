@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/mongodb";
 import { isSlotAvailable } from "@/lib/availability";
+import { BRAND } from "@/lib/constants";
 import {
   bookingAdminEmailHtml,
   bookingCustomerEmailHtml,
@@ -59,7 +60,7 @@ export async function POST(request: Request) {
     status: "New",
   });
 
-  await sendMail({
+  const customerMail = await sendMail({
     to: data.email,
     subject: "Booking Request Received — Pending Review",
     html: bookingCustomerEmailHtml({
@@ -71,28 +72,31 @@ export async function POST(request: Request) {
     }),
   });
 
-  const notifyEmail = process.env.BOOKING_NOTIFICATION_EMAIL;
-  if (notifyEmail) {
-    await sendMail({
-      to: notifyEmail,
-      subject: `New Booking Request — ${data.customerName}`,
-      html: bookingAdminEmailHtml({
-        Customer: data.customerName,
-        Email: data.email,
-        Phone: data.phone,
-        Service: service.name,
-        Date: data.preferredDate,
-        Time: data.preferredTime,
-        Estimate: `$${estimatedPrice}`,
-      }),
-    });
-  }
+  const notifyEmail =
+    process.env.BOOKING_NOTIFICATION_EMAIL?.trim() || BRAND.email;
+  const adminMail = await sendMail({
+    to: notifyEmail,
+    subject: `New Booking Request — ${data.customerName}`,
+    html: bookingAdminEmailHtml({
+      Customer: data.customerName,
+      Email: data.email,
+      Phone: data.phone,
+      Service: service.name,
+      Date: data.preferredDate,
+      Time: data.preferredTime,
+      Estimate: `$${estimatedPrice}`,
+    }),
+  });
+
+  const emailConfigured = customerMail.ok && adminMail.ok;
 
   return Response.json({
     ok: true,
     bookingId: booking._id.toString(),
     estimatedPrice,
-    message:
-      "Your booking request has been submitted and is pending review. We will contact you to confirm.",
+    emailConfigured,
+    message: emailConfigured
+      ? "Your booking request has been submitted and is pending review. We will contact you to confirm."
+      : "Your booking request was saved. Email notifications are not configured on the server yet — we will still follow up using your contact details.",
   });
 }

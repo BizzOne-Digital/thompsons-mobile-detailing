@@ -1,3 +1,4 @@
+import { BRAND } from "@/lib/constants";
 import { connectDB } from "@/lib/mongodb";
 import { sendMail } from "@/lib/email";
 import { contactSchema } from "@/lib/validations";
@@ -21,7 +22,8 @@ export async function POST(request: Request) {
   await connectDB();
   const message = await ContactMessage.create(parsed.data);
 
-  const notifyEmail = process.env.BOOKING_NOTIFICATION_EMAIL;
+  const notifyEmail =
+    process.env.BOOKING_NOTIFICATION_EMAIL?.trim() || BRAND.email;
   if (notifyEmail) {
     await sendMail({
       to: notifyEmail,

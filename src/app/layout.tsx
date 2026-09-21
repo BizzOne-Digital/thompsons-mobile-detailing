@@ -15,7 +15,14 @@ const cinzel = Cinzel({
   weight: ["400", "600", "700"],
 });
 
-export const metadata: Metadata = buildMetadata({});
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://tmdaz.com";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  ...buildMetadata({}),
+};
 
 export const viewport = {
   width: "device-width",

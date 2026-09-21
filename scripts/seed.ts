@@ -69,16 +69,21 @@ async function main() {
     });
   }
 
+  const { DEFAULT_OPERATING_DAYS } = await import("../src/lib/availability");
   const availability = await Availability.findOne();
   if (!availability) {
     await Availability.create({
-      operatingDays: Array.from({ length: 7 }, (_, day) => ({
-        day,
-        open: "05:00",
-        close: "17:00",
-        closed: false,
-      })),
+      operatingDays: DEFAULT_OPERATING_DAYS,
+      appointmentIntervalMinutes: 60,
+      maxBookingsPerDay: 6,
+      minAdvanceNoticeHours: 24,
+      maxFutureBookingDays: 90,
     });
+  } else if (!availability.operatingDays?.length) {
+    await Availability.updateOne(
+      { _id: availability._id },
+      { $set: { operatingDays: DEFAULT_OPERATING_DAYS } }
+    );
   }
 
   const email = process.env.SEED_ADMIN_EMAIL?.trim().toLowerCase();

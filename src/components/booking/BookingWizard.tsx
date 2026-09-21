@@ -51,8 +51,11 @@ export function BookingWizard({
 
   const minBookingDate = useMemo(() => {
     const d = new Date();
-    d.setDate(d.getDate() + 1);
-    return d.toISOString().split("T")[0];
+    d.setHours(d.getHours() + 24);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
   }, []);
 
   const form = useForm<FormValues>({
@@ -160,6 +163,16 @@ export function BookingWizard({
     if (step === 10) {
       await onSubmit();
       return;
+    }
+    if (step === 3 && !watch.preferredDate) {
+      toast.error("Please choose a date.");
+      return;
+    }
+    if (step === 4) {
+      if (!watch.preferredTime) {
+        toast.error("Please choose an available time.");
+        return;
+      }
     }
     setStep((s) => Math.min(s + 1, 10));
   };

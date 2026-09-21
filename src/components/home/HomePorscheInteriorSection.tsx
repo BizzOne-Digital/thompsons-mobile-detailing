@@ -15,10 +15,10 @@ export function HomePorscheInteriorSection() {
     >
       <div className="relative aspect-[16/10] w-full sm:aspect-[21/9]">
         <Image
-          src={CLIENT_IMAGES.porscheShowcaseBright}
-          alt="Porsche Cayenne with tan interior after professional mobile detailing"
+          src={CLIENT_IMAGES.porscheOutdoorFront}
+          alt="Porsche Cayenne exterior gloss after mobile detailing"
           fill
-          priority
+          loading="lazy"
           className="object-cover object-[center_42%] brightness-[1.1] contrast-[1.06] saturate-[1.1]"
           sizes="100vw"
         />

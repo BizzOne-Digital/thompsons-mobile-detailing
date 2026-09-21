@@ -21,7 +21,7 @@ function isVideoMediaUrl(url: string) {
   return /\.(mp4|webm|mov)(\?|#|$)/i.test(url);
 }
 
-/** Stock placeholders and retired Charger hero — use default site hero instead */
+/** Stock placeholders — ignore so the coded default hero is used */
 function isLegacyStockHero(url: string) {
   const u = url.toLowerCase();
   return (
@@ -31,9 +31,7 @@ function isLegacyStockHero(url: string) {
     u.includes("foam-wash-arizona") ||
     u.includes("/images/hero") ||
     u.includes("hero-bg") ||
-    u.includes("charger") ||
-    u.includes("hero-electric-blue-charger") ||
-    u.includes("aqpj8m3dziunsc59hsfjk")
+    u.includes("hero-electric-blue-charger")
   );
 }
 
@@ -129,7 +127,7 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
       ) : (
         <Image
           src={poster}
-          alt="Luxury vehicle after professional mobile detailing in Arizona"
+          alt="Thompson's Mobile Detailing technician foam-washing a vehicle on site in Arizona"
           fill
           priority
           className={HERO_MEDIA_CLASS}

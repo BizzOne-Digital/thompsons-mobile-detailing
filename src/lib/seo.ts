@@ -4,13 +4,13 @@ import { CLIENT_IMAGES } from "@/lib/client-images";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-const defaultShareImage = CLIENT_IMAGES.homeHeroPoster;
+const defaultShareImage = CLIENT_IMAGES.siteLinkShareImage;
 
-function shareImageUrl() {
-  const path = defaultShareImage.startsWith("/")
+/** Relative path — resolved via metadataBase in root layout */
+function shareImagePath() {
+  return defaultShareImage.startsWith("/")
     ? defaultShareImage
     : `/${defaultShareImage}`;
-  return `${siteUrl.replace(/\/$/, "")}${path}`;
 }
 
 export function buildMetadata({
@@ -41,7 +41,7 @@ export function buildMetadata({
       locale: "en_US",
       images: [
         {
-          url: shareImageUrl(),
+          url: shareImagePath(),
           width: 1200,
           height: 630,
           alt: `${BRAND.name} — ${BRAND.tagline}`,
@@ -52,7 +52,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description: desc,
-      images: [shareImageUrl()],
+      images: [shareImagePath()],
     },
   };
 }

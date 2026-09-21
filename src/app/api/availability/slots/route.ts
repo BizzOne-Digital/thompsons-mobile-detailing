@@ -9,7 +9,8 @@ export async function GET(request: Request) {
   try {
     const slots = await getAvailableSlots(date);
     return Response.json({ slots });
-  } catch {
-    return Response.json({ slots: [] });
+  } catch (err) {
+    console.error("availability/slots failed:", err);
+    return Response.json({ slots: [], error: "Could not load times" });
   }
 }

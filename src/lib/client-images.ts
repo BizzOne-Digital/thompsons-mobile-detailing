@@ -27,12 +27,16 @@ export const CLIENT_IMAGES = {
   aboutEscalade: v("vernon-18-escalade-angle.jpg"),
   ownerPortrait: `${base}/owner.jpg`,
   teamGroup: `${base}/team-group.jpg`,
-  /** Default home hero poster & link-preview image */
-  homeHeroPoster: v("porsche-showcase-bright.jpg"),
+  /** Home hero still (frame from showcase wash video) */
+  homeHeroPoster: v("hero-gray-charger-foam-wash.jpg"),
+  /** Link previews (iMessage, texts, social) — branded van, not client vehicles */
+  siteLinkShareImage: v("og-share.jpg"),
   /** Electric blue Charger — portfolio gallery only */
   heroElectricBlueCharger: v("hero-electric-blue-charger.jpg"),
   porscheTanInteriorBright: v("porsche-tan-interior-bright.jpg"),
+  /** Garage shot — do not use for link previews or home hero */
   porscheShowcaseBright: v("porsche-showcase-bright.jpg"),
+  porscheOutdoorFront: v("vernon-13-porsche-front-outdoor.jpg"),
   interiorWhiteLexusDashboard: v("vernon-01-lexus-white-dash.jpg"),
   interiorWhiteLexusFsport: v("vernon-02-lexus-fsport-driver.jpg"),
   redLeatherBefore: v("red-leather-before.jpg"),
