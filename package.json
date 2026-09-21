@@ -10,7 +10,8 @@
     "seed": "npx tsx scripts/seed.ts",
     "patch-services": "npx tsx scripts/patch-vernon-services.ts",
     "patch-availability": "npx tsx scripts/patch-availability.ts",
-    "test-smtp": "npx tsx scripts/test-smtp.ts"
+    "test-smtp": "npx tsx scripts/test-smtp.ts",
+    "patch-hero": "npx tsx scripts/patch-clear-hero-media.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

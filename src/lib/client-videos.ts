@@ -27,6 +27,10 @@ import {
 
 const clientBase = "/videos7";
 
+/** Vernon — silver Charger rinse (home hero after intro). Do not override in admin. */
+export const HOME_HERO_CHARGER_RINSE =
+  "/videos7/AQPj8m3DziUnsC59hSfjKwZwE_Hbso3yZB0Hf85OAk8R9yhDRHmh9LJ0EnAtWo-6PS_-qDJ-jTRhMJbUkR-nMEXJG8jmXG3dtZLIbSbIgQ.mp4";
+
 /** About page showcase clips (from Vernon videos7 folder) */
 export const ABOUT_PAGE_VIDEOS = VIDEOS7_ABOUT.map((clip) => ({
   src: clip.src,
@@ -34,9 +38,9 @@ export const ABOUT_PAGE_VIDEOS = VIDEOS7_ABOUT.map((clip) => ({
 }));
 
 export const CLIENT_VIDEOS = {
-  /** Home hero — Vernon foam-washing on site (showcase clip) */
-  homeHero: VIDEOS7_HERO,
-  /** Electric blue Charger — portfolio gallery only */
+  /** Home hero — silver Charger rinse */
+  homeHero: HOME_HERO_CHARGER_RINSE,
+  /** Portfolio / legacy Charger clip */
   electricBlueCharger: VIDEOS7_HERO,
   /** Full-width home section below hero */
   homeLiveFootage: VIDEOS7_HOME_LIVE,

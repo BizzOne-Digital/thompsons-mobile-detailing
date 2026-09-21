@@ -114,7 +114,9 @@ export async function getAvailableSlots(dateStr: string) {
 
   const config = await getAvailabilityConfig();
   const day = phoenixWeekday(dateStr);
-  const schedule = config.operatingDays.find((d) => d.day === day);
+  const schedule = config.operatingDays.find(
+    (d: DaySchedule) => d.day === day
+  );
 
   if (!schedule || schedule.closed) return [];
 

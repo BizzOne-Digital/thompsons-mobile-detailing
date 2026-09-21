@@ -90,7 +90,9 @@ export default function AdminSettingsPage() {
             />
           </div>
           <div>
-            <p className="text-sm mb-2">Home hero video URL (optional — leave blank for default)</p>
+            <p className="text-sm mb-2 text-off-white/60">
+              Home hero video is fixed to the silver Charger rinse clip in code (this field is ignored).
+            </p>
             <ImageUploadField
               folder="settings"
               value={String(settings.heroMediaUrl ?? "")}

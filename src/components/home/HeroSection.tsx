@@ -4,10 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Calendar, ChevronRight, Leaf, MapPin, Star } from "lucide-react";
+import {
+  Calendar,
+  ChevronRight,
+  Leaf,
+  MapPin,
+  Star,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import { CLIENT_IMAGES } from "@/lib/client-images";
-import { CLIENT_VIDEOS } from "@/lib/client-videos";
+import { HOME_HERO_CHARGER_RINSE } from "@/lib/client-videos";
 import type { PublicSiteSettings } from "@/lib/public-settings";
+
+/** Full audio at a low, soothing level (not silent) */
+const HERO_VIDEO_VOLUME = 0.22;
 
 type HeroSectionProps = {
   introDone: boolean;
@@ -17,32 +28,6 @@ type HeroSectionProps = {
   >;
 };
 
-function isVideoMediaUrl(url: string) {
-  return /\.(mp4|webm|mov)(\?|#|$)/i.test(url);
-}
-
-/** Stock placeholders — ignore so the coded default hero is used */
-function isLegacyStockHero(url: string) {
-  const u = url.toLowerCase();
-  return (
-    u.includes("unsplash") ||
-    u.includes("mobile-sunset") ||
-    u.includes("suv-full-detail") ||
-    u.includes("foam-wash-arizona") ||
-    u.includes("/images/hero") ||
-    u.includes("hero-bg") ||
-    u.includes("hero-electric-blue-charger")
-  );
-}
-
-function resolveHeroVideoSrc(heroMediaUrl: string) {
-  const custom = heroMediaUrl.trim();
-  if (custom && isVideoMediaUrl(custom) && !isLegacyStockHero(custom)) {
-    return custom;
-  }
-  return CLIENT_VIDEOS.homeHero;
-}
-
 const HERO_MEDIA_CLASS =
   "absolute inset-0 h-full w-full object-cover object-[center_48%] brightness-[1.06] contrast-[1.05] saturate-[1.08] sm:object-[center_42%] md:object-center";
 
@@ -51,26 +36,44 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [videoReady, setVideoReady] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
+  const [needsTapForSound, setNeedsTapForSound] = useState(false);
 
   const poster = CLIENT_IMAGES.homeHeroPoster;
-  const videoSrc = resolveHeroVideoSrc(settings.heroMediaUrl ?? "");
+  const videoSrc = HOME_HERO_CHARGER_RINSE;
   const useLiveVideo = !reduceMotion;
+
+  const applyAudio = useCallback(
+    (el: HTMLVideoElement) => {
+      el.volume = HERO_VIDEO_VOLUME;
+      el.muted = !soundOn;
+    },
+    [soundOn]
+  );
 
   const tryPlay = useCallback(async () => {
     const el = videoRef.current;
     if (!el || !useLiveVideo || !introDone) return;
-    el.muted = true;
+
+    applyAudio(el);
     try {
       await el.play();
+      setNeedsTapForSound(false);
     } catch {
-      /* poster remains visible under video */
+      el.muted = true;
+      try {
+        await el.play();
+        if (soundOn) setNeedsTapForSound(true);
+      } catch {
+        /* poster remains visible under video */
+      }
     }
-  }, [useLiveVideo, introDone]);
+  }, [useLiveVideo, introDone, applyAudio, soundOn]);
 
   useEffect(() => {
     if (!useLiveVideo || !introDone) return;
     tryPlay();
-  }, [useLiveVideo, introDone, tryPlay, videoReady]);
+  }, [useLiveVideo, introDone, tryPlay, videoReady, soundOn]);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -87,6 +90,21 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
     observer.observe(root);
     return () => observer.disconnect();
   }, [useLiveVideo, introDone, tryPlay]);
+
+  const toggleSound = () => {
+    const el = videoRef.current;
+    setSoundOn((on) => {
+      const next = !on;
+      if (el) {
+        el.volume = HERO_VIDEO_VOLUME;
+        el.muted = !next;
+        if (next) {
+          void el.play().then(() => setNeedsTapForSound(false));
+        }
+      }
+      return next;
+    });
+  };
 
   return (
     <section
@@ -111,23 +129,43 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
             }`}
             src={videoSrc}
             poster={poster}
-            muted
             loop
             playsInline
             autoPlay={introDone}
             preload="auto"
-            onLoadedData={() => setVideoReady(true)}
+            onLoadedData={() => {
+              const el = videoRef.current;
+              if (el) applyAudio(el);
+              setVideoReady(true);
+            }}
             onCanPlay={() => {
               setVideoReady(true);
               if (introDone) tryPlay();
             }}
             aria-hidden
           />
+          {introDone && (
+            <button
+              type="button"
+              onClick={toggleSound}
+              className="absolute bottom-28 right-4 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-2 text-xs text-white/90 backdrop-blur-sm transition hover:bg-black/60 sm:bottom-8 sm:right-8"
+              aria-label={soundOn ? "Mute hero video" : "Unmute hero video"}
+            >
+              {soundOn && !needsTapForSound ? (
+                <Volume2 className="h-4 w-4 text-bright-gold" />
+              ) : (
+                <VolumeX className="h-4 w-4 text-bright-gold" />
+              )}
+              <span className="hidden sm:inline">
+                {needsTapForSound ? "Tap for sound" : soundOn ? "Sound on" : "Sound off"}
+              </span>
+            </button>
+          )}
         </>
       ) : (
         <Image
           src={poster}
-          alt="Thompson's Mobile Detailing technician foam-washing a vehicle on site in Arizona"
+          alt="Thompson's Mobile Detailing technician rinsing a vehicle on site in Arizona"
           fill
           priority
           className={HERO_MEDIA_CLASS}
