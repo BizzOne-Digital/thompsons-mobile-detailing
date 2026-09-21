@@ -19,10 +19,6 @@ async function main() {
     process.env.BOOKING_NOTIFICATION_EMAIL?.trim() ||
     process.env.SMTP_USER ||
     BRAND.email;
-  const from =
-    process.env.SMTP_FROM ||
-    `Thompson's Mobile Detailing <${user ?? BRAND.email}>`;
-
   if (!host || !user || !pass) {
     console.error(
       "Missing SMTP_HOST, SMTP_USER, or SMTP_PASS in .env.local"
@@ -37,6 +33,10 @@ async function main() {
     requireTLS: port === 587,
     auth: { user, pass },
   });
+  const from =
+    process.env.SMTP_FROM?.includes(user) ?
+      process.env.SMTP_FROM
+    : `Thompson's Mobile Detailing AZ <${user}>`;
 
   console.log("Verifying SMTP connection…");
   await transporter.verify();
@@ -44,6 +44,7 @@ async function main() {
 
   const info = await transporter.sendMail({
     from,
+    replyTo: BRAND.email,
     to,
     subject: "TMD Website — SMTP test",
     text: `This is a test email from ${BRAND.name}. Booking and contact notifications are configured.`,

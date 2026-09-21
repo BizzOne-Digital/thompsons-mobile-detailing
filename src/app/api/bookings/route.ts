@@ -3,7 +3,9 @@ import { isSlotAvailable } from "@/lib/availability";
 import { BRAND } from "@/lib/constants";
 import {
   bookingAdminEmailHtml,
+  bookingAdminEmailText,
   bookingCustomerEmailHtml,
+  bookingCustomerEmailText,
   sendMail,
 } from "@/lib/email";
 import { calculateBookingTotal } from "@/lib/pricing";
@@ -62,7 +64,15 @@ export async function POST(request: Request) {
 
   const customerMail = await sendMail({
     to: data.email,
-    subject: "Booking Request Received — Pending Review",
+    subject: `Your booking request — ${BRAND.name}`,
+    replyTo: BRAND.email,
+    text: bookingCustomerEmailText({
+      customerName: data.customerName,
+      serviceName: service.name,
+      preferredDate: data.preferredDate,
+      preferredTime: data.preferredTime,
+      estimatedPrice,
+    }),
     html: bookingCustomerEmailHtml({
       customerName: data.customerName,
       serviceName: service.name,
@@ -74,18 +84,22 @@ export async function POST(request: Request) {
 
   const notifyEmail =
     process.env.BOOKING_NOTIFICATION_EMAIL?.trim() || BRAND.email;
+  const adminPayload = {
+    Customer: data.customerName,
+    Email: data.email,
+    Phone: data.phone,
+    Service: service.name,
+    Date: data.preferredDate,
+    Time: data.preferredTime,
+    Estimate: `$${estimatedPrice}`,
+    "Booking ID": booking._id.toString(),
+  };
   const adminMail = await sendMail({
     to: notifyEmail,
-    subject: `New Booking Request — ${data.customerName}`,
-    html: bookingAdminEmailHtml({
-      Customer: data.customerName,
-      Email: data.email,
-      Phone: data.phone,
-      Service: service.name,
-      Date: data.preferredDate,
-      Time: data.preferredTime,
-      Estimate: `$${estimatedPrice}`,
-    }),
+    subject: `New booking: ${data.customerName} — ${service.name}`,
+    replyTo: data.email,
+    text: bookingAdminEmailText(adminPayload),
+    html: bookingAdminEmailHtml(adminPayload),
   });
 
   const emailConfigured = customerMail.ok && adminMail.ok;

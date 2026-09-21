@@ -27,7 +27,9 @@ export async function POST(request: Request) {
   if (notifyEmail) {
     await sendMail({
       to: notifyEmail,
-      subject: `Contact: ${parsed.data.subject}`,
+      subject: `Website contact: ${parsed.data.subject}`,
+      replyTo: parsed.data.email,
+      text: `${parsed.data.name} (${parsed.data.email})\n\n${parsed.data.message}`,
       html: `<p><strong>${parsed.data.name}</strong> (${parsed.data.email})</p><p>${parsed.data.message}</p>`,
     });
   }

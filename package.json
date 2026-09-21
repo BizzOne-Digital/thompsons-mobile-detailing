@@ -11,6 +11,7 @@
     "patch-services": "npx tsx scripts/patch-vernon-services.ts",
     "patch-availability": "npx tsx scripts/patch-availability.ts",
     "test-smtp": "npx tsx scripts/test-smtp.ts",
+    "test-booking-email": "npx tsx scripts/test-booking-email.ts",
     "patch-hero": "npx tsx scripts/patch-clear-hero-media.ts"
   },
   "dependencies": {
