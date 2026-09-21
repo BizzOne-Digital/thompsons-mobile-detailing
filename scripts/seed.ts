@@ -48,7 +48,10 @@ async function main() {
   await AddOn.insertMany(
     seedAddOns.map((a) => ({
       ...a,
-      serviceSlugs: a.serviceSlugs ?? [],
+      serviceSlugs:
+        "serviceSlugs" in a && Array.isArray(a.serviceSlugs)
+          ? a.serviceSlugs
+          : [],
       active: true,
     }))
   );

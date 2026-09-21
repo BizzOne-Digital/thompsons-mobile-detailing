@@ -48,6 +48,12 @@ export const bookingSchema = z.object({
   odorTreatment: z.boolean().default(false),
   customerNotes: z.string().optional(),
   photos: z
-    .array(z.object({ url: z.string().url(), publicId: z.string().optional() }))
+    .array(
+      z.object({
+        /** Stored uploads use site-relative paths (/api/uploads/...) */
+        url: z.string().min(1),
+        publicId: z.string().optional(),
+      })
+    )
     .default([]),
 });

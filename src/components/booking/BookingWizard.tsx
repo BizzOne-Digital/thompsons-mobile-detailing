@@ -132,28 +132,64 @@ export function BookingWizard({
     const res = await fetch("/api/upload/booking", { method: "POST", body: fd });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Upload failed");
-    setPhotos((p) => [...p, data]);
-    form.setValue("photos", [...photos, data]);
+    setPhotos((p) => {
+      const next = [...p, data];
+      form.setValue("photos", next);
+      return next;
+    });
   };
 
-  const onSubmit = form.handleSubmit(async (values) => {
-    setSubmitting(true);
-    try {
-      const res = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, photos }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Booking failed");
-      toast.success(data.message);
-      setStep(11);
-    } catch (e) {
-      toast.error(e instanceof Error ? e.message : "Booking failed");
-    } finally {
-      setSubmitting(false);
+  const fieldStep: Partial<Record<keyof FormValues, number>> = {
+    serviceId: 0,
+    vehicleType: 1,
+    preferredDate: 3,
+    preferredTime: 4,
+    vehicleYear: 5,
+    vehicleMake: 5,
+    vehicleModel: 5,
+    customerName: 6,
+    email: 6,
+    phone: 6,
+    address: 7,
+    city: 7,
+    zip: 7,
+    locationType: 7,
+  };
+
+  const onSubmit = form.handleSubmit(
+    async (values) => {
+      setSubmitting(true);
+      try {
+        const payload = {
+          ...values,
+          photos: values.photos?.length ? values.photos : photos,
+        };
+        const res = await fetch("/api/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Booking failed");
+        toast.success(data.message);
+        setStep(11);
+      } catch (e) {
+        toast.error(e instanceof Error ? e.message : "Booking failed");
+      } finally {
+        setSubmitting(false);
+      }
+    },
+    (errors) => {
+      const firstKey = Object.keys(errors)[0] as keyof FormValues | undefined;
+      const message =
+        (firstKey && errors[firstKey]?.message) ||
+        "Please complete all required fields.";
+      toast.error(String(message));
+      if (firstKey && fieldStep[firstKey] !== undefined) {
+        setStep(fieldStep[firstKey]!);
+      }
     }
-  });
+  );
 
   const steps = [
     "Service",
@@ -172,6 +208,10 @@ export function BookingWizard({
   const next = async () => {
     if (step === 10) {
       await onSubmit();
+      return;
+    }
+    if (step === 0 && !watch.serviceId) {
+      toast.error("Please select a service.");
       return;
     }
     if (step === 3 && !watch.preferredDate) {

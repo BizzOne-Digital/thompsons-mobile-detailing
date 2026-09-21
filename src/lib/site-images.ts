@@ -33,6 +33,7 @@ export const SERVICE_SLUG_IMAGES: Record<string, string> = {
   "restore-detail": "/images/client/deep-clean-16.jpg",
   "reset-detail": "/images/client/interior-10.jpg",
   "signature-foam-hand-wash": "/images/client/signature-foam-wash.jpg",
+  "recurring-maintenance-wash": "/images/client/signature-foam-wash.jpg",
   "ceramic-coating": "/images/client/ceramic-coating-finish.jpg",
   "paint-correction": "/images/client/vernon-16-paint-hood-after.jpg",
   "engine-bay-cleaning": "/images/client/engine-12-after.jpg",

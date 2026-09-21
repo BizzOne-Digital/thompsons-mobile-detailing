@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { connectDB } from "@/lib/mongodb";
 import { isSlotAvailable } from "@/lib/availability";
 import { BRAND } from "@/lib/constants";
@@ -16,101 +17,132 @@ import { Booking } from "@/models/Booking";
 import { Service } from "@/models/Service";
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  const parsed = bookingSchema.safeParse(body);
-  if (!parsed.success) {
-    return apiError(parsed.error.issues[0]?.message ?? "Invalid booking data");
-  }
+  try {
+    const body = await request.json();
+    const parsed = bookingSchema.safeParse(body);
+    if (!parsed.success) {
+      const issue = parsed.error.issues[0];
+      const path = issue?.path?.join(".") || "field";
+      return apiError(issue?.message ?? `Invalid ${path}`, 400);
+    }
 
-  const data = parsed.data;
-  await connectDB();
+    const data = parsed.data;
+    const conn = await connectDB();
+    if (!conn) {
+      return apiError(
+        "Booking system is temporarily unavailable. Please call us at 623-999-7500.",
+        503
+      );
+    }
 
-  const service = await Service.findById(data.serviceId);
-  if (!service || !service.active) {
-    return apiError("Selected service is not available", 400);
-  }
+    const service = await Service.findById(data.serviceId);
+    if (!service || !service.active) {
+      return apiError("Selected service is not available", 400);
+    }
 
-  const available = await isSlotAvailable(data.preferredDate, data.preferredTime);
-  if (!available) {
-    return apiError("Selected time slot is no longer available", 409);
-  }
+    const available = await isSlotAvailable(
+      data.preferredDate,
+      data.preferredTime
+    );
+    if (!available) {
+      return apiError(
+        "Selected time slot is no longer available. Please choose another time.",
+        409
+      );
+    }
 
-  const addOnDocs = data.addOnIds.length
-    ? await AddOn.find({ _id: { $in: data.addOnIds }, active: true })
-    : [];
+    const validAddOnIds = data.addOnIds.filter((id) =>
+      mongoose.isValidObjectId(id)
+    );
+    const addOnDocs = validAddOnIds.length
+      ? await AddOn.find({ _id: { $in: validAddOnIds }, active: true })
+      : [];
 
-  const estimatedPrice = calculateBookingTotal(
-    service,
-    data.vehicleType,
-    addOnDocs
-  );
+    const estimatedPrice = calculateBookingTotal(
+      service,
+      data.vehicleType,
+      addOnDocs
+    );
 
-  const booking = await Booking.create({
-    ...data,
-    serviceId: service._id,
-    serviceName: service.name,
-    addOns: addOnDocs.map((a) => ({
-      addOnId: a._id,
-      name: a.name,
-      price: a.fixedPrice ?? 0,
-    })),
-    preferredDate: new Date(data.preferredDate + "T12:00:00"),
-    alternateDate: data.alternateDate
-      ? new Date(data.alternateDate + "T12:00:00")
-      : undefined,
-    estimatedPrice,
-    status: "New",
-  });
+    const {
+      addOnIds: _omitAddOnIds,
+      serviceId: _omitServiceId,
+      ...bookingFields
+    } = data;
 
-  const customerMail = await sendMail({
-    to: data.email,
-    subject: `Your booking request — ${BRAND.name}`,
-    replyTo: BRAND.email,
-    text: bookingCustomerEmailText({
-      customerName: data.customerName,
+    const booking = await Booking.create({
+      ...bookingFields,
+      serviceId: service._id,
       serviceName: service.name,
-      preferredDate: data.preferredDate,
-      preferredTime: data.preferredTime,
+      addOns: addOnDocs.map((a) => ({
+        addOnId: a._id,
+        name: a.name,
+        price: a.fixedPrice ?? 0,
+      })),
+      preferredDate: new Date(data.preferredDate + "T12:00:00-07:00"),
+      alternateDate: data.alternateDate
+        ? new Date(data.alternateDate + "T12:00:00-07:00")
+        : undefined,
       estimatedPrice,
-    }),
-    html: bookingCustomerEmailHtml({
-      customerName: data.customerName,
-      serviceName: service.name,
-      preferredDate: data.preferredDate,
-      preferredTime: data.preferredTime,
+      status: "New",
+    });
+
+    const customerMail = await sendMail({
+      to: data.email,
+      subject: `Your booking request — ${BRAND.name}`,
+      replyTo: BRAND.email,
+      text: bookingCustomerEmailText({
+        customerName: data.customerName,
+        serviceName: service.name,
+        preferredDate: data.preferredDate,
+        preferredTime: data.preferredTime,
+        estimatedPrice,
+      }),
+      html: bookingCustomerEmailHtml({
+        customerName: data.customerName,
+        serviceName: service.name,
+        preferredDate: data.preferredDate,
+        preferredTime: data.preferredTime,
+        estimatedPrice,
+      }),
+    });
+
+    const notifyEmail =
+      process.env.BOOKING_NOTIFICATION_EMAIL?.trim() || BRAND.email;
+    const adminPayload = {
+      Customer: data.customerName,
+      Email: data.email,
+      Phone: data.phone,
+      Service: service.name,
+      Date: data.preferredDate,
+      Time: data.preferredTime,
+      Estimate: `$${estimatedPrice}`,
+      "Booking ID": booking._id.toString(),
+    };
+    const adminMail = await sendMail({
+      to: notifyEmail,
+      subject: `New booking: ${data.customerName} — ${service.name}`,
+      replyTo: data.email,
+      text: bookingAdminEmailText(adminPayload),
+      html: bookingAdminEmailHtml(adminPayload),
+    });
+
+    const emailConfigured = customerMail.ok && adminMail.ok;
+
+    return Response.json({
+      ok: true,
+      bookingId: booking._id.toString(),
       estimatedPrice,
-    }),
-  });
-
-  const notifyEmail =
-    process.env.BOOKING_NOTIFICATION_EMAIL?.trim() || BRAND.email;
-  const adminPayload = {
-    Customer: data.customerName,
-    Email: data.email,
-    Phone: data.phone,
-    Service: service.name,
-    Date: data.preferredDate,
-    Time: data.preferredTime,
-    Estimate: `$${estimatedPrice}`,
-    "Booking ID": booking._id.toString(),
-  };
-  const adminMail = await sendMail({
-    to: notifyEmail,
-    subject: `New booking: ${data.customerName} — ${service.name}`,
-    replyTo: data.email,
-    text: bookingAdminEmailText(adminPayload),
-    html: bookingAdminEmailHtml(adminPayload),
-  });
-
-  const emailConfigured = customerMail.ok && adminMail.ok;
-
-  return Response.json({
-    ok: true,
-    bookingId: booking._id.toString(),
-    estimatedPrice,
-    emailConfigured,
-    message: emailConfigured
-      ? "Your booking request has been submitted and is pending review. We will contact you to confirm."
-      : "Your booking request was saved. Email notifications are not configured on the server yet — we will still follow up using your contact details.",
-  });
+      emailConfigured,
+      message: emailConfigured
+        ? "Your booking request has been submitted and is pending review. We will contact you to confirm."
+        : "Your booking request was saved. We will contact you using the phone or email you provided.",
+    });
+  } catch (err) {
+    console.error("[bookings] POST failed:", err);
+    return apiError(
+      "We could not save your booking. Please try again or call 623-999-7500.",
+      500
+    );
+  }
 }

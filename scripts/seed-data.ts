@@ -75,18 +75,37 @@ export const seedServices = [
     shortDescription:
       "Professional exterior hand wash to safely remove dirt, road film, and contaminants.",
     fullDescription:
-      "Professional exterior hand wash designed to safely remove dirt, road film, bug residue, and surface contaminants while leaving the vehicle clean and properly finished.",
+      "Professional Signature Foam Hand Wash designed to safely remove dirt, road film, bug residue, and surface contaminants. Includes 6-month paint protection to help protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier.",
     features: [
+      "Includes 6-Month Paint Protection: Helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier",
       "Safe hand wash process",
       "Wheel and tire cleaning",
       "Door jambs wiped",
       "Streak-free glass",
       "Premium finish dry",
-      "+ 6-Month Paint Protection: Helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier.",
     ],
-    vehiclePrices: { sedan: 69, midsize: 79, large: 89 },
-    startingPrice: 69,
+    vehiclePrices: { sedan: 99, midsize: 129, large: 149 },
+    startingPrice: 99,
     displayOrder: 10,
+    estimatedDuration: "1–2 hours",
+  },
+  {
+    name: "Recurring Customer Maintenance Wash",
+    slug: "recurring-maintenance-wash",
+    category: "Exterior Services",
+    shortDescription:
+      "Maintenance wash for returning customers on a regular 3–6 week schedule.",
+    fullDescription:
+      "Available for returning customers who stay on a regular 3–6 week maintenance schedule. Keeps your vehicle looking sharp between full details with the same professional care you expect from Thompson's Mobile Detailing AZ.",
+    features: [
+      "Exterior maintenance hand wash",
+      "Light wheel and tire cleaning",
+      "Streak-free glass",
+      "For returning customers on a 3–6 week schedule",
+    ],
+    vehiclePrices: { sedan: 89, midsize: 89, large: 89 },
+    startingPrice: 89,
+    displayOrder: 11,
     estimatedDuration: "1–2 hours",
   },
   {
@@ -198,16 +217,6 @@ export const seedAddOns = [
     pricingType: "fixed" as const,
     fixedPrice: 149,
     displayOrder: 8,
-  },
-  {
-    name: "+ 6-Month Paint Protection",
-    slug: "six-month-paint-protection",
-    description:
-      "Helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier.",
-    pricingType: "vehicle" as const,
-    vehiclePrices: { sedan: 49, midsize: 59, large: 69 },
-    serviceSlugs: ["signature-foam-hand-wash"],
-    displayOrder: 9,
   },
 ];
 
