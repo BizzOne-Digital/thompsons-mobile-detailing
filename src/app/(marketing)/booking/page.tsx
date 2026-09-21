@@ -29,6 +29,7 @@ export default async function BookingPage() {
           pricingType: a.pricingType,
           fixedPrice: a.fixedPrice,
           vehiclePrices: a.vehiclePrices,
+          serviceSlugs: a.serviceSlugs ?? [],
         }))}
       />
     </PageShell>

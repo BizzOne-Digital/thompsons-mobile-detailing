@@ -30,14 +30,13 @@ export const seedServices = [
     shortDescription:
       "Deep clean full detail for vehicles with visible buildup, stains, and worn interior surfaces.",
     fullDescription:
-      "Designed for vehicles that need more than routine maintenance due to visible buildup, stains, spills, embedded dirt, carpet discoloration, and interior surfaces that have started to look worn or neglected. Includes everything in Refresh Detail, plus deep shampoo and extraction, leather conditioning, headliner spot treatment, and 6-month paint protection.",
+      "Designed for vehicles that need more than routine maintenance due to visible buildup, stains, spills, embedded dirt, carpet discoloration, and interior surfaces that have started to look worn or neglected. Includes everything in Refresh Detail, plus deep shampoo and extraction, leather conditioning, and headliner spot treatment.",
     features: [
       "Everything in Refresh Detail",
       "Deep shampoo and extraction of carpets, floor mats, and fabric seats",
       "Leather seats cleaned and conditioned where applicable",
       "Headliner spot-stain treatment",
       "Hard plastics cleaned, conditioned, and protected",
-      "6-month paint protection — helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier",
       "Signature Foam Hand Wash included",
     ],
     vehiclePrices: { sedan: 229, midsize: 249, large: 289 },
@@ -61,7 +60,6 @@ export const seedServices = [
       "Interior odor treatment",
       "Full headliner deep cleaning and restoration",
       "Exterior trim restoration for faded plastics",
-      "6-month paint protection — helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier",
       "Signature Foam Hand Wash included",
     ],
     vehiclePrices: { sedan: 399, midsize: 499, large: 599 },
@@ -84,7 +82,7 @@ export const seedServices = [
       "Door jambs wiped",
       "Streak-free glass",
       "Premium finish dry",
-      "+ 6-Month Paint Protection (optional add-on): Helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier.",
+      "+ 6-Month Paint Protection: Helps protect against sun damage, oxidation, water spotting, environmental contaminants, and road grime while enhancing gloss and making future washes easier.",
     ],
     vehiclePrices: { sedan: 69, midsize: 79, large: 89 },
     startingPrice: 69,

@@ -26,6 +26,7 @@ type AddOn = {
   pricingType: string;
   fixedPrice?: number;
   vehiclePrices?: { sedan?: number; midsize?: number; large?: number };
+  serviceSlugs?: string[];
 };
 
 const formSchema = bookingSchema.extend({
@@ -75,13 +76,22 @@ export function BookingWizard({
   const watch = form.watch();
   const service = services.find((s) => s._id === watch.serviceId);
 
+  const bookableAddOns = useMemo(() => {
+    const slug = service?.slug;
+    return addOns.filter((a) => {
+      const scoped = a.serviceSlugs?.length;
+      if (!scoped) return true;
+      return slug ? a.serviceSlugs!.includes(slug) : false;
+    });
+  }, [addOns, service?.slug]);
+
   const estimated = useMemo(() => {
     if (!service) return 0;
     const base = service.customQuote
       ? service.startingPrice
       : service.vehiclePrices?.[watch.vehicleType as VehicleTypeId] ??
         service.startingPrice;
-    const addOnTotal = addOns
+    const addOnTotal = bookableAddOns
       .filter((a) => watch.addOnIds?.includes(a._id))
       .reduce((sum, a) => {
         if (a.pricingType === "vehicle" && a.vehiclePrices) {
@@ -93,7 +103,7 @@ export function BookingWizard({
         return sum + (a.fixedPrice ?? 0);
       }, 0);
     return base + addOnTotal;
-  }, [service, watch.vehicleType, watch.addOnIds, addOns]);
+  }, [service, watch.vehicleType, watch.addOnIds, bookableAddOns]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -228,7 +238,7 @@ export function BookingWizard({
 
       {step === 2 && (
         <div className="space-y-2">
-          {addOns.map((a) => (
+          {bookableAddOns.map((a) => (
             <label key={a._id} className="flex items-center gap-3">
               <input
                 type="checkbox"
