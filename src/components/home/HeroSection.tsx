@@ -21,7 +21,7 @@ function isVideoMediaUrl(url: string) {
   return /\.(mp4|webm|mov)(\?|#|$)/i.test(url);
 }
 
-/** Old stock / placeholder heroes — never override the live Charger */
+/** Stock placeholders and retired Charger hero — use default site hero instead */
 function isLegacyStockHero(url: string) {
   const u = url.toLowerCase();
   return (
@@ -30,7 +30,10 @@ function isLegacyStockHero(url: string) {
     u.includes("suv-full-detail") ||
     u.includes("foam-wash-arizona") ||
     u.includes("/images/hero") ||
-    u.includes("hero-bg")
+    u.includes("hero-bg") ||
+    u.includes("charger") ||
+    u.includes("hero-electric-blue-charger") ||
+    u.includes("aqpj8m3dziunsc59hsfjk")
   );
 }
 
@@ -39,7 +42,7 @@ function resolveHeroVideoSrc(heroMediaUrl: string) {
   if (custom && isVideoMediaUrl(custom) && !isLegacyStockHero(custom)) {
     return custom;
   }
-  return CLIENT_VIDEOS.heroElectricBlueCharger;
+  return CLIENT_VIDEOS.homeHero;
 }
 
 const HERO_MEDIA_CLASS =
@@ -51,7 +54,7 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [videoReady, setVideoReady] = useState(false);
 
-  const poster = CLIENT_IMAGES.heroElectricBlueCharger;
+  const poster = CLIENT_IMAGES.homeHeroPoster;
   const videoSrc = resolveHeroVideoSrc(settings.heroMediaUrl ?? "");
   const useLiveVideo = !reduceMotion;
 
@@ -126,7 +129,7 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
       ) : (
         <Image
           src={poster}
-          alt="Electric blue Dodge Charger after professional mobile detailing in Arizona"
+          alt="Luxury vehicle after professional mobile detailing in Arizona"
           fill
           priority
           className={HERO_MEDIA_CLASS}

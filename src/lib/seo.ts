@@ -1,7 +1,17 @@
 import type { Metadata } from "next";
 import { BRAND } from "@/lib/constants";
+import { CLIENT_IMAGES } from "@/lib/client-images";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+const defaultShareImage = CLIENT_IMAGES.homeHeroPoster;
+
+function shareImageUrl() {
+  const path = defaultShareImage.startsWith("/")
+    ? defaultShareImage
+    : `/${defaultShareImage}`;
+  return `${siteUrl.replace(/\/$/, "")}${path}`;
+}
 
 export function buildMetadata({
   title,
@@ -29,11 +39,20 @@ export function buildMetadata({
       siteName: BRAND.name,
       type: "website",
       locale: "en_US",
+      images: [
+        {
+          url: shareImageUrl(),
+          width: 1200,
+          height: 630,
+          alt: `${BRAND.name} — ${BRAND.tagline}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description: desc,
+      images: [shareImageUrl()],
     },
   };
 }

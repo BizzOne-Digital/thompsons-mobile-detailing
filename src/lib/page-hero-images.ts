@@ -6,7 +6,7 @@ const PAGE_HERO_IMAGES: Record<string, string> = {
   "/services": SITE_IMAGES.foamWashArizona,
   "/pricing": SITE_IMAGES.suvFullDetail,
   "/booking": SITE_IMAGES.mobileSunsetSedan,
-  "/contact": CLIENT_IMAGES.heroElectricBlueCharger,
+  "/contact": CLIENT_IMAGES.homeHeroPoster,
   "/results": CLIENT_IMAGES.porscheShowcaseBright,
   "/testimonials": SITE_IMAGES.ceramicCoating,
   "/team": CLIENT_IMAGES.teamGroup,

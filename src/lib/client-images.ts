@@ -27,7 +27,9 @@ export const CLIENT_IMAGES = {
   aboutEscalade: v("vernon-18-escalade-angle.jpg"),
   ownerPortrait: `${base}/owner.jpg`,
   teamGroup: `${base}/team-group.jpg`,
-  /** Upload blue Charger in Admin → Settings → Home hero when available */
+  /** Default home hero poster & link-preview image */
+  homeHeroPoster: v("porsche-showcase-bright.jpg"),
+  /** Electric blue Charger — portfolio gallery only */
   heroElectricBlueCharger: v("hero-electric-blue-charger.jpg"),
   porscheTanInteriorBright: v("porsche-tan-interior-bright.jpg"),
   porscheShowcaseBright: v("porsche-showcase-bright.jpg"),

@@ -28,7 +28,7 @@ const FEATURED_LEGACY: ExteriorPortfolioProject[] = [
     media: [
       {
         type: "video",
-        src: CLIENT_VIDEOS.heroElectricBlueCharger,
+        src: CLIENT_VIDEOS.electricBlueCharger,
         poster: CLIENT_IMAGES.heroElectricBlueCharger,
         alt: "Electric blue Dodge Charger after detailing",
       },

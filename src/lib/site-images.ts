@@ -9,7 +9,7 @@ const portfolio = (id: string, fallback: string) =>
   CLIENT_EXTERIOR_PORTFOLIO.find((p) => p.id === id)?.coverSrc ?? fallback;
 
 export const SITE_IMAGES = {
-  hero: CLIENT_IMAGES.heroElectricBlueCharger,
+  hero: CLIENT_IMAGES.homeHeroPoster,
   mobileSunsetSedan: portfolio("ford-edge", "/images/portfolio/ford-edge/01-sunset.jpg"),
   interiorExtraction: CLIENT_IMAGES.deepClean15,
   suvFullDetail: portfolio("black-cadillac-escalade", CLIENT_IMAGES.aboutEscalade),

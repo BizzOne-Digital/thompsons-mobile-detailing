@@ -9,8 +9,8 @@ export function ContactTrustPanel() {
       <div className="overflow-hidden rounded-2xl border border-gold/25">
         <div className="relative aspect-[16/10] w-full">
           <Image
-            src={CLIENT_IMAGES.heroElectricBlueCharger}
-            alt="Electric blue Dodge Charger after professional detailing"
+            src={CLIENT_IMAGES.homeMobileVan}
+            alt="Thompson's Mobile Detailing branded van on site"
             fill
             className="object-cover object-center"
             sizes="(max-width: 1024px) 100vw, 480px"

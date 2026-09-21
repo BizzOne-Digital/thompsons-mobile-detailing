@@ -34,8 +34,10 @@ export const ABOUT_PAGE_VIDEOS = VIDEOS7_ABOUT.map((clip) => ({
 }));
 
 export const CLIENT_VIDEOS = {
-  /** Home hero — Vernon videos7 (largest showcase clip) */
-  heroElectricBlueCharger: VIDEOS7_HERO,
+  /** Home hero background — polished exterior detail (not driveway Charger) */
+  homeHero: VIDEOS7_EXTERIOR_A,
+  /** Electric blue Charger — portfolio gallery only */
+  electricBlueCharger: VIDEOS7_HERO,
   /** Full-width home section below hero */
   homeLiveFootage: VIDEOS7_HOME_LIVE,
   /** Interior deep clean — service pages & home showcase */

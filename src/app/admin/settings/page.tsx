@@ -90,7 +90,7 @@ export default function AdminSettingsPage() {
             />
           </div>
           <div>
-            <p className="text-sm mb-2">Home hero image (e.g. blue Charger)</p>
+            <p className="text-sm mb-2">Home hero video URL (optional — leave blank for default)</p>
             <ImageUploadField
               folder="settings"
               value={String(settings.heroMediaUrl ?? "")}
