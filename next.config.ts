@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
+import { buildLegacyRedirects } from "./src/lib/legacy-redirects";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return buildLegacyRedirects();
+  },
   poweredByHeader: false,
   reactStrictMode: true,
   images: {

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "@/lib/constants";
+import { slugForAreaName, serviceAreaPath } from "@/lib/service-areas";
 import { Button } from "@/components/ui/Button";
 import { useSiteSettings } from "@/components/layout/SiteSettingsProvider";
 import { phoneHref } from "@/lib/public-settings";
@@ -46,14 +47,31 @@ export function SiteFooter() {
             <li>
               <Link href="/team" className="hover:text-bright-gold">Our Team</Link>
             </li>
+            <li>
+              <Link href="/areas" className="hover:text-bright-gold">Service Areas</Link>
+            </li>
           </ul>
         </div>
         <div>
           <h3 className="font-semibold text-bright-gold">Service Areas</h3>
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-off-white/75">
-            {site.serviceAreas.slice(0, 10).map((area) => (
-              <li key={area}>{area}</li>
-            ))}
+            {site.serviceAreas.slice(0, 10).map((area) => {
+              const slug = slugForAreaName(area);
+              return (
+                <li key={area}>
+                  {slug ? (
+                    <Link
+                      href={serviceAreaPath(slug)}
+                      className="hover:text-bright-gold"
+                    >
+                      {area}
+                    </Link>
+                  ) : (
+                    area
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div>

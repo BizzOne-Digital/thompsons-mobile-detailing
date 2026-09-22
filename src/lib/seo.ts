@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { BRAND } from "@/lib/constants";
 import { CLIENT_IMAGES } from "@/lib/client-images";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+import { SERVICE_AREA_PAGES } from "@/lib/service-areas";
+import { getSiteUrl } from "@/lib/site-url";
 
 const defaultShareImage = CLIENT_IMAGES.siteLinkShareImage;
 
@@ -26,7 +26,7 @@ export function buildMetadata({
     ? `${title} | ${BRAND.name}`
     : `${BRAND.name} | ${BRAND.tagline}`;
   const desc = description || BRAND.headline;
-  const url = `${siteUrl}${path}`;
+  const url = `${getSiteUrl()}${path}`;
 
   return {
     title: fullTitle,
@@ -65,7 +65,7 @@ export function localBusinessJsonLd() {
     description: BRAND.headline,
     telephone: BRAND.phone,
     email: BRAND.email,
-    areaServed: "Phoenix Metro, Arizona",
+    areaServed: SERVICE_AREA_PAGES.map((a) => `${a.name}, AZ`),
     openingHours: "Mo-Su 05:00-17:00",
   };
 }

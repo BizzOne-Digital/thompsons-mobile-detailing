@@ -3,6 +3,7 @@ import { Cinzel, Outfit } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { buildMetadata, localBusinessJsonLd } from "@/lib/seo";
+import { getSiteUrl } from "@/lib/site-url";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -15,9 +16,7 @@ const cinzel = Cinzel({
   weight: ["400", "600", "700"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://tmdaz.com";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
