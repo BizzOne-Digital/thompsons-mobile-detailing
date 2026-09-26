@@ -1,0 +1,650 @@
+﻿[
+    {
+        "uuid":  "05261905-a852-49a6-9bcd-8dc474c389e1",
+        "slug":  "ford-edge",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "06973237-894d-4139-88bc-601726ed1fc2",
+        "slug":  "white-toyota-corolla",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "07caa02b-789e-435c-98c7-00c0616a066c",
+        "slug":  "ford-fusion-mobile-process",
+        "destFile":  "01-equipment.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "0eb32c69-3d3c-404e-9f5e-96eb287b2610",
+        "slug":  "toyota-tundra-trd",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "129fddd8-25cb-4d15-97e6-5e59267df8b2",
+        "slug":  "porsche-911-cabriolet",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "13ae9cb1-67c0-47a8-8a11-dd0bc6745679",
+        "slug":  "chevy-silverado-brown",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "16ae0a46-6f63-48de-97dc-2a0896c16217",
+        "slug":  "gmc-yukon-bronze-wrap",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "16b7bd02-941e-4371-a5d1-f384d8d569e6",
+        "slug":  "ford-edge",
+        "destFile":  "02-sunset.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "19013b20-0ce4-48a0-a864-01edfa7cdf5b",
+        "slug":  "kia-sportage-gray",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "1f4f140a-7757-4f89-984b-b7c6dce2c2be",
+        "slug":  "silver-audi-tt-roadster",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "246996ec-762d-4eb3-ab93-b337badbaa22",
+        "slug":  "black-bmw-x5",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "256bb014-e8f2-47cd-8de6-2cc8e75a7c93",
+        "slug":  "blue-honda-accord",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "2bae33da-4627-446c-9ee8-5b1285503ebb",
+        "slug":  "classic-car-foam-wash",
+        "destFile":  "01-foam.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "2df31080-561f-4b89-a3ec-531d4f1a7cba",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "2f5289d8-3e8b-4dbc-9978-6ff3de1c1046",
+        "slug":  "gray-dodge-challenger",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "30390c4a-73bf-4547-bea8-16eb21c00579",
+        "slug":  "tesla-model-y-red",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "311d4c7b-fffb-4ce5-88f5-04e4f0a15b50",
+        "slug":  "blue-honda-accord",
+        "destFile":  "02-interior.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "31305d44-0f96-4939-bee1-9f87d65b04e4",
+        "slug":  "blue-honda-accord",
+        "destFile":  "03-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "316dab18-9adc-499b-8703-851646758a30",
+        "slug":  "porsche-911-cabriolet",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "31e8f249-b344-4de4-931e-99c33c873d46",
+        "slug":  "porsche-911-cabriolet",
+        "destFile":  "03-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "323c7a99-b8c3-4c71-a9bf-d4bc9b0077c5",
+        "slug":  "black-bmw-x5",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "32cf47ed-9e16-4bf4-b7d3-ab37dc7275b3",
+        "slug":  "gmc-yukon-bronze-wrap",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "35a43c81-3640-4afd-9969-e7a20c805e08",
+        "slug":  "black-cadillac-escalade",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "3632369c-7045-45d9-b9b5-ca400b7bb432",
+        "slug":  "chevy-tahoe-setina",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "364d0b7b-3098-4faa-af85-30f0f2834703",
+        "slug":  "white-ford-f150",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "367a4cbd-1daf-4ab3-af80-b1f8797929a2",
+        "slug":  "blue-honda-accord",
+        "destFile":  "04-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "3768abcd-a43b-462b-9cd6-240f797ea8b1",
+        "slug":  "gray-dodge-challenger",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "37d3887d-35c3-494c-9efc-c2d780ca8fa4",
+        "slug":  "black-lexus-gs350",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "3b9af1b1-c138-4405-8dec-90f514d30de1",
+        "slug":  "white-ford-f150",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "3beaf02f-6445-4145-abde-494bc156495a",
+        "slug":  "maroon-honda-accord",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "3c5fd26d-da74-4186-b608-b3b6224d0313",
+        "slug":  "white-ford-f150",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "3f11a976-216c-4dd7-8da1-f2e2d605688f",
+        "slug":  "hyundai-tucson-gray",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "419291bb-68c1-4d09-8448-9711b467d1cc",
+        "slug":  "tesla-model-3-gray",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "461163eb-0a15-4c7e-9998-ceed45bf3736",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "473725a7-371d-47b7-8a7e-55543fa40ff8",
+        "slug":  "ford-fusion-mobile-process",
+        "destFile":  "02-process.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "47c9acbc-82fa-4774-ab00-6cec7ff8e2ac",
+        "slug":  "ford-mustang-mach-e-gray",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "53999a65-87eb-4bb3-b7c9-2734948c65c2",
+        "slug":  "gray-dodge-challenger",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "55aaf6c2-be4e-4bd8-ae55-982eb0964250",
+        "slug":  "ford-bronco-foam-wash",
+        "destFile":  "01-foam.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "578c846d-0c6f-4bb0-9891-089ec52b1703",
+        "slug":  "blue-honda-accord",
+        "destFile":  "05-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "58095e5b-ccfa-419e-bdc4-88fe65cb28a3",
+        "slug":  "ford-edge",
+        "destFile":  "03-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "5ff2277e-7698-4a5d-8f59-f63282d83bd9",
+        "slug":  "ford-fusion-mobile-process",
+        "destFile":  "03-hood.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6067531a-b347-4650-b7bf-91d86a5b14d1",
+        "slug":  "black-bmw-x5",
+        "destFile":  "03-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "616519da-b983-426e-a9e3-69a0ba6cd7f9",
+        "slug":  "red-lexus-is",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "61d6c067-a3a8-4db4-bb3c-3f4a381515ae",
+        "slug":  "ford-edge",
+        "destFile":  "04-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "623d7b10-704e-44aa-8e89-21150c84d0e2",
+        "slug":  "ford-mustang-mach-e-gray",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "652093a0-1d58-45f6-b062-6dfb1823f5f8",
+        "slug":  "toyota-tundra-trd",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "67fa2aae-3880-45c9-87b5-f2b9415dd8ab",
+        "slug":  "ford-mustang-mach-e-gray",
+        "destFile":  "03-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6b2b3f98-4da0-4d18-9713-b7300b566bdb",
+        "slug":  "red-lexus-is",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6d003704-8175-4cb0-a8c7-d5bc15e3a52a",
+        "slug":  "gmc-yukon",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6d5aa292-911c-4525-97a8-9e76be998102",
+        "slug":  "ford-bronco-foam-wash",
+        "destFile":  "02-wash.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6ef3e35f-30f7-49b1-8d4a-8fca1bda0c89",
+        "slug":  "porsche-911-cabriolet",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "6ef86710-9f09-4309-b8f3-5b63869a694e",
+        "slug":  "kia-sorento-gray",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "7771f8d1-14cb-4af2-b189-b76a4861f24a",
+        "slug":  "gmc-sierra-at4-white",
+        "destFile":  "01-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "7872243f-90a2-407a-8d96-dd7f4a80acc5",
+        "slug":  "toyota-tundra-trd",
+        "destFile":  "03-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "7c428810-9f25-474f-8b81-4c4505f27157",
+        "slug":  "black-lexus-gs350",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "7c952f0c-d0ce-4768-9322-5f0c7c2d4a1e",
+        "slug":  "gmc-yukon",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "8319065a-8768-4cd3-ad89-e0e8117e2d11",
+        "slug":  "toyota-tundra-trd",
+        "destFile":  "04-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "83b7086f-fcb6-4275-9f4e-4df35ca78ce9",
+        "slug":  "hyundai-tucson-gray",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "86e1669e-01c1-440c-8513-660790ca4126",
+        "slug":  "white-lucid-air",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "885a9436-d34e-4aca-9dca-dd7d6fbb1591",
+        "slug":  "black-cadillac-escalade",
+        "destFile":  "02-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "8b43c0fd-27e6-45a3-875b-75ed1971fe34",
+        "slug":  "white-porsche-cayenne",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "8ea53d9a-072c-41da-a1df-610c18cb36d7",
+        "slug":  "ford-mustang-mach-e-gray",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "8fc48cab-9f18-4416-a5dd-714f0e78edea",
+        "slug":  "black-cadillac-escalade",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "91889a4f-85ce-4299-a235-4856f7c6e741",
+        "slug":  "gmc-yukon-bronze-wrap",
+        "destFile":  "03-interior.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "93c50047-c40f-4f68-bb92-694b27781c9c",
+        "slug":  "gmc-yukon-bronze-wrap",
+        "destFile":  "04-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "94941129-9df0-4307-bb44-9bdafe7c2683",
+        "slug":  "white-kia-telluride",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "9bfaa731-df93-4677-88bc-047554baa07a",
+        "slug":  "gmc-sierra-at4-white",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "9ed98dbd-cca0-41f1-904b-cdea64f6ee8f",
+        "slug":  "tesla-model-y-red",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "a2224d08-e5cc-4c0a-ae17-a643e185163c",
+        "slug":  "gmc-sierra-at4-white",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "a34b5180-c107-437e-9a9f-e725fbcacf94",
+        "slug":  "black-bmw-x5",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "a48382a6-7253-4524-ab93-cd0e82d44d27",
+        "slug":  "tesla-model-3-gray",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "a4f5f785-85e3-4296-853e-bba604daf6d5",
+        "slug":  "kia-sportage-gray",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "add5e968-05e9-4a14-b7ac-4b4ebfa8668a",
+        "slug":  "gmc-sierra-at4-white",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "b20602fb-21fc-41a1-9c9f-d3c398c1b6f8",
+        "slug":  "gmc-yukon-bronze-wrap",
+        "destFile":  "05-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "b2181119-00b6-49db-9faf-18fad02c2859",
+        "slug":  "black-nissan-rogue",
+        "destFile":  "01-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "b2857707-d6d6-43ac-9291-7d2af056387f",
+        "slug":  "ford-edge",
+        "destFile":  "05-angle.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "b9c5e0d2-1ee1-4315-b999-f52968aa40a3",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "03-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "bbf39054-d4c4-4d20-9f0b-52ec9c0c2ca9",
+        "slug":  "tesla-model-y-red",
+        "destFile":  "03-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "bcac9ec7-329e-41e1-894f-451895392939",
+        "slug":  "ford-fusion-mobile-process",
+        "destFile":  "04-van.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c1bd3dbd-d2ce-404e-998b-f4dd0c24ad03",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c1e4aa3c-5f3e-4de6-b5c0-99b36018386a",
+        "slug":  "black-cadillac-escalade",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c3291eab-3138-4816-9659-ec34d81904e7",
+        "slug":  "white-ford-f150",
+        "destFile":  "04-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c40ca48e-c2cb-4ac9-a61a-dfb0365363f7",
+        "slug":  "white-mazda-cx5",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c70d50cf-6be1-466b-9750-9b08cb3fa7c3",
+        "slug":  "red-lexus-is",
+        "destFile":  "03-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c7f69b0e-62a2-43f1-80c3-15286384ac90",
+        "slug":  "black-nissan-rogue",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "c91029b5-37a8-4095-9a42-9309f2f49646",
+        "slug":  "porsche-911-cabriolet",
+        "destFile":  "05-interior.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "ca3b3f51-4d81-4a79-959e-3edaca34633f",
+        "slug":  "gray-dodge-challenger",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "cb553600-6a48-4d8c-b54c-b15746488b10",
+        "slug":  "white-toyota-camry",
+        "destFile":  "01-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "cbb8a04f-df33-49bf-a511-a124ee0d8628",
+        "slug":  "red-lexus-is",
+        "destFile":  "04-side.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "cfe0a154-ab83-4113-a8c0-2f00d4ae29e4",
+        "slug":  "gmc-yukon-bronze-wrap",
+        "destFile":  "06-angle.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d3055030-919f-45a6-a4c2-0581e9fa0e16",
+        "slug":  "white-ford-f150",
+        "destFile":  "05-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d37a50a3-e567-4325-bedb-2908c5a7e49c",
+        "slug":  "tesla-model-3-gray",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d59c7321-5ca0-4743-9813-9b3dca4d4c27",
+        "slug":  "hyundai-tucson-gray",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d6b6dff4-9fa1-4e72-bf58-f7958667248d",
+        "slug":  "white-toyota-camry",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "d7bb7fd6-e6c1-4590-a72c-7b1e4aa4e74a",
+        "slug":  "gmc-sierra-at4-white",
+        "destFile":  "05-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "dd68fac9-e103-45e7-8bad-e2c4f39bbf11",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "05-profile.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "e49ac14b-22c1-40d3-9576-3d5a12611a70",
+        "slug":  "white-lucid-air",
+        "destFile":  "02-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "e4b4bda7-65e0-40dd-b83a-6531b40135f7",
+        "slug":  "hyundai-tucson-gray",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "e69d1235-1f11-4007-bc3c-375ef87eccb6",
+        "slug":  "blue-honda-accord",
+        "destFile":  "06-wheel.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "e7de6f04-f441-400d-bd72-e1b99b30d013",
+        "slug":  "ford-bronco-foam-wash",
+        "destFile":  "03-front.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "e9b5f98f-710c-4637-b69d-f678a18e974a",
+        "slug":  "tesla-model-y-red",
+        "destFile":  "04-detail.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "eb9ed7bd-1d70-4559-a083-2ca6d3a51c8e",
+        "slug":  "maroon-honda-accord",
+        "destFile":  "02-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "ebc6f2f1-dd77-40bd-b996-d1cd215fe7ea",
+        "slug":  "chevy-tahoe-setina",
+        "destFile":  "skip.jpg",
+        "skip":  true
+    },
+    {
+        "uuid":  "f31d0747-15cd-463a-a23f-8711775143aa",
+        "slug":  "black-lexus-gs350",
+        "destFile":  "03-rear.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "f43defb6-d6b4-4b76-b0f1-4da5ea5c7d98",
+        "slug":  "gray-dodge-challenger",
+        "destFile":  "05-wheel.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "fd196db9-f97b-4596-8787-b866efbbee1b",
+        "slug":  "gmc-sierra-denali-gray",
+        "destFile":  "06-angle.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "fe6ef35a-2bf6-4a62-81db-6f2edc5c6fc5",
+        "slug":  "tesla-model-y-red",
+        "destFile":  "05-gloss.jpg",
+        "skip":  false
+    },
+    {
+        "uuid":  "fec7ba4f-d390-4278-a60d-fb067cd4ea72",
+        "slug":  "gray-dodge-challenger",
+        "destFile":  "06-hood.jpg",
+        "skip":  false
+    }
+]
