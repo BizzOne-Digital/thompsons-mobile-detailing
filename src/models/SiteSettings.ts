@@ -44,7 +44,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     phone: { type: String, default: BRAND.phone },
     email: { type: String, default: BRAND.email },
     businessHours: { type: String, default: BRAND.hours },
-    serviceAreas: { type: [String], default: SERVICE_AREAS },
+    serviceAreas: { type: [String], default: () => [...SERVICE_AREAS] },
     instagramUrl: { type: String, default: "" },
     facebookUrl: { type: String, default: "" },
     heroHeadline: { type: String, default: BRAND.tagline },
