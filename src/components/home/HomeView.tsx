@@ -8,6 +8,7 @@ import { ShieldCheck, Star } from "lucide-react";
 import { BRAND, SERVICE_AREAS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { HeroSection } from "@/components/home/HeroSection";
+import { HomeGoogleReviewsSection } from "@/components/home/HomeGoogleReviewsSection";
 import { ImageShowcaseStrip } from "@/components/home/ImageShowcaseStrip";
 import { HomeAdditionalShowcase } from "@/components/home/HomeAdditionalShowcase";
 import { HomeLiveFootageSection } from "@/components/home/HomeLiveFootageSection";
@@ -21,6 +22,8 @@ import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
 import { FaqAccordion, type FaqItem } from "@/components/faq/FaqAccordion";
 import { formatCurrency } from "@/lib/utils";
 import type { PublicSiteSettings } from "@/lib/public-settings";
+import type { GoogleReviewsSnapshot } from "@/lib/google-reviews";
+import { serviceAreaPath, slugForAreaName } from "@/lib/service-areas";
 
 type Service = {
   _id: string;
@@ -77,10 +80,12 @@ export function HomeView({
   siteSettings,
   ownerPhotoUrl,
   teamGroupPhotoUrl,
+  googleReviews,
 }: {
   services: Service[];
   faqs: FaqItem[];
   testimonials: Testimonial[];
+  googleReviews: GoogleReviewsSnapshot;
   siteSettings: Pick<
     PublicSiteSettings,
     "heroMediaUrl" | "heroHeadline" | "heroSubheadline" | "heroDescription" | "aboutText"
@@ -102,6 +107,8 @@ export function HomeView({
         className={`w-full min-w-0 overflow-x-clip ${introDone ? "opacity-100" : "opacity-0"}`}
       >
         <HeroSection introDone={introDone} settings={siteSettings} />
+
+        <HomeGoogleReviewsSection data={googleReviews} />
 
         <HomePorscheInteriorSection />
 
@@ -354,14 +361,25 @@ export function HomeView({
             />
             <div className="glass-panel mx-auto max-w-4xl rounded-3xl p-8">
               <div className="grid grid-cols-2 gap-3 text-sm md:grid-cols-3 lg:grid-cols-4">
-                {SERVICE_AREAS.map((city) => (
-                  <span
-                    key={city}
-                    className="rounded-full border border-gold/25 px-3 py-2 text-center text-off-white/85"
-                  >
-                    {city}
-                  </span>
-                ))}
+                {SERVICE_AREAS.map((city) => {
+                  const slug = slugForAreaName(city);
+                  return slug ? (
+                    <Link
+                      key={city}
+                      href={serviceAreaPath(slug)}
+                      className="rounded-full border border-gold/25 px-3 py-2 text-center text-off-white/85 transition hover:border-gold/50 hover:text-bright-gold"
+                    >
+                      {city}
+                    </Link>
+                  ) : (
+                    <span
+                      key={city}
+                      className="rounded-full border border-gold/25 px-3 py-2 text-center text-off-white/85"
+                    >
+                      {city}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>

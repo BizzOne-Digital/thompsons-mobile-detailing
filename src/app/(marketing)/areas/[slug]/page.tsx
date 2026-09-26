@@ -63,7 +63,11 @@ export default async function ServiceAreaPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PageShell title={area.headline} subtitle={area.description}>
+      <PageShell
+        title={area.headline}
+        subtitle={area.description}
+        heroImage={area.heroImage}
+      >
         <AreaDetailContent area={area} services={serviceLinks} />
       </PageShell>
     </>

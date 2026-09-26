@@ -1,4 +1,5 @@
 import { CLIENT_IMAGES } from "@/lib/client-images";
+import { getServiceAreaBySlug } from "@/lib/service-areas";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
 const PAGE_HERO_IMAGES: Record<string, string> = {
@@ -33,6 +34,13 @@ const PAGE_HERO_EYEBROWS: Record<string, string> = {
 
 export function resolvePageHeroImage(pathname: string, override?: string) {
   if (override) return override;
+  if (pathname.startsWith("/areas/")) {
+    const slug = pathname.split("/")[2];
+    if (slug) {
+      const area = getServiceAreaBySlug(slug);
+      if (area?.heroImage) return area.heroImage;
+    }
+  }
   if (PAGE_HERO_IMAGES[pathname]) return PAGE_HERO_IMAGES[pathname];
   if (pathname.startsWith("/services/")) {
     const slug = pathname.split("/")[2];

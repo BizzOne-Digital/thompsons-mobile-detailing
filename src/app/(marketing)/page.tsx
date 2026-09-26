@@ -7,16 +7,19 @@ import {
 } from "@/lib/data";
 import { toPublicSiteSettings } from "@/lib/public-settings";
 import { CLIENT_IMAGES } from "@/lib/client-images";
+import { getGoogleReviews } from "@/lib/google-reviews";
 import { resolvePublicImageUrl } from "@/lib/media-url";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [services, faqs, testimonials, settingsRaw] = await Promise.all([
+  const [services, faqs, testimonials, settingsRaw, googleReviews] =
+    await Promise.all([
     getPublicServices(),
     getPublicFaqs(8),
     getPublicTestimonials(true),
     getSettings(),
+    getGoogleReviews(),
   ]);
   const site = toPublicSiteSettings(settingsRaw);
   const ownerPhotoUrl = resolvePublicImageUrl(
@@ -33,6 +36,7 @@ export default async function HomePage() {
       siteSettings={site}
       ownerPhotoUrl={ownerPhotoUrl}
       teamGroupPhotoUrl={teamGroupPhotoUrl}
+      googleReviews={googleReviews}
       services={services.map((s) => ({
         _id: String(s._id),
         name: s.name,

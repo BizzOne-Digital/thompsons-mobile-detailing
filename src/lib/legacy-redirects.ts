@@ -3,18 +3,25 @@ import type { Redirect } from "next/dist/lib/load-custom-routes";
 /** Kept in sync with `service-areas.ts` — plain data for next.config (no path aliases). */
 const AREA_SLUGS = [
   "avondale-az",
-  "buckeye-az",
-  "goodyear-az",
   "litchfield-park-az",
+  "goodyear-az",
+  "buckeye-az",
+  "waddell-az",
   "surprise-az",
-  "phoenix-az",
-  "scottsdale-az",
   "glendale-az",
-  "peoria-az",
-  "san-tan-valley-az",
+  "tolleson-az",
+  "phoenix-az",
+  "north-phoenix-az",
+  "cave-creek-az",
+  "anthem-az",
+  "new-river-az",
+  "paradise-valley-az",
+  "scottsdale-az",
+  "fountain-hills-az",
   "gilbert-az",
-  "mesa-az",
   "chandler-az",
+  "queen-creek-az",
+  "san-tan-valley-az",
 ];
 
 const SERVICE_SLUGS = [
@@ -94,7 +101,14 @@ export function buildLegacyRedirects(): Redirect[] {
     { source: "/book", destination: "/booking", permanent: true },
     { source: "/book-now", destination: "/booking", permanent: true },
     { source: "/gallery", destination: "/results", permanent: true },
-    { source: "/portfolio", destination: "/results", permanent: true }
+    { source: "/portfolio", destination: "/results", permanent: true },
+    { source: "/areas/peoria-az", destination: "/areas/glendale-az", permanent: true },
+    { source: "/areas/mesa-az", destination: "/areas/gilbert-az", permanent: true },
+    {
+      source: "/areas/apache-junction-az",
+      destination: "/areas/san-tan-valley-az",
+      permanent: true,
+    }
   );
 
   return redirects;

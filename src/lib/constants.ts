@@ -11,23 +11,27 @@ export const BRAND = {
 };
 
 export const SERVICE_AREAS = [
-  "Buckeye",
-  "Goodyear",
   "Avondale",
   "Litchfield Park",
-  "Surprise",
-  "Phoenix",
-  "Scottsdale",
-  "Glendale",
-  "Peoria",
-  "San Tan Valley",
-  "Gilbert",
-  "Mesa",
-  "Chandler",
-  "Apache Junction",
+  "Goodyear",
+  "Buckeye",
   "Waddell",
-  "Surrounding Valley areas",
-];
+  "Surprise",
+  "Glendale",
+  "Tolleson",
+  "Phoenix",
+  "North Phoenix",
+  "Cave Creek",
+  "Anthem",
+  "New River",
+  "Paradise Valley",
+  "Scottsdale",
+  "Fountain Hills",
+  "Gilbert",
+  "Chandler",
+  "Queen Creek",
+  "San Tan Valley",
+] as const;
 
 export const VEHICLE_TYPES = [
   { id: "sedan", label: "Sedan or Small Car" },
