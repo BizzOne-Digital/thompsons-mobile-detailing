@@ -25,10 +25,10 @@ export function HomeGoogleReviewsSection({
             <h2 className="mt-3 font-display text-2xl text-off-white md:text-3xl">
               Five-star mobile detailing
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-sm text-off-white/70">
-              Connect your Google Business Profile to display live rating, review
-              count, and recent reviews here automatically. Links below still work
-              for customers.
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-off-white/70">
+              Discover what these amazing customers are saying about Thompson&apos;s
+              Mobile Detailing — and why you can confidently choose us to detail
+              your vehicle.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
