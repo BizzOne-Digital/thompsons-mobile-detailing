@@ -13,7 +13,8 @@
     "patch-availability": "npx tsx scripts/patch-availability.ts",
     "test-smtp": "npx tsx scripts/test-smtp.ts",
     "test-booking-email": "npx tsx scripts/test-booking-email.ts",
-    "patch-hero": "npx tsx scripts/patch-clear-hero-media.ts"
+    "patch-hero": "npx tsx scripts/patch-clear-hero-media.ts",
+    "import-blogs": "npx tsx scripts/import-blog-posts.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
