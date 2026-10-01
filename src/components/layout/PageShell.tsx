@@ -24,7 +24,7 @@ export function PageShell({
         heroVideo={heroVideo}
         eyebrow={eyebrow}
       />
-      <div className="relative z-10 mx-auto w-full min-w-0 max-w-7xl bg-midnight px-4 pb-20 pt-12 sm:px-5 lg:px-8">
+      <div className="relative z-10 -mt-14 mx-auto w-full min-w-0 max-w-7xl bg-midnight px-4 pb-20 pt-6 sm:px-5 md:-mt-20 md:pt-8 lg:px-8">
         <div
           className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(100%,48rem)] -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/35 to-transparent"
           aria-hidden

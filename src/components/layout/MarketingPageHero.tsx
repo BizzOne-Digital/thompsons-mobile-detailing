@@ -90,7 +90,11 @@ export function MarketingPageHero({
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-midnight via-black/25 to-black/50"
+        className="absolute inset-0 bg-gradient-to-t from-midnight/95 via-black/30 to-black/45"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 z-[1] h-28 bg-gradient-to-t from-midnight to-transparent md:h-36"
         aria-hidden
       />
       <div className="page-hero-mesh absolute inset-0 opacity-60" aria-hidden />
@@ -108,7 +112,7 @@ export function MarketingPageHero({
         aria-hidden
       />
 
-      <div className="relative mx-auto flex min-h-[48svh] w-full min-w-0 max-w-7xl flex-col justify-end px-4 pb-12 pt-28 sm:px-5 md:min-h-[58svh] md:pb-16 md:pt-32 lg:px-8">
+      <div className="relative z-[2] mx-auto flex min-h-[48svh] w-full min-w-0 max-w-7xl flex-col justify-end px-4 pb-14 pt-28 sm:px-5 md:min-h-[58svh] md:pb-20 md:pt-32 lg:px-8">
         {breadcrumbs.length > 0 && (
           <motion.nav
             initial={reduce ? false : { opacity: 0, y: 12 }}
@@ -177,11 +181,6 @@ export function MarketingPageHero({
           </motion.p>
         )}
       </div>
-
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-midnight"
-        aria-hidden
-      />
     </section>
   );
 }
