@@ -9,7 +9,7 @@ import {
 export const metadata = buildMetadata({
   title: "Service Areas",
   description:
-    "Mobile auto detailing service areas across the Phoenix Metro — Avondale, Phoenix, Scottsdale, Glendale, Peoria, Mesa, Chandler, and more.",
+    "Mobile auto detailing across the Phoenix Metro — Avondale, Goodyear, Buckeye, Surprise, Glendale, Scottsdale, Chandler, and 20+ Valley cities. Book Refresh, Restore, or Reset online.",
   path: "/areas",
 });
 

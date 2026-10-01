@@ -21,18 +21,25 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    const securityHeaders = [
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=()",
+      },
+    ];
+    if (process.env.VERCEL_ENV === "preview") {
+      securityHeaders.push({
+        key: "X-Robots-Tag",
+        value: "noindex, nofollow",
+      });
+    }
     return [
       {
         source: "/(.*)",
-        headers: [
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
-        ],
+        headers: securityHeaders,
       },
     ];
   },

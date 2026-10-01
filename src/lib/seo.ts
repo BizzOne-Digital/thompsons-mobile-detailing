@@ -57,15 +57,20 @@ export function buildMetadata({
   };
 }
 
-export function localBusinessJsonLd() {
+export function localBusinessJsonLd(options?: { pageUrl?: string }) {
+  const base = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "AutoDetailing",
+    "@id": `${base}/#organization`,
     name: BRAND.name,
+    url: options?.pageUrl ?? base,
     description: BRAND.headline,
     telephone: BRAND.phone,
     email: BRAND.email,
+    image: `${base}${shareImagePath()}`,
     areaServed: SERVICE_AREA_PAGES.map((a) => `${a.name}, AZ`),
     openingHours: "Mo-Su 05:00-17:00",
+    priceRange: "$$",
   };
 }

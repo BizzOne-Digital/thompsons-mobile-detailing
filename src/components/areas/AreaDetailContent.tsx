@@ -49,6 +49,12 @@ export function AreaDetailContent({
           <Link href="/services" className="mt-4 inline-block text-sm hover:underline">
             View all services →
           </Link>
+          <Link href="/areas" className="mt-2 block text-sm hover:underline">
+            All service areas →
+          </Link>
+          <Link href="/blog" className="mt-2 block text-sm hover:underline">
+            Detailing tips & blog →
+          </Link>
         </div>
       )}
       <p className="text-sm text-off-white/60">

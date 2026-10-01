@@ -47,9 +47,7 @@ export default async function ServiceAreaPage({
   const base = getSiteUrl();
   const pageUrl = `${base}${serviceAreaPath(area.slug)}`;
   const jsonLd = {
-    ...localBusinessJsonLd(),
-    "@type": "AutoDetailing",
-    url: pageUrl,
+    ...localBusinessJsonLd({ pageUrl }),
     areaServed: {
       "@type": "City",
       name: area.name,
