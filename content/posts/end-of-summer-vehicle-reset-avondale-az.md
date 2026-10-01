@@ -8,7 +8,7 @@ Arizona summers are not just hot—they are relentless. UV radiation breaks down
 
 Routine car washes and quick interior wipe-downs help, but they rarely remove embedded contamination. When you see oxidation, dull trim, rough paint, or stains that return after every vacuum, you are past basic maintenance. That is when [professional mobile auto detailing](/pricing)—performed at your home or office—makes the difference.
 
-![Interior buildup and staining are common after a long Arizona summer](/images/client/ba-02-interior-before.jpg)
+![Interior buildup and staining are common after a long Arizona summer](/images/blog/end-of-summer-avondale/interior-seat-pet-hair-before.jpg)
 
 ## Interior problems we see after summer in Avondale and the West Valley
 
@@ -20,11 +20,15 @@ Fabric seats and carpets trap dust, sand, and spills. Surface cleaning leaves gr
 
 Leather dries out quickly in our climate. Without proper [leather cleaning and conditioning](/services/leather-and-carpet-deep-clean), you may notice cracking, fading, or a stiff feel on bolsters and armrests. Conditioning restores suppleness; UV protection helps slow sun damage through the windshield and side glass.
 
-![Leather and interior surfaces benefit from deep cleaning and conditioning after heat exposure](/images/client/red-leather-after.jpg)
+![After deep cleaning: restored interior trim, leather, and fabrics following summer buildup](/images/blog/end-of-summer-avondale/interior-door-panel-after.jpg)
 
 ### Pet hair, odors, and headliner stains
 
 Pet hair clings to static-charged carpets and cloth. [Pet hair removal](/services/pet-hair-removal) requires the right tools and technique—especially in third rows and tight seams. Odors from moisture, pets, or forgotten food often need [odor treatment](/services/interior-odor-treatment) beyond air fresheners. Headliner stains are delicate; improper scrubbing can spread the damage. Professional [headliner cleaning](/services/leather-and-carpet-deep-clean) (as part of a deep interior plan) protects the fabric while lifting stains.
+
+![Before: pet hair and debris embedded in rear seats and carpet](/images/blog/end-of-summer-avondale/pet-hair-rear-seats-before.jpg)
+
+![Before: pet hair packed into footwells and seams](/images/blog/end-of-summer-avondale/pet-hair-footwell-before.jpg)
 
 ### Faded plastics and interior trim
 
@@ -44,13 +48,23 @@ Summer driving loads the nose of the vehicle with bugs and tar. [Bug, tar, and t
 
 If your paint feels gritty after washing, you likely have embedded contamination. [Clay bar and paint decontamination](/services/clay-bar-decontamination) creates a smooth surface for polishing or protection. Oxidation and swirl marks call for [paint correction Arizona](/services/paint-correction) drivers trust before applying coating or sealant. Faded exterior trim responds well to [exterior trim restoration](/services/exterior-trim-restoration). [Headlight restoration](/services/headlight-restoration) improves clarity and the overall appearance of the front end.
 
-![Paint oxidation and contamination often need decontamination and correction—not just another wash](/images/client/vernon-batch-2025/vernon-12-paint-hood-before.jpg)
+![Before: summer dust and oxidation leave paint looking flat and tired](/images/blog/end-of-summer-avondale/exterior-dull-charger-before.jpg)
 
-![Corrected and protected paint restores depth and gloss for fall and beyond](/images/client/vernon-batch-2025/vernon-16-paint-hood-after.jpg)
+![Before: oxidation and chalky texture on the hood and front end](/images/blog/end-of-summer-avondale/paint-roof-oxidation-before.jpg)
+
+![After: corrected hood paint with depth, gloss, and clear reflections](/images/blog/end-of-summer-avondale/paint-hood-gloss-after.jpg)
+
+![Before: cloudy, oxidized headlight lenses](/images/blog/end-of-summer-avondale/headlight-oxidized-before.jpg)
+
+![After: restored headlight clarity on the same vehicle](/images/blog/end-of-summer-avondale/headlight-restored-after.jpg)
 
 ### Wheels, wheel wells, and engine bay
 
 Brake dust and Arizona dust pack into wheels and wells. [Wheel and wheel-well cleaning](/services/wheel-tire-well-cleaning) completes the exterior picture. For enthusiasts and daily drivers alike, [engine bay cleaning](/services/engine-bay-detail) removes greasy buildup and makes leaks easier to spot—popular before seasonal maintenance.
+
+![Before: brake dust and road grime on wheels and lower body](/images/blog/end-of-summer-avondale/wheel-grime-before.jpg)
+
+![After: cleaned and dressed engine bay with hood open for inspection](/images/blog/end-of-summer-avondale/engine-bay-detail-after.jpg)
 
 ## Routine maintenance vs. deeper restoration
 
@@ -85,7 +99,9 @@ Once the interior has been deep cleaned, conditioned, and UV-treated, many custo
 
 On the exterior, [ceramic coating Arizona](/services/ceramic-coating) and professional [vehicle paint protection](/services/ceramic-coating) lock in gloss after correction and make maintenance washes easier. Think of fall as the season to **restore, then protect**—not just rinse away another layer of dust.
 
-![Professional exterior finishing and protection help maintain gloss after summer damage](/images/client/vernon-batch-2025/vernon-18-escalade-angle.jpg)
+![Professional snow-foam pre-wash and mobile equipment at your driveway](/images/blog/end-of-summer-avondale/snow-foam-mobile-process.jpg)
+
+![Finished exterior gloss after restoration and protection prep](/images/blog/end-of-summer-avondale/exterior-finished-charger-after.jpg)
 
 ## Mobile detailing where you live: Avondale first, West Valley wide
 
