@@ -2,6 +2,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { MarketingSuite } from "@/components/marketing/MarketingSuite";
 import { SiteSettingsProvider } from "@/components/layout/SiteSettingsProvider";
 import { getSettings } from "@/lib/data";
 import { toPublicSiteSettings } from "@/lib/public-settings";
@@ -25,6 +26,7 @@ export default async function MarketingLayout({
       </main>
       <SiteFooter />
       <MobileActionBar />
+      <MarketingSuite />
     </SiteSettingsProvider>
   );
 }

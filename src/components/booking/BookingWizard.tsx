@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { toast } from "sonner";
 import { VEHICLE_TYPES, type VehicleTypeId } from "@/lib/constants";
@@ -12,6 +12,13 @@ import {
 import { formatCurrency } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { useSiteSettings } from "@/components/layout/SiteSettingsProvider";
+import { getPromoConfig } from "@/lib/marketing-config";
+import {
+  abandonAlreadySent,
+  markAbandonSent,
+  readClaimedPromoCode,
+  storeClaimedPromoCode,
+} from "@/lib/marketing-storage";
 
 type Service = {
   _id: string;
@@ -58,6 +65,7 @@ type FormValues = {
   majorStains?: boolean;
   odorTreatment?: boolean;
   customerNotes?: string;
+  promoCode?: string;
   photos?: { url: string; publicId?: string }[];
 };
 
@@ -69,10 +77,12 @@ export function BookingWizard({
   addOns: AddOn[];
 }) {
   const { bookingNotice } = useSiteSettings();
+  const promoConfig = getPromoConfig();
   const [step, setStep] = useState(0);
   const [slots, setSlots] = useState<string[]>([]);
   const [photos, setPhotos] = useState<{ url: string; publicId?: string }[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const bookingCompletedRef = useRef(false);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -95,6 +105,10 @@ export function BookingWizard({
   const addOnIds = useWatch({ control: form.control, name: "addOnIds" });
   const preferredDate = useWatch({ control: form.control, name: "preferredDate" });
   const preferredTime = useWatch({ control: form.control, name: "preferredTime" });
+  const email = useWatch({ control: form.control, name: "email" });
+  const customerName = useWatch({ control: form.control, name: "customerName" });
+  const phone = useWatch({ control: form.control, name: "phone" });
+  const promoCode = useWatch({ control: form.control, name: "promoCode" });
 
   const service = services.find((s) => s._id === serviceId);
 
@@ -136,13 +150,46 @@ export function BookingWizard({
     const serviceSlug = params.get("service");
     const vehicle = params.get("vehicle") as VehicleTypeId | null;
     const addOnParam = params.get("addOns");
+    const promoParam = params.get("promo");
     if (serviceSlug) {
       const match = services.find((s) => s.slug === serviceSlug);
       if (match) form.setValue("serviceId", match._id);
     }
     if (vehicle) form.setValue("vehicleType", vehicle);
     if (addOnParam) form.setValue("addOnIds", addOnParam.split(",").filter(Boolean));
+    const storedPromo = readClaimedPromoCode();
+    const code = (promoParam || storedPromo || "").toUpperCase();
+    if (code) {
+      form.setValue("promoCode", code);
+      storeClaimedPromoCode(code);
+    }
   }, [services, form]);
+
+  useEffect(() => {
+    if (step < 6 || step >= 11) return;
+    const trimmed = email?.trim();
+    if (!trimmed || !trimmed.includes("@")) return;
+    if (abandonAlreadySent(trimmed)) return;
+
+    const timer = window.setTimeout(() => {
+      if (bookingCompletedRef.current || step >= 11) return;
+      void fetch("/api/marketing/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: trimmed,
+          name: customerName?.trim() || undefined,
+          phone: phone?.trim() || undefined,
+          source: "booking_abandoned",
+          bookingStep: step,
+          serviceName: service?.name,
+          pagePath: "/booking",
+        }),
+      }).then(() => markAbandonSent(trimmed));
+    }, 120_000);
+
+    return () => window.clearTimeout(timer);
+  }, [step, email, customerName, phone, service?.name]);
 
   useEffect(() => {
     if (!preferredDate) return;
@@ -180,6 +227,7 @@ export function BookingWizard({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Booking failed");
+      bookingCompletedRef.current = true;
       toast.success(data.message);
       setStep(11);
     } catch (e) {
@@ -219,11 +267,32 @@ export function BookingWizard({
       <p className="mt-1 font-display text-3xl text-bright-gold">
         {formatCurrency(estimated)}
       </p>
+      {promoCode && promoConfig.enabled ? (
+        <p className="mt-2 text-xs text-bright-gold/90">
+          Promo code <span className="font-mono font-semibold">{promoCode}</span>{" "}
+          will be applied when we confirm your first-time discount.
+        </p>
+      ) : null}
       <p className="mt-3 text-xs leading-relaxed text-off-white/55">
         {ESTIMATED_TOTAL_DISCLAIMER}
       </p>
     </div>
   ) : null;
+
+  const promoBanner =
+    promoConfig.enabled && !promoCode ? (
+      <div className="mb-6 rounded-2xl border border-bright-gold/30 bg-bright-gold/10 px-4 py-3 text-sm text-off-white/85">
+        First time with us? Use code{" "}
+        <button
+          type="button"
+          className="font-mono font-semibold text-bright-gold underline-offset-2 hover:underline"
+          onClick={() => form.setValue("promoCode", promoConfig.code)}
+        >
+          {promoConfig.code}
+        </button>{" "}
+        for {promoConfig.percent}% off your first detail.
+      </div>
+    ) : null;
 
   if (step === 11) {
     return (
@@ -241,6 +310,7 @@ export function BookingWizard({
 
   return (
     <div className="glass-panel w-full min-w-0 overflow-hidden rounded-3xl p-4 sm:p-6 md:p-8">
+      {promoBanner}
       {estimatePanel}
       <div className="-mx-1 mb-6 flex gap-2 overflow-x-auto pb-1 text-xs sm:mx-0 sm:flex-wrap sm:overflow-visible">
         {steps.map((label, i) => (
@@ -379,7 +449,12 @@ export function BookingWizard({
           <input placeholder="Full name" className={inputClass} {...form.register("customerName")} />
           <input placeholder="Email" className={inputClass} {...form.register("email")} />
           <input placeholder="Phone" className={inputClass} {...form.register("phone")} />
-          <select className={inputClass} {...form.register("preferredContactMethod")}>
+          <input
+            placeholder="Promo code (optional)"
+            className={inputClass}
+            {...form.register("promoCode")}
+          />
+          <select className={`${inputClass} md:col-span-2`} {...form.register("preferredContactMethod")}>
             <option value="phone">Phone</option>
             <option value="email">Email</option>
             <option value="text">Text</option>
@@ -452,6 +527,11 @@ export function BookingWizard({
                   ))}
               </ul>
             </div>
+          ) : null}
+          {promoCode ? (
+            <p>
+              Promo code: <span className="font-mono text-bright-gold">{promoCode}</span>
+            </p>
           ) : null}
           <p className="text-off-white/60">{bookingNotice}</p>
         </div>

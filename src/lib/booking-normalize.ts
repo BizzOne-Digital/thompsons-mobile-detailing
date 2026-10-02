@@ -56,6 +56,7 @@ export type NormalizedBooking = {
   majorStains: boolean;
   odorTreatment: boolean;
   customerNotes?: string;
+  promoCode?: string;
   photos: { url: string; publicId?: string }[];
 };
 
@@ -88,6 +89,9 @@ export function normalizeBookingBody(body: Record<string, unknown>): NormalizedB
       : "";
   const customerNotes = [notes, timeNote].filter(Boolean).join("\n") || undefined;
 
+  const promoRaw = asString(body.promoCode).toUpperCase();
+  const promoCode = promoRaw || undefined;
+
   return {
     customerName: asString(body.customerName) || "Customer",
     email: asString(body.email) || "not-provided@booking.local",
@@ -114,6 +118,7 @@ export function normalizeBookingBody(body: Record<string, unknown>): NormalizedB
     majorStains: asBool(body.majorStains),
     odorTreatment: asBool(body.odorTreatment),
     customerNotes,
+    promoCode,
     photos,
   };
 }

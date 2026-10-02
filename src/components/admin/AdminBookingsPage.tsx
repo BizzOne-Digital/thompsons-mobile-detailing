@@ -14,6 +14,7 @@ type Booking = {
   preferredTime: string;
   status: string;
   estimatedPrice: number;
+  promoCode?: string;
   internalNotes?: string;
 };
 
@@ -135,6 +136,11 @@ export function AdminBookingsPage() {
         <div className="glass-panel rounded-2xl p-6">
           <h2 className="text-xl font-semibold">{selected.customerName}</h2>
           <p className="text-sm text-off-white/70">{selected.email} · {selected.phone}</p>
+          {selected.promoCode ? (
+            <p className="mt-2 text-sm text-bright-gold">
+              Promo code: <span className="font-mono">{selected.promoCode}</span>
+            </p>
+          ) : null}
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <select
               className="rounded-xl border border-gold/30 bg-midnight px-4 py-2"

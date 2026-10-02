@@ -133,7 +133,7 @@ export async function POST(request: Request) {
 
     const notifyEmail =
       process.env.BOOKING_NOTIFICATION_EMAIL?.trim() || BRAND.email;
-    const adminPayload = {
+    const adminPayload: Record<string, string | number> = {
       Customer: data.customerName,
       Email: data.email,
       Phone: data.phone,
@@ -143,6 +143,9 @@ export async function POST(request: Request) {
       Estimate: `$${estimatedPrice}`,
       "Booking ID": booking._id.toString(),
     };
+    if (data.promoCode) {
+      adminPayload["Promo code"] = data.promoCode;
+    }
     const adminMail = await sendMail({
       to: notifyEmail,
       subject: `New booking: ${data.customerName} — ${service.name}`,

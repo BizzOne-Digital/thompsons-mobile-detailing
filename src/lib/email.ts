@@ -172,3 +172,65 @@ function escapeHtml(value: string) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
+
+export function promoOfferEmailHtml(data: {
+  customerName?: string;
+  headline: string;
+  code: string;
+  percent: number;
+  terms: string;
+  bookingUrl: string;
+}) {
+  const greeting = data.customerName
+    ? `Hi ${escapeHtml(data.customerName)},`
+    : "Hi there,";
+  return `
+    <p style="margin:0 0 16px;font-size:18px;color:#f0c040;font-weight:bold;">${escapeHtml(data.headline)}</p>
+    <p style="margin:0 0 12px;">${greeting}</p>
+    <p style="margin:0 0 16px;">Thanks for visiting ${escapeHtml(BRAND.name)}. Here is your first-time customer offer:</p>
+    <p style="margin:0 0 8px;font-size:22px;font-weight:bold;letter-spacing:0.08em;color:#ffc928;">${escapeHtml(data.code)}</p>
+    <p style="margin:0 0 16px;">Save <strong>${data.percent}%</strong> on your first detail when you book online and mention this code.</p>
+    <p style="margin:0 0 16px;"><a href="${escapeHtml(data.bookingUrl)}" style="color:#ffc928;">Book your detail at tmdaz.com</a></p>
+    <p style="margin:0;font-size:12px;line-height:1.5;color:#a8b0c0;">${escapeHtml(data.terms)}</p>
+  `;
+}
+
+export function promoOfferEmailText(data: {
+  customerName?: string;
+  headline: string;
+  code: string;
+  percent: number;
+  terms: string;
+  bookingUrl: string;
+}) {
+  const greeting = data.customerName ? `Hi ${data.customerName},` : "Hi there,";
+  return `${greeting}
+
+${data.headline}
+
+Your code: ${data.code}
+Save ${data.percent}% on your first detail when you book and mention this code.
+
+Book: ${data.bookingUrl}
+
+${data.terms}`;
+}
+
+export function marketingLeadAdminEmailHtml(data: Record<string, string>) {
+  const rows = Object.entries(data)
+    .map(
+      ([k, v]) =>
+        `<tr><td style="padding:8px 12px 8px 0;color:#a8b0c0;vertical-align:top;">${escapeHtml(k)}</td><td style="padding:8px 0;">${escapeHtml(v)}</td></tr>`
+    )
+    .join("");
+  return `
+    <p style="margin:0 0 16px;font-size:18px;color:#f0c040;font-weight:bold;">New marketing lead</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;font-size:14px;">${rows}</table>
+  `;
+}
+
+export function marketingLeadAdminEmailText(data: Record<string, string>) {
+  return Object.entries(data)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("\n");
+}

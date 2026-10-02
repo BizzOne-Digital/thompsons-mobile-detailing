@@ -28,6 +28,7 @@ export interface IBooking {
   majorStains: boolean;
   odorTreatment: boolean;
   customerNotes?: string;
+  promoCode?: string;
   photos: { url: string; publicId?: string }[];
   estimatedPrice: number;
   adjustedPrice?: number;
@@ -71,6 +72,7 @@ const BookingSchema = new Schema<IBooking>(
     majorStains: { type: Boolean, default: false },
     odorTreatment: { type: Boolean, default: false },
     customerNotes: String,
+    promoCode: String,
     photos: [{ url: String, publicId: String }],
     estimatedPrice: { type: Number, required: true },
     adjustedPrice: Number,
