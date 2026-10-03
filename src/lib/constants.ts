@@ -17,6 +17,7 @@ export const SERVICE_AREAS = [
   "Buckeye",
   "Waddell",
   "Surprise",
+  "Sun City",
   "Glendale",
   "Tolleson",
   "Phoenix",

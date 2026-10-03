@@ -8,7 +8,6 @@ import {
   getServiceAreaBySlug,
   serviceAreaPath,
 } from "@/lib/service-areas";
-import { getPublicServices } from "@/lib/data";
 
 export function generateStaticParams() {
   return SERVICE_AREA_PAGES.map((a) => ({ slug: a.slug }));
@@ -23,8 +22,8 @@ export async function generateMetadata({
   const area = getServiceAreaBySlug(slug);
   if (!area) return {};
   return buildMetadata({
-    title: area.headline,
-    description: area.description,
+    title: area.copy.metaTitle,
+    description: area.copy.metaDescription,
     path: serviceAreaPath(area.slug),
   });
 }
@@ -38,19 +37,14 @@ export default async function ServiceAreaPage({
   const area = getServiceAreaBySlug(slug);
   if (!area) notFound();
 
-  const services = await getPublicServices();
-  const serviceLinks = services.map((s) => ({
-    slug: s.slug,
-    name: s.name,
-  }));
-
   const base = getSiteUrl();
   const pageUrl = `${base}${serviceAreaPath(area.slug)}`;
   const jsonLd = {
     ...localBusinessJsonLd({ pageUrl }),
+    description: area.copy.metaDescription,
     areaServed: {
       "@type": "City",
-      name: area.name,
+      name: `${area.name}, AZ`,
       containedInPlace: { "@type": "State", name: "Arizona" },
     },
   };
@@ -62,11 +56,12 @@ export default async function ServiceAreaPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PageShell
-        title={area.headline}
-        subtitle={area.description}
+        title={area.copy.h1}
+        subtitle={area.copy.heroSubtitle}
         heroImage={area.heroImage}
+        eyebrow={`${area.name}, Arizona`}
       >
-        <AreaDetailContent area={area} services={serviceLinks} />
+        <AreaDetailContent area={area} />
       </PageShell>
     </>
   );

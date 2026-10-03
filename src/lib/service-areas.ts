@@ -1,6 +1,7 @@
-import { BRAND } from "@/lib/constants";
 import { CLIENT_IMAGES } from "@/lib/client-images";
 import { SITE_IMAGES } from "@/lib/site-images";
+import type { AreaPageCopy } from "@/lib/area-page-copy";
+import { fallbackAreaCopy, getAreaPageCopy } from "@/lib/area-page-copy";
 
 export type ServiceAreaPage = {
   slug: string;
@@ -8,8 +9,8 @@ export type ServiceAreaPage = {
   state: string;
   headline: string;
   description: string;
-  /** Unique marketing hero for each city page */
   heroImage: string;
+  copy: AreaPageCopy;
 };
 
 /** Diverse client photography — avoid repeating the gray Charger rinse on every city page */
@@ -42,13 +43,15 @@ function page(
   heroIndex: number
 ): ServiceAreaPage {
   const slug = `${slugBase}-az`;
+  const copy = getAreaPageCopy(slug) ?? fallbackAreaCopy(name, slug);
   return {
     slug,
     name,
     state: "AZ",
-    headline: `Mobile Auto Detailing in ${name}, AZ`,
-    description: `Professional mobile auto detailing in ${name}, Arizona — ${BRAND.name} brings factory-fresh results to your driveway, office, or garage. Book Refresh, Restore, Reset packages and add-ons online.`,
+    headline: copy.h1,
+    description: copy.heroSubtitle,
     heroImage: CITY_HERO_IMAGES[heroIndex % CITY_HERO_IMAGES.length],
+    copy,
   };
 }
 
@@ -60,20 +63,21 @@ export const SERVICE_AREA_PAGES: ServiceAreaPage[] = [
   page("Buckeye", "buckeye", 3),
   page("Waddell", "waddell", 4),
   page("Surprise", "surprise", 5),
-  page("Glendale", "glendale", 6),
-  page("Tolleson", "tolleson", 7),
-  page("Phoenix", "phoenix", 8),
-  page("North Phoenix", "north-phoenix", 9),
-  page("Cave Creek", "cave-creek", 10),
-  page("Anthem", "anthem", 11),
-  page("New River", "new-river", 12),
-  page("Paradise Valley", "paradise-valley", 13),
-  page("Scottsdale", "scottsdale", 14),
-  page("Fountain Hills", "fountain-hills", 15),
-  page("Gilbert", "gilbert", 16),
-  page("Chandler", "chandler", 17),
-  page("Queen Creek", "queen-creek", 18),
-  page("San Tan Valley", "san-tan-valley", 19),
+  page("Sun City", "sun-city", 6),
+  page("Glendale", "glendale", 7),
+  page("Tolleson", "tolleson", 8),
+  page("Phoenix", "phoenix", 9),
+  page("North Phoenix", "north-phoenix", 10),
+  page("Cave Creek", "cave-creek", 11),
+  page("Anthem", "anthem", 12),
+  page("New River", "new-river", 13),
+  page("Paradise Valley", "paradise-valley", 14),
+  page("Scottsdale", "scottsdale", 15),
+  page("Fountain Hills", "fountain-hills", 16),
+  page("Gilbert", "gilbert", 17),
+  page("Chandler", "chandler", 18),
+  page("Queen Creek", "queen-creek", 19),
+  page("San Tan Valley", "san-tan-valley", 20),
 ];
 
 export const SERVICE_AREA_NAMES = SERVICE_AREA_PAGES.map((a) => a.name);

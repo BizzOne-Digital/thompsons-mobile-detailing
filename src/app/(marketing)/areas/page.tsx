@@ -9,7 +9,7 @@ import {
 export const metadata = buildMetadata({
   title: "Service Areas",
   description:
-    "Mobile auto detailing across the Phoenix Metro — Avondale, Goodyear, Buckeye, Surprise, Glendale, Scottsdale, Chandler, and 20+ Valley cities. Book Refresh, Restore, or Reset online.",
+    "Mobile auto detailing across the Phoenix Metro — Avondale, Litchfield Park, Goodyear, Buckeye, Surprise, Sun City, Glendale, Scottsdale, Chandler, and 20+ Valley cities. At-home car detailing — book Refresh, Restore, or Reset online.",
   path: "/areas",
 });
 

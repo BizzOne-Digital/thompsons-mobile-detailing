@@ -298,7 +298,7 @@ export const seedFaqs = [
   {
     question: "Which cities do you serve?",
     answer:
-      "We serve Avondale, Litchfield Park, Goodyear, Buckeye, Waddell, Surprise, Glendale, Tolleson, Phoenix, North Phoenix, Cave Creek, Anthem, New River, Paradise Valley, Scottsdale, Fountain Hills, Gilbert, Chandler, Queen Creek, San Tan Valley, and surrounding Valley areas.",
+      "We serve Avondale, Litchfield Park, Goodyear, Buckeye, Waddell, Surprise, Sun City, Glendale, Tolleson, Phoenix, North Phoenix, Cave Creek, Anthem, New River, Paradise Valley, Scottsdale, Fountain Hills, Gilbert, Chandler, Queen Creek, San Tan Valley, and surrounding Valley areas.",
     displayOrder: 3,
   },
   {
