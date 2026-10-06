@@ -17,7 +17,7 @@ export const SITE_TESTIMONIALS: SiteTestimonial[] = [
     serviceReceived: "Restore Detail",
     featured: true,
     review:
-      "Showed up on time to my driveway in Goodyear with everything they needed. The interior looks brand new and the paint has a depth I did not think was possible without a body shop. Will book again.",
+      "Vernon showed up on time to my driveway in Goodyear with everything he needed — water, power, the works. The interior looks brand new and the paint has a depth I did not think was possible without a body shop. Already booked my next detail.",
   },
   {
     _id: "site-t-2",
@@ -27,47 +27,47 @@ export const SITE_TESTIMONIALS: SiteTestimonial[] = [
     serviceReceived: "Reset Detail",
     featured: true,
     review:
-      "We had kids, dogs, and Arizona dust working against us. Thompson's team was professional, thorough, and honest about what the Reset package would cover. The van smells and looks incredible.",
+      "Kids, dogs, and Arizona dust — the Reset package was exactly what we needed in Litchfield Park. Honest about what was included, super thorough, and the SUV smells and looks incredible. Five stars without hesitation.",
   },
   {
     _id: "site-t-3",
-    customerName: "Alejandro V.",
-    rating: 5,
-    vehicle: "Tesla Model 3",
-    serviceReceived: "Refresh Detail",
-    featured: true,
-    review:
-      "Fully mobile service at my office in Phoenix — huge time saver. Attention to detail on the wheels, glass, and interior was top notch. Factory fresh is not marketing talk; that is what I got.",
-  },
-  {
-    _id: "site-t-4",
-    customerName: "Priya K.",
-    rating: 5,
-    vehicle: "Honda Accord",
-    serviceReceived: "Signature Foam Hand Wash",
-    featured: true,
-    review:
-      "Booked online, got a call back the same day to confirm, and they did an amazing hand wash in my apartment garage. Fair pricing and zero hassle.",
-  },
-  {
-    _id: "site-t-5",
     customerName: "Chris M.",
     rating: 5,
     vehicle: "Chevy Silverado",
     serviceReceived: "Paint Correction",
-    featured: false,
+    featured: true,
     review:
-      "Swirls and haze from years of sun were killing the look of my truck. They walked me through custom quote photos and delivered a finish that turns heads in Avondale.",
+      "Swirls and sun haze were killing my truck in Avondale. They walked me through photos, quoted fairly, and delivered a finish that actually turns heads. Professional from booking to the final wipe-down.",
   },
   {
-    _id: "site-t-6",
+    _id: "site-t-4",
     customerName: "Sandra L.",
     rating: 5,
     vehicle: "Mercedes GLE",
     serviceReceived: "Ceramic Coating",
+    featured: true,
+    review:
+      "Ceramic coating in Buckeye — water beads like crazy and the gloss is unreal. They explained desert maintenance and were careful on every panel. This is the mobile detailer I recommend to neighbors now.",
+  },
+  {
+    _id: "site-t-5",
+    customerName: "Alejandro V.",
+    rating: 5,
+    vehicle: "Tesla Model 3",
+    serviceReceived: "Refresh Detail",
     featured: false,
     review:
-      "Water beads like crazy after the ceramic coating and the gloss is unreal. They explained maintenance and were careful around every panel. Highly recommend for desert heat protection.",
+      "Refresh detail at my office — huge time saver. Wheels, glass, and interior were flawless. Factory fresh is not marketing talk; that is what I got.",
+  },
+  {
+    _id: "site-t-6",
+    customerName: "Priya K.",
+    rating: 5,
+    vehicle: "Honda Accord",
+    serviceReceived: "Signature Foam Hand Wash",
+    featured: false,
+    review:
+      "Booked online, got a call back the same day to confirm, and they did an amazing hand wash in my apartment garage. Fair pricing and zero hassle.",
   },
   {
     _id: "site-t-7",
@@ -87,6 +87,6 @@ export const SITE_TESTIMONIALS: SiteTestimonial[] = [
     serviceReceived: "Refresh Detail",
     featured: false,
     review:
-      "Five stars for punctuality, professionalism, and results. I have used mobile detailers before — this is the first time I felt the price matched the quality.",
+      "Five stars for punctuality, professionalism, and results in Surprise. I have used mobile detailers before — this is the first time I felt the price matched the quality.",
   },
 ];

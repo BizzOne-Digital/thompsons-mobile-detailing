@@ -21,7 +21,6 @@ import type { PublicSiteSettings } from "@/lib/public-settings";
 const HERO_VIDEO_VOLUME = 0.22;
 
 type HeroSectionProps = {
-  introDone: boolean;
   settings: Pick<
     PublicSiteSettings,
     "heroMediaUrl" | "heroHeadline" | "heroSubheadline" | "heroDescription"
@@ -31,7 +30,7 @@ type HeroSectionProps = {
 const HERO_MEDIA_CLASS =
   "absolute inset-0 h-full w-full object-cover object-[center_48%] brightness-[1.06] contrast-[1.05] saturate-[1.08] sm:object-[center_42%] md:object-center";
 
-export function HeroSection({ introDone, settings }: HeroSectionProps) {
+export function HeroSection({ settings }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -53,7 +52,7 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
 
   const tryPlay = useCallback(async () => {
     const el = videoRef.current;
-    if (!el || !useLiveVideo || !introDone) return;
+    if (!el || !useLiveVideo) return;
 
     applyAudio(el);
     try {
@@ -68,7 +67,7 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
         /* poster remains visible under video */
       }
     }
-  }, [useLiveVideo, introDone, applyAudio, soundOn]);
+  }, [useLiveVideo, applyAudio, soundOn]);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -77,14 +76,14 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && introDone) tryPlay();
+        if (entry.isIntersecting) tryPlay();
         else el.pause();
       },
       { threshold: 0.15 }
     );
     observer.observe(root);
     return () => observer.disconnect();
-  }, [useLiveVideo, introDone, tryPlay]);
+  }, [useLiveVideo, tryPlay]);
 
   const toggleSound = () => {
     const el = videoRef.current;
@@ -120,14 +119,14 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
           <video
             ref={videoRef}
             className={`${HERO_MEDIA_CLASS} transition-opacity duration-500 ${
-              introDone && videoReady ? "opacity-100" : "opacity-0"
+              videoReady ? "opacity-100" : "opacity-0"
             }`}
             src={videoSrc}
             poster={poster}
             loop
             playsInline
-            autoPlay={introDone}
-            preload="auto"
+            autoPlay
+            preload="metadata"
             onLoadedData={() => {
               const el = videoRef.current;
               if (el) applyAudio(el);
@@ -135,27 +134,25 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
             }}
             onCanPlay={() => {
               setVideoReady(true);
-              if (introDone) tryPlay();
+              void tryPlay();
             }}
             aria-hidden
           />
-          {introDone && (
-            <button
-              type="button"
-              onClick={toggleSound}
-              className="absolute bottom-28 right-4 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-2 text-xs text-white/90 backdrop-blur-sm transition hover:bg-black/60 sm:bottom-8 sm:right-8"
-              aria-label={soundOn ? "Mute hero video" : "Unmute hero video"}
-            >
-              {soundOn && !needsTapForSound ? (
-                <Volume2 className="h-4 w-4 text-bright-gold" />
-              ) : (
-                <VolumeX className="h-4 w-4 text-bright-gold" />
-              )}
-              <span className="hidden sm:inline">
-                {needsTapForSound ? "Tap for sound" : soundOn ? "Sound on" : "Sound off"}
-              </span>
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={toggleSound}
+            className="absolute bottom-28 right-4 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-2 text-xs text-white/90 backdrop-blur-sm transition hover:bg-black/60 sm:bottom-8 sm:right-8"
+            aria-label={soundOn ? "Mute hero video" : "Unmute hero video"}
+          >
+            {soundOn && !needsTapForSound ? (
+              <Volume2 className="h-4 w-4 text-bright-gold" />
+            ) : (
+              <VolumeX className="h-4 w-4 text-bright-gold" />
+            )}
+            <span className="hidden sm:inline">
+              {needsTapForSound ? "Tap for sound" : soundOn ? "Sound on" : "Sound off"}
+            </span>
+          </button>
         </>
       ) : (
         <Image
@@ -183,8 +180,8 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
 
       <div className="relative mx-auto flex min-h-[100svh] w-full min-w-0 max-w-7xl flex-col justify-center px-4 pb-32 pt-28 sm:px-5 sm:pb-28 sm:pt-32 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={introDone ? { opacity: 1, y: 0 } : {}}
+          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75 }}
           className="max-w-2xl"
         >
@@ -206,7 +203,7 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
           <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium text-bright-gold">
             <li className="flex items-center gap-2">
               <Star className="h-4 w-4 fill-bright-gold text-bright-gold" />
-              Fully Mobile
+              Fully Mobile — We Come to You
             </li>
             <li className="hidden h-4 w-px bg-gold/40 sm:block" aria-hidden />
             <li className="flex items-center gap-2">
@@ -233,14 +230,15 @@ export function HeroSection({ introDone, settings }: HeroSectionProps) {
         </motion.div>
 
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={introDone ? { opacity: 1 } : {}}
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.6 }}
           className="relative mt-10 flex max-w-full items-start gap-2 text-xs text-white/75 sm:absolute sm:bottom-8 sm:left-4 sm:mt-0 sm:max-w-xl md:left-8 md:text-sm"
         >
           <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-bright-gold" />
           <span>
-            Avondale • Phoenix • Scottsdale • Glendale • Peoria • The Valley
+            Avondale • Litchfield Park • Goodyear • Buckeye • Surprise • Sun
+            City & the West Valley
           </span>
         </motion.p>
       </div>

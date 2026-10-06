@@ -37,6 +37,14 @@ export default async function HomePage() {
       ownerPhotoUrl={ownerPhotoUrl}
       teamGroupPhotoUrl={teamGroupPhotoUrl}
       googleReviews={googleReviews}
+      featuredReviewFallbacks={testimonials.slice(0, 3).map((t) => ({
+        _id: String(t._id),
+        customerName: t.customerName,
+        rating: t.rating,
+        review: t.review,
+        vehicle: t.vehicle,
+        serviceReceived: t.serviceReceived,
+      }))}
       services={services.map((s) => ({
         _id: String(s._id),
         name: s.name,
@@ -50,13 +58,6 @@ export default async function HomePage() {
         _id: String(f._id),
         question: f.question,
         answer: f.answer,
-      }))}
-      testimonials={testimonials.map((t) => ({
-        _id: String(t._id),
-        customerName: t.customerName,
-        rating: t.rating,
-        review: t.review,
-        vehicle: t.vehicle,
       }))}
     />
   );

@@ -23,20 +23,23 @@ export const SITE_IMAGES = {
 } as const;
 
 export const PACKAGE_IMAGES: Record<string, string> = {
-  "refresh-detail": "/images/client/deep-clean-17.jpg",
-  "restore-detail": "/images/client/deep-clean-16.jpg",
-  "reset-detail": "/images/client/interior-10.jpg",
+  "refresh-detail": "/images/client/ceramic-coating-finish.jpg",
+  "restore-detail": CLIENT_IMAGES.redLeatherAfter,
+  "reset-detail": CLIENT_IMAGES.porscheTanInteriorBright,
 };
 
 export const SERVICE_SLUG_IMAGES: Record<string, string> = {
-  "refresh-detail": "/images/client/deep-clean-17.jpg",
-  "restore-detail": "/images/client/deep-clean-16.jpg",
-  "reset-detail": "/images/client/interior-10.jpg",
+  "refresh-detail": PACKAGE_IMAGES["refresh-detail"],
+  "restore-detail": PACKAGE_IMAGES["restore-detail"],
+  "reset-detail": PACKAGE_IMAGES["reset-detail"],
   "signature-foam-hand-wash": "/images/client/signature-foam-wash.jpg",
   "recurring-maintenance-wash": "/images/client/signature-foam-wash.jpg",
   "ceramic-coating": "/images/client/ceramic-coating-finish.jpg",
   "paint-correction": "/images/client/vernon-16-paint-hood-after.jpg",
   "engine-bay-cleaning": "/images/client/engine-12-after.jpg",
+  "engine-bay-detail": "/images/client/engine-12-after.jpg",
+  "headlight-restoration": "/images/client/ba-04-headlight-after.jpg",
+  "pet-hair-removal": CLIENT_IMAGES.redLeatherAfter,
 };
 
 /** Side-by-side before/after composites for the home page results section */

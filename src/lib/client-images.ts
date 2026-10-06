@@ -153,6 +153,13 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
   },
 ] as const;
 
+/** Strongest transformations for the homepage (full gallery lives on /results). */
+export const HOME_FEATURED_BEFORE_AFTER = [
+  CLIENT_BEFORE_AFTER_PAIRS[2],
+  CLIENT_BEFORE_AFTER_PAIRS[3],
+  CLIENT_BEFORE_AFTER_PAIRS[0],
+] as const;
+
 export const CLIENT_INTERIOR_GALLERY = [...CLIENT_WHITE_INTERIOR_GALLERY] as const;
 
 export const CLIENT_ENGINE_GALLERY = [
