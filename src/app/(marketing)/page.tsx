@@ -37,7 +37,7 @@ export default async function HomePage() {
       ownerPhotoUrl={ownerPhotoUrl}
       teamGroupPhotoUrl={teamGroupPhotoUrl}
       googleReviews={googleReviews}
-      featuredReviewFallbacks={testimonials.slice(0, 3).map((t) => ({
+      featuredReviewFallbacks={testimonials.slice(0, 4).map((t) => ({
         _id: String(t._id),
         customerName: t.customerName,
         rating: t.rating,

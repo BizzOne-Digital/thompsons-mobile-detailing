@@ -1,3 +1,7 @@
+/** Agency Google account for GBP / Search Console access (set SEO_GOOGLE_ACCESS_EMAIL in env). */
+export const SEO_GOOGLE_ACCESS_EMAIL =
+  process.env.SEO_GOOGLE_ACCESS_EMAIL?.trim() || "";
+
 export const BRAND = {
   name: "Thompson's Mobile Detailing AZ",
   tagline: "Factory Fresh Results Guaranteed",

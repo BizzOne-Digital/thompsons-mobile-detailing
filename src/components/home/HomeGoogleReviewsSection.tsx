@@ -3,7 +3,10 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import type { GoogleReviewsSnapshot } from "@/lib/google-reviews";
+import {
+  FEATURED_GOOGLE_REVIEW_COUNT,
+  type GoogleReviewsSnapshot,
+} from "@/lib/google-reviews";
 
 type FeaturedFallback = {
   _id: string;
@@ -73,7 +76,7 @@ export function HomeGoogleReviewsSection({
     data.rating != null &&
     data.reviews.length > 0;
 
-  const fallbackReviews = featuredFallbacks.slice(0, 3);
+  const fallbackReviews = featuredFallbacks.slice(0, FEATURED_GOOGLE_REVIEW_COUNT);
   const showFallbackGrid = !hasLiveData && fallbackReviews.length > 0;
 
   const sectionShell = (children: ReactNode) => (
@@ -222,7 +225,7 @@ export function HomeGoogleReviewsSection({
       </div>
 
       <div className="grid flex-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {data.reviews.slice(0, 3).map((review) => (
+        {data.reviews.slice(0, FEATURED_GOOGLE_REVIEW_COUNT).map((review) => (
           <ReviewCard
             key={`${review.authorName}-${review.relativeTimeDescription}`}
             authorName={review.authorName}

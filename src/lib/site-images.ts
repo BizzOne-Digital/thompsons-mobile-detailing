@@ -23,9 +23,9 @@ export const SITE_IMAGES = {
 } as const;
 
 export const PACKAGE_IMAGES: Record<string, string> = {
-  "refresh-detail": "/images/client/ceramic-coating-finish.jpg",
-  "restore-detail": CLIENT_IMAGES.redLeatherAfter,
-  "reset-detail": CLIENT_IMAGES.porscheTanInteriorBright,
+  "refresh-detail": CLIENT_IMAGES.packageRefreshInterior,
+  "restore-detail": CLIENT_IMAGES.packageRestoreInterior,
+  "reset-detail": CLIENT_IMAGES.packageResetInterior,
 };
 
 export const SERVICE_SLUG_IMAGES: Record<string, string> = {

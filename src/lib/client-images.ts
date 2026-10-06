@@ -46,6 +46,10 @@ export const CLIENT_IMAGES = {
   aboutMobileSetup:
     "/images/portfolio/ford-fusion-mobile-process/01-equipment.jpg",
   aboutFoamWash: "/images/portfolio/classic-car-foam-wash/01-foam.jpg",
+  /** Homepage package cards — interior-focused finished results */
+  packageRefreshInterior: `${base}/ba-01-interior-after.jpg`,
+  packageRestoreInterior: v("vernon-11-porsche-tan-cabin.jpg"),
+  packageResetInterior: batch("interior-genesis-cabin-wide-after.jpg"),
 } as const;
 
 export const CLIENT_WHITE_INTERIOR_GALLERY = [

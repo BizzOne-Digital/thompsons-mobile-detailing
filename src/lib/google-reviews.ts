@@ -17,6 +17,9 @@ export type GoogleReviewsSnapshot = {
   source: "google" | "unconfigured";
 };
 
+/** How many reviews to surface on marketing pages (Places API returns at most 5). */
+export const FEATURED_GOOGLE_REVIEW_COUNT = 4;
+
 function reviewLinks(placeId?: string) {
   const mapsUrl =
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL?.trim() ||
@@ -29,6 +32,30 @@ function reviewLinks(placeId?: string) {
       ? `https://search.google.com/local/writereview?placeid=${placeId}`
       : mapsUrl);
   return { viewAllUrl: mapsUrl, writeReviewUrl };
+}
+
+/** Prefer newer-looking and substantive 5-star reviews for homepage social proof. */
+function recencyScore(relativeTimeDescription: string): number {
+  const d = relativeTimeDescription.toLowerCase();
+  if (d.includes("hour") || d.includes("day")) return 100;
+  if (d.includes("week")) return 85;
+  if (d.includes("month")) return 65;
+  if (d.includes("year")) return 25;
+  return 50;
+}
+
+export function rankGoogleReviewsForDisplay(
+  reviews: GoogleReviewItem[]
+): GoogleReviewItem[] {
+  return [...reviews].sort((a, b) => {
+    const ratingDiff = b.rating - a.rating;
+    if (ratingDiff !== 0) return ratingDiff;
+    const recencyDiff =
+      recencyScore(b.relativeTimeDescription) -
+      recencyScore(a.relativeTimeDescription);
+    if (recencyDiff !== 0) return recencyDiff;
+    return b.text.length - a.text.length;
+  });
 }
 
 async function fetchGoogleReviewsUncached(): Promise<GoogleReviewsSnapshot> {
@@ -54,7 +81,7 @@ async function fetchGoogleReviewsUncached(): Promise<GoogleReviewsSnapshot> {
     });
     const res = await fetch(
       `https://maps.googleapis.com/maps/api/place/details/json?${params}`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 1800 } }
     );
     const data = (await res.json()) as {
       status?: string;
@@ -83,8 +110,7 @@ async function fetchGoogleReviewsUncached(): Promise<GoogleReviewsSnapshot> {
       };
     }
 
-    const reviews = (data.result.reviews ?? [])
-      .slice(0, 5)
+    const mapped = (data.result.reviews ?? [])
       .map((r) => ({
         authorName: r.author_name ?? "Google reviewer",
         rating: r.rating ?? 5,
@@ -93,6 +119,8 @@ async function fetchGoogleReviewsUncached(): Promise<GoogleReviewsSnapshot> {
         profilePhotoUrl: r.profile_photo_url,
       }))
       .filter((r) => r.text.length > 0);
+
+    const reviews = rankGoogleReviewsForDisplay(mapped).slice(0, 5);
 
     return {
       rating: data.result.rating ?? null,
@@ -117,8 +145,8 @@ export async function getGoogleReviews(): Promise<GoogleReviewsSnapshot> {
   const placeId = process.env.GOOGLE_PLACE_ID?.trim() ?? "default";
   const cached = unstable_cache(
     fetchGoogleReviewsUncached,
-    ["google-reviews-v1", placeId],
-    { revalidate: 3600, tags: ["google-reviews"] }
+    ["google-reviews-v2", placeId],
+    { revalidate: 1800, tags: ["google-reviews"] }
   );
   return cached();
 }
