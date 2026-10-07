@@ -1,3 +1,4 @@
+import { CLIENT_IMAGES } from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
 const EXTRA_GALLERY: Record<string, string[]> = {
@@ -24,13 +25,22 @@ const EXTRA_GALLERY: Record<string, string[]> = {
     SITE_IMAGES.paintCorrection,
   ],
   "paint-correction": [
-    SITE_IMAGES.paintCorrection,
-    SITE_IMAGES.headlightRestoration,
+    CLIENT_IMAGES.paintHoodBefore,
+    CLIENT_IMAGES.paintHoodAfter,
+    CLIENT_IMAGES.paintProcessFoam,
+    CLIENT_IMAGES.paintProcessTrim,
+    CLIENT_IMAGES.paintGlossDetail,
+    CLIENT_IMAGES.paintAfter,
   ],
   "engine-bay-cleaning": [
-    "/images/client/engine-11-before.jpg",
-    "/images/client/engine-12-after.jpg",
-    "/images/client/engine-13-showcase.jpg",
+    CLIENT_IMAGES.engineBefore,
+    CLIENT_IMAGES.engineAfter,
+    CLIENT_IMAGES.engineShowcase,
+  ],
+  "engine-bay-detail": [
+    CLIENT_IMAGES.engineBefore,
+    CLIENT_IMAGES.engineAfter,
+    CLIENT_IMAGES.engineShowcase,
   ],
 };
 
@@ -65,5 +75,5 @@ export function buildServiceGallery(
     if (url !== heroImage) push(url, `${name} — detailing photo ${i + 1}`);
   });
 
-  return out.slice(0, 3);
+  return out.slice(0, 5);
 }

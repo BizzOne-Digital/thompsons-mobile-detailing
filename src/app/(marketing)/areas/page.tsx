@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import { PageShell } from "@/components/layout/PageShell";
+import { DEFAULT_CITY_HERO } from "@/lib/city-hero-images";
 import {
   SERVICE_AREA_PAGES,
   serviceAreaPath,
@@ -18,6 +19,7 @@ export default function ServiceAreasIndexPage() {
     <PageShell
       title="Phoenix Metro Service Areas"
       subtitle="We come to you — factory-fresh mobile detailing across the Valley."
+      heroImage={DEFAULT_CITY_HERO}
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SERVICE_AREA_PAGES.map((area) => (

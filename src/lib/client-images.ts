@@ -3,6 +3,7 @@ const base = "/images/client";
 
 const v = (name: string) => `${base}/${name}`;
 const batch = (name: string) => `${base}/vernon-batch-2025/${name}`;
+const march2026 = (name: string) => `${base}/vernon-2026/${name}`;
 
 export const CLIENT_IMAGES = {
   baInteriorBefore: `${base}/ba-02-interior-before.jpg`,
@@ -17,9 +18,9 @@ export const CLIENT_IMAGES = {
   interior08: v("vernon-05-lexus-fsport.jpg"),
   interior09: v("vernon-02-lexus-fsport-driver.jpg"),
   interior10: v("vernon-03-lexus-rear-white-seats.jpg"),
-  engineBefore: `${base}/engine-11-before.jpg`,
-  engineAfter: `${base}/engine-12-after.jpg`,
-  engineShowcase: `${base}/engine-13-showcase.jpg`,
+  engineBefore: march2026("engine-bay-hemi-before.jpg"),
+  engineAfter: march2026("engine-bay-hemi-after.jpg"),
+  engineShowcase: march2026("engine-bay-hemi-showcase.jpg"),
   homeMobileVan: `${base}/home-mobile-van.jpg`,
   deepClean15: v("vernon-11-porsche-tan-cabin.jpg"),
   deepClean16: v("vernon-14-porsche-garage-front.jpg"),
@@ -41,15 +42,20 @@ export const CLIENT_IMAGES = {
   interiorWhiteLexusFsport: v("vernon-02-lexus-fsport-driver.jpg"),
   redLeatherBefore: v("red-leather-before.jpg"),
   redLeatherAfter: v("red-leather-after.jpg"),
-  paintBefore: v("vernon-12-paint-hood-before.jpg"),
-  paintAfter: v("vernon-16-paint-hood-after.jpg"),
+  paintBefore: march2026("paint-correction-red-oxidized-before.jpg"),
+  paintAfter: march2026("paint-correction-charger-finished-exterior.jpg"),
+  paintHoodBefore: march2026("paint-correction-hood-oxidized-before.jpg"),
+  paintHoodAfter: march2026("paint-correction-hood-finished.jpg"),
+  paintProcessFoam: march2026("paint-correction-foam-process.jpg"),
+  paintProcessTrim: march2026("paint-correction-trim-process.jpg"),
+  paintGlossDetail: march2026("paint-correction-red-gloss-after.jpg"),
   aboutMobileSetup:
     "/images/portfolio/ford-fusion-mobile-process/01-equipment.jpg",
   aboutFoamWash: "/images/portfolio/classic-car-foam-wash/01-foam.jpg",
-  /** Homepage package cards — interior-focused finished results */
-  packageRefreshInterior: `${base}/ba-01-interior-after.jpg`,
-  packageRestoreInterior: v("vernon-11-porsche-tan-cabin.jpg"),
-  packageResetInterior: batch("interior-genesis-cabin-wide-after.jpg"),
+  /** Homepage package cards — interior-focused finished results (Mar 2026) */
+  packageRefreshInterior: march2026("package-refresh-white-suv-interior.jpg"),
+  packageRestoreInterior: march2026("package-restore-red-charger-interior.jpg"),
+  packageResetInterior: march2026("package-reset-bmw-interior.jpg"),
 } as const;
 
 export const CLIENT_WHITE_INTERIOR_GALLERY = [
@@ -130,12 +136,12 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
     afterAlt: "Clear taillight after polish and restoration",
   },
   {
-    title: "Paint Refinement",
+    title: "Paint Correction",
     category: "Paint Correction",
     beforeSrc: CLIENT_IMAGES.paintBefore,
     afterSrc: CLIENT_IMAGES.paintAfter,
-    beforeAlt: "Oxidized hood clear coat before correction",
-    afterAlt: "Deep gloss hood after paint refinement",
+    beforeAlt: "Faded, oxidized red paint before correction",
+    afterAlt: "Deep gloss red finish after paint correction",
   },
   {
     title: "Red Leather & Pet Hair Reset",

@@ -52,6 +52,8 @@ export function MarketingPageHero({
   const imageSrc = resolvePageHeroImage(pathname, heroImage);
   const eyebrowText = resolvePageHeroEyebrow(pathname, eyebrow);
   const breadcrumbs = buildBreadcrumbs(pathname);
+  const isCityAreaPage =
+    pathname === "/areas" || /^\/areas\/[^/]+$/.test(pathname);
 
   return (
     <section className="page-hero relative isolate min-h-[48svh] w-full overflow-hidden md:min-h-[58svh]">
@@ -79,38 +81,61 @@ export function MarketingPageHero({
             alt=""
             fill
             priority
-            className="object-cover object-center"
+            className={cn(
+              "object-cover",
+              isCityAreaPage
+                ? "object-[center_42%] brightness-[1.05] contrast-[1.04] saturate-[1.06]"
+                : "object-center"
+            )}
             sizes="100vw"
           />
         )}
       </motion.div>
 
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/35"
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-midnight/95 via-black/30 to-black/45"
-        aria-hidden
-      />
-      <div
-        className="absolute inset-x-0 bottom-0 z-[1] h-28 bg-gradient-to-t from-midnight to-transparent md:h-36"
-        aria-hidden
-      />
-      <div className="page-hero-mesh absolute inset-0 opacity-60" aria-hidden />
-      <div
-        className="absolute inset-0 carbon-bg opacity-[0.12]"
-        aria-hidden
-      />
-
-      <div
-        className="pointer-events-none absolute left-0 top-1/4 h-48 w-48 rounded-full bg-bright-gold/20 blur-[80px] md:-left-32 md:h-64 md:w-64 md:blur-[100px]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute right-0 bottom-0 h-56 w-56 rounded-full bg-royal/40 blur-[90px] md:-right-24 md:h-72 md:w-72 md:blur-[120px]"
-        aria-hidden
-      />
+      {isCityAreaPage ? (
+        <>
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-midnight/75 via-transparent to-black/15"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-midnight/90 to-transparent md:h-32"
+            aria-hidden
+          />
+        </>
+      ) : (
+        <>
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/35"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-midnight/95 via-black/30 to-black/45"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 z-[1] h-28 bg-gradient-to-t from-midnight to-transparent md:h-36"
+            aria-hidden
+          />
+          <div className="page-hero-mesh absolute inset-0 opacity-60" aria-hidden />
+          <div
+            className="absolute inset-0 carbon-bg opacity-[0.12]"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute left-0 top-1/4 h-48 w-48 rounded-full bg-bright-gold/20 blur-[80px] md:-left-32 md:h-64 md:w-64 md:blur-[100px]"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute right-0 bottom-0 h-56 w-56 rounded-full bg-royal/40 blur-[90px] md:-right-24 md:h-72 md:w-72 md:blur-[120px]"
+            aria-hidden
+          />
+        </>
+      )}
 
       <div className="relative z-[2] mx-auto flex min-h-[48svh] w-full min-w-0 max-w-7xl flex-col justify-end px-4 pb-14 pt-28 sm:px-5 md:min-h-[58svh] md:pb-20 md:pt-32 lg:px-8">
         {breadcrumbs.length > 0 && (

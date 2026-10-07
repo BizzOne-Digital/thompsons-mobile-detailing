@@ -1,7 +1,9 @@
-import { CLIENT_IMAGES } from "@/lib/client-images";
-import { SITE_IMAGES } from "@/lib/site-images";
 import type { AreaPageCopy } from "@/lib/area-page-copy";
 import { fallbackAreaCopy, getAreaPageCopy } from "@/lib/area-page-copy";
+import {
+  CITY_HERO_BY_SLUG,
+  DEFAULT_CITY_HERO,
+} from "@/lib/city-hero-images";
 
 export type ServiceAreaPage = {
   slug: string;
@@ -13,35 +15,7 @@ export type ServiceAreaPage = {
   copy: AreaPageCopy;
 };
 
-/** Diverse client photography — avoid repeating the gray Charger rinse on every city page */
-const CITY_HERO_IMAGES = [
-  CLIENT_IMAGES.aboutEscalade,
-  CLIENT_IMAGES.porscheOutdoorFront,
-  CLIENT_IMAGES.homeMobileVan,
-  CLIENT_IMAGES.aboutFoamWash,
-  SITE_IMAGES.ceramicCoating,
-  SITE_IMAGES.suvFullDetail,
-  CLIENT_IMAGES.deepClean16,
-  CLIENT_IMAGES.paintAfter,
-  CLIENT_IMAGES.redLeatherAfter,
-  "/images/client/vernon-batch-2025/exterior-black-camry-after-rear-01.jpg",
-  "/images/portfolio/ford-bronco-foam-wash/01-foam.jpg",
-  "/images/portfolio/white-ford-f150/01-side.jpg",
-  "/images/portfolio/blue-honda-accord/03-front.jpg",
-  "/images/client/vernon-batch-2025/interior-genesis-cabin-wide-after.jpg",
-  CLIENT_IMAGES.porscheTanInteriorBright,
-  CLIENT_IMAGES.engineShowcase,
-  SITE_IMAGES.mobileSunsetSedan,
-  "/images/portfolio/black-bmw-x5/01-front.jpg",
-  "/images/portfolio/tesla-model-y-red/02-front.jpg",
-  "/images/portfolio/classic-car-foam-wash/01-foam.jpg",
-] as const;
-
-function page(
-  name: string,
-  slugBase: string,
-  heroIndex: number
-): ServiceAreaPage {
+function page(name: string, slugBase: string): ServiceAreaPage {
   const slug = `${slugBase}-az`;
   const copy = getAreaPageCopy(slug) ?? fallbackAreaCopy(name, slug);
   return {
@@ -50,34 +24,34 @@ function page(
     state: "AZ",
     headline: copy.h1,
     description: copy.heroSubtitle,
-    heroImage: CITY_HERO_IMAGES[heroIndex % CITY_HERO_IMAGES.length],
+    heroImage: CITY_HERO_BY_SLUG[slug] ?? DEFAULT_CITY_HERO,
     copy,
   };
 }
 
 /** Client-approved service cities (display order) */
 export const SERVICE_AREA_PAGES: ServiceAreaPage[] = [
-  page("Avondale", "avondale", 0),
-  page("Litchfield Park", "litchfield-park", 1),
-  page("Goodyear", "goodyear", 2),
-  page("Buckeye", "buckeye", 3),
-  page("Waddell", "waddell", 4),
-  page("Surprise", "surprise", 5),
-  page("Sun City", "sun-city", 6),
-  page("Glendale", "glendale", 7),
-  page("Tolleson", "tolleson", 8),
-  page("Phoenix", "phoenix", 9),
-  page("North Phoenix", "north-phoenix", 10),
-  page("Cave Creek", "cave-creek", 11),
-  page("Anthem", "anthem", 12),
-  page("New River", "new-river", 13),
-  page("Paradise Valley", "paradise-valley", 14),
-  page("Scottsdale", "scottsdale", 15),
-  page("Fountain Hills", "fountain-hills", 16),
-  page("Gilbert", "gilbert", 17),
-  page("Chandler", "chandler", 18),
-  page("Queen Creek", "queen-creek", 19),
-  page("San Tan Valley", "san-tan-valley", 20),
+  page("Avondale", "avondale"),
+  page("Litchfield Park", "litchfield-park"),
+  page("Goodyear", "goodyear"),
+  page("Buckeye", "buckeye"),
+  page("Waddell", "waddell"),
+  page("Surprise", "surprise"),
+  page("Sun City", "sun-city"),
+  page("Glendale", "glendale"),
+  page("Tolleson", "tolleson"),
+  page("Phoenix", "phoenix"),
+  page("North Phoenix", "north-phoenix"),
+  page("Cave Creek", "cave-creek"),
+  page("Anthem", "anthem"),
+  page("New River", "new-river"),
+  page("Paradise Valley", "paradise-valley"),
+  page("Scottsdale", "scottsdale"),
+  page("Fountain Hills", "fountain-hills"),
+  page("Gilbert", "gilbert"),
+  page("Chandler", "chandler"),
+  page("Queen Creek", "queen-creek"),
+  page("San Tan Valley", "san-tan-valley"),
 ];
 
 export const SERVICE_AREA_NAMES = SERVICE_AREA_PAGES.map((a) => a.name);

@@ -87,7 +87,7 @@ export const SERVICE_SLUG_VIDEOS: Partial<
   },
   "engine-bay-cleaning": {
     src: CLIENT_VIDEOS.engineBayCleaning,
-    poster: "/images/client/engine-12-after.jpg",
+    poster: "/images/client/vernon-2026/engine-bay-hemi-after.jpg",
   },
   "ceramic-coating": {
     src: CLIENT_VIDEOS.ceramicProtection,
@@ -107,7 +107,7 @@ export const SERVICE_SLUG_VIDEOS: Partial<
   },
   "paint-correction": {
     src: CLIENT_VIDEOS.clip2862,
-    poster: "/images/client/vernon-16-paint-hood-after.jpg",
+    poster: "/images/client/vernon-2026/paint-correction-hood-finished.jpg",
   },
 };
 
