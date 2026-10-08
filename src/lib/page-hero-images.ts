@@ -2,9 +2,13 @@ import { CLIENT_IMAGES } from "@/lib/client-images";
 import { getServiceAreaBySlug } from "@/lib/service-areas";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
+/** Strong finished exterior — main /services listing hero */
+export const SERVICES_INDEX_HERO =
+  "/images/client/vernon-2026/paint-correction-charger-finished-exterior.jpg";
+
 const PAGE_HERO_IMAGES: Record<string, string> = {
   "/about": "/images/client/about-escalade.jpg",
-  "/services": SITE_IMAGES.foamWashArizona,
+  "/services": SERVICES_INDEX_HERO,
   "/pricing": SITE_IMAGES.suvFullDetail,
   "/booking": SITE_IMAGES.mobileSunsetSedan,
   "/contact": CLIENT_IMAGES.homeHeroPoster,

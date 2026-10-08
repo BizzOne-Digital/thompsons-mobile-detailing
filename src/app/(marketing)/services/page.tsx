@@ -3,6 +3,7 @@ import { buildMetadata } from "@/lib/seo";
 import { getAddOns, getPublicServices } from "@/lib/data";
 import { formatAddOnStartingPrice } from "@/lib/add-on-display";
 import { PageShell } from "@/components/layout/PageShell";
+import { SERVICES_INDEX_HERO } from "@/lib/page-hero-images";
 import { formatCurrency } from "@/lib/utils";
 
 export const metadata = buildMetadata({
@@ -84,6 +85,7 @@ export default async function ServicesPage({
     <PageShell
       title="Detailing Services"
       subtitle="Filter by category and book the service that matches your vehicle's needs."
+      heroImage={SERVICES_INDEX_HERO}
     >
       <div className="-mx-4 mb-8 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
         <Link

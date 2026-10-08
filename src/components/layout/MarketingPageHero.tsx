@@ -52,8 +52,11 @@ export function MarketingPageHero({
   const imageSrc = resolvePageHeroImage(pathname, heroImage);
   const eyebrowText = resolvePageHeroEyebrow(pathname, eyebrow);
   const breadcrumbs = buildBreadcrumbs(pathname);
-  const isCityAreaPage =
-    pathname === "/areas" || /^\/areas\/[^/]+$/.test(pathname);
+  const isBrightHero =
+    pathname === "/areas" ||
+    /^\/areas\/[^/]+$/.test(pathname) ||
+    pathname === "/services" ||
+    /^\/services\/[^/]+$/.test(pathname);
 
   return (
     <section className="page-hero relative isolate min-h-[48svh] w-full overflow-hidden md:min-h-[58svh]">
@@ -63,7 +66,7 @@ export function MarketingPageHero({
         animate={{ scale: 1 }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        {heroVideo && !reduce ? (
+        {heroVideo && !reduce && !isBrightHero ? (
           <video
             className="h-full w-full object-cover object-center"
             src={heroVideo}
@@ -83,8 +86,8 @@ export function MarketingPageHero({
             priority
             className={cn(
               "object-cover",
-              isCityAreaPage
-                ? "object-[center_42%] brightness-[1.05] contrast-[1.04] saturate-[1.06]"
+              isBrightHero
+                ? "object-[center_42%] brightness-[1.06] contrast-[1.05] saturate-[1.07]"
                 : "object-center"
             )}
             sizes="100vw"
@@ -92,7 +95,7 @@ export function MarketingPageHero({
         )}
       </motion.div>
 
-      {isCityAreaPage ? (
+      {isBrightHero ? (
         <>
           <div
             className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent"

@@ -131,12 +131,8 @@ export function ServiceDetailView({
                       src={img.url}
                       alt={img.alt}
                       fill
-                      className="object-cover transition duration-500 hover:scale-[1.03]"
+                      className="object-cover brightness-[1.04] contrast-[1.03] saturate-[1.05] transition duration-500 hover:scale-[1.02]"
                       sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div
-                      className="absolute inset-0 bg-gradient-to-t from-midnight/50 via-transparent to-transparent"
-                      aria-hidden
                     />
                   </div>
                 ))}
