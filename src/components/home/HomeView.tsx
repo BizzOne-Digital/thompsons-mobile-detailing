@@ -12,6 +12,8 @@ import {
   CLIENT_IMAGES,
   HOME_FEATURED_BEFORE_AFTER,
 } from "@/lib/client-images";
+import { PackageCardPreviewMedia } from "@/components/home/PackageCardPreviewMedia";
+import { PACKAGE_CARD_PREVIEW_VIDEOS } from "@/lib/client-videos8";
 import { PACKAGE_IMAGES, SERVICE_SLUG_IMAGES } from "@/lib/site-images";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { BeforeAfterPairCard } from "@/components/home/BeforeAfterPairCard";
@@ -105,15 +107,23 @@ function PackageCards({ packages }: { packages: Service[] }) {
                   : ""
               }`}
             >
-              {PACKAGE_IMAGES[pkg.slug] && (
-                <div className="relative aspect-[16/9]">
-                  <Image
-                    src={PACKAGE_IMAGES[pkg.slug]}
-                    alt={`${pkg.name} — finished detail`}
-                    fill
-                    className="object-cover object-center brightness-[1.05] contrast-[1.03] saturate-[1.05]"
-                    sizes="(max-width:1024px) 100vw, 33vw"
-                  />
+              {(PACKAGE_CARD_PREVIEW_VIDEOS[pkg.slug] ||
+                PACKAGE_IMAGES[pkg.slug]) && (
+                <div className="relative aspect-[16/9] overflow-hidden bg-midnight/40">
+                  {PACKAGE_CARD_PREVIEW_VIDEOS[pkg.slug] ? (
+                    <PackageCardPreviewMedia
+                      preview={PACKAGE_CARD_PREVIEW_VIDEOS[pkg.slug]}
+                      label={`${pkg.name} — mobile detailing preview`}
+                    />
+                  ) : (
+                    <Image
+                      src={PACKAGE_IMAGES[pkg.slug]}
+                      alt={`${pkg.name} — finished detail`}
+                      fill
+                      className="object-cover object-center brightness-[1.05] contrast-[1.03] saturate-[1.05]"
+                      sizes="(max-width:1024px) 100vw, 33vw"
+                    />
+                  )}
                 </div>
               )}
               <div className="p-6">
