@@ -28,8 +28,8 @@ export const CLIENT_IMAGES = {
   aboutEscalade: v("vernon-18-escalade-angle.jpg"),
   ownerPortrait: `${base}/owner.jpg`,
   teamGroup: `${base}/team-group.jpg`,
-  /** Home hero still — finished exterior (outdoor gloss) */
-  homeHeroPoster: march2026("paint-correction-charger-finished-exterior.jpg"),
+  /** Home hero poster (videos8 Escalade showcase) */
+  homeHeroPoster: v("vernon-19-escalade-front.jpg"),
   /** Link previews (iMessage, texts, social) — branded van, not client vehicles */
   siteLinkShareImage: v("og-share.jpg"),
   /** Electric blue Charger — portfolio gallery only */

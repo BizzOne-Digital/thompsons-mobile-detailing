@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Calendar,
@@ -11,6 +12,7 @@ import {
   Star,
 } from "lucide-react";
 import { CLIENT_IMAGES } from "@/lib/client-images";
+import { VIDEOS8_HOME_HERO } from "@/lib/client-videos8";
 import type { PublicSiteSettings } from "@/lib/public-settings";
 
 type HeroSectionProps = {
@@ -25,20 +27,77 @@ const HERO_MEDIA_CLASS =
 
 export function HeroSection({ settings }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
-  const heroImage = CLIENT_IMAGES.homeHeroPoster;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const poster = CLIENT_IMAGES.homeHeroPoster;
+  const useLiveVideo = !reduceMotion;
+
+  const tryPlay = useCallback(async () => {
+    const el = videoRef.current;
+    if (!el || !useLiveVideo) return;
+    el.muted = true;
+    try {
+      await el.play();
+    } catch {
+      /* poster remains visible */
+    }
+  }, [useLiveVideo]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    const root = sectionRef.current;
+    if (!el || !root || !useLiveVideo) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) tryPlay();
+        else el.pause();
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, [useLiveVideo, tryPlay]);
 
   return (
     <section
+      ref={sectionRef}
       className="relative isolate min-h-[100svh] w-full overflow-hidden"
     >
       <Image
-        src={heroImage}
-        alt="Finished mobile detail on a vehicle in Arizona sunlight"
+        src={poster}
+        alt=""
         fill
         priority
         className={HERO_MEDIA_CLASS}
         sizes="100vw"
+        aria-hidden
       />
+      {useLiveVideo && (
+        <video
+          ref={videoRef}
+          className={`${HERO_MEDIA_CLASS} transition-opacity duration-500 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          src={VIDEOS8_HOME_HERO}
+          poster={poster}
+          loop
+          muted
+          playsInline
+          autoPlay
+          preload="metadata"
+          onLoadedData={() => {
+            setVideoReady(true);
+            void tryPlay();
+          }}
+          onCanPlay={() => {
+            setVideoReady(true);
+            void tryPlay();
+          }}
+          aria-hidden
+        />
+      )}
       <div
         className="absolute inset-0 bg-gradient-to-r from-black/42 via-black/16 to-transparent"
         aria-hidden

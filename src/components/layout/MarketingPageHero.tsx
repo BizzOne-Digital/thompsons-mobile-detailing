@@ -67,9 +67,13 @@ export function MarketingPageHero({
         animate={{ scale: 1 }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        {heroVideo && !reduce && !isBrightHero ? (
+        {heroVideo && !reduce ? (
           <video
-            className="h-full w-full object-cover object-center"
+            className={cn(
+              "h-full w-full object-cover object-center",
+              isBrightHero &&
+                "brightness-[1.08] contrast-[1.06] saturate-[1.08]"
+            )}
             src={heroVideo}
             poster={imageSrc}
             autoPlay

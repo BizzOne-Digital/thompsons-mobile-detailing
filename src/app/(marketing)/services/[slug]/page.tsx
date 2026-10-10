@@ -6,6 +6,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { buildServiceGallery } from "@/lib/service-gallery";
 import { resolveServiceCoverImage } from "@/lib/service-cover";
+import { VIDEOS8_RECURRING_MAINTENANCE } from "@/lib/client-videos8";
 import { SERVICE_SLUG_IMAGES } from "@/lib/site-images";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +50,11 @@ export default async function ServiceDetailPage({
     SERVICE_SLUG_IMAGES[service.slug] ??
     resolveServiceCoverImage(service.slug, service.images ?? []);
 
+  const heroVideo =
+    service.slug === "recurring-maintenance-wash"
+      ? VIDEOS8_RECURRING_MAINTENANCE
+      : undefined;
+
   const galleryImages = buildServiceGallery(
     service.slug,
     service.name,
@@ -61,6 +67,7 @@ export default async function ServiceDetailPage({
       title={service.name}
       subtitle={service.shortDescription}
       heroImage={heroImage}
+      heroVideo={heroVideo}
       eyebrow="Service detail"
     >
       <ServiceDetailView

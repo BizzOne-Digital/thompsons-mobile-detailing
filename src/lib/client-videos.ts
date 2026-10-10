@@ -24,10 +24,11 @@ import {
   VIDEOS7_INTERIOR,
   VIDEOS7_SIGNATURE_FOAM,
 } from "@/lib/client-videos7.generated";
+import { VIDEOS8_HOME_HERO } from "@/lib/client-videos8";
 
 const clientBase = "/videos7";
 
-/** Vernon — silver Charger rinse (home hero after intro). Do not override in admin. */
+/** @deprecated Use VIDEOS8_HOME_HERO — kept for legacy references */
 export const HOME_HERO_CHARGER_RINSE =
   "/videos7/AQPj8m3DziUnsC59hSfjKwZwE_Hbso3yZB0Hf85OAk8R9yhDRHmh9LJ0EnAtWo-6PS_-qDJ-jTRhMJbUkR-nMEXJG8jmXG3dtZLIbSbIgQ.mp4";
 
@@ -38,8 +39,8 @@ export const ABOUT_PAGE_VIDEOS = VIDEOS7_ABOUT.map((clip) => ({
 }));
 
 export const CLIENT_VIDEOS = {
-  /** Home hero — silver Charger rinse */
-  homeHero: HOME_HERO_CHARGER_RINSE,
+  /** Home hero — Vernon videos8 Escalade showcase */
+  homeHero: VIDEOS8_HOME_HERO,
   /** Portfolio / legacy Charger clip */
   electricBlueCharger: VIDEOS7_HERO,
   /** Full-width home section below hero */
