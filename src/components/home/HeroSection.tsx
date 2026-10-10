@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Calendar,
@@ -10,15 +9,9 @@ import {
   Leaf,
   MapPin,
   Star,
-  Volume2,
-  VolumeX,
 } from "lucide-react";
 import { CLIENT_IMAGES } from "@/lib/client-images";
-import { HOME_HERO_CHARGER_RINSE } from "@/lib/client-videos";
 import type { PublicSiteSettings } from "@/lib/public-settings";
-
-/** Full audio at a low, soothing level (not silent) */
-const HERO_VIDEO_VOLUME = 0.22;
 
 type HeroSectionProps = {
   settings: Pick<
@@ -28,153 +21,30 @@ type HeroSectionProps = {
 };
 
 const HERO_MEDIA_CLASS =
-  "absolute inset-0 h-full w-full object-cover object-[center_48%] brightness-[1.06] contrast-[1.05] saturate-[1.08] sm:object-[center_42%] md:object-center";
+  "absolute inset-0 h-full w-full object-cover object-center brightness-[1.1] contrast-[1.06] saturate-[1.1]";
 
 export function HeroSection({ settings }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const [videoReady, setVideoReady] = useState(false);
-  const [soundOn, setSoundOn] = useState(true);
-  const [needsTapForSound, setNeedsTapForSound] = useState(false);
-
-  const poster = CLIENT_IMAGES.homeHeroPoster;
-  const videoSrc = HOME_HERO_CHARGER_RINSE;
-  const useLiveVideo = !reduceMotion;
-
-  const applyAudio = useCallback(
-    (el: HTMLVideoElement) => {
-      el.volume = HERO_VIDEO_VOLUME;
-      el.muted = !soundOn;
-    },
-    [soundOn]
-  );
-
-  const tryPlay = useCallback(async () => {
-    const el = videoRef.current;
-    if (!el || !useLiveVideo) return;
-
-    applyAudio(el);
-    try {
-      await el.play();
-      setNeedsTapForSound(false);
-    } catch {
-      el.muted = true;
-      try {
-        await el.play();
-        if (soundOn) setNeedsTapForSound(true);
-      } catch {
-        /* poster remains visible under video */
-      }
-    }
-  }, [useLiveVideo, applyAudio, soundOn]);
-
-  useEffect(() => {
-    const el = videoRef.current;
-    const root = sectionRef.current;
-    if (!el || !root || !useLiveVideo) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) tryPlay();
-        else el.pause();
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(root);
-    return () => observer.disconnect();
-  }, [useLiveVideo, tryPlay]);
-
-  const toggleSound = () => {
-    const el = videoRef.current;
-    setSoundOn((on) => {
-      const next = !on;
-      if (el) {
-        el.volume = HERO_VIDEO_VOLUME;
-        el.muted = !next;
-        if (next) {
-          void el.play().then(() => setNeedsTapForSound(false));
-        }
-      }
-      return next;
-    });
-  };
+  const heroImage = CLIENT_IMAGES.homeHeroPoster;
 
   return (
     <section
-      ref={sectionRef}
       className="relative isolate min-h-[100svh] w-full overflow-hidden"
     >
-      {useLiveVideo ? (
-        <>
-          <Image
-            src={poster}
-            alt=""
-            fill
-            priority
-            className={HERO_MEDIA_CLASS}
-            sizes="100vw"
-            aria-hidden
-          />
-          <video
-            ref={videoRef}
-            className={`${HERO_MEDIA_CLASS} transition-opacity duration-500 ${
-              videoReady ? "opacity-100" : "opacity-0"
-            }`}
-            src={videoSrc}
-            poster={poster}
-            loop
-            playsInline
-            autoPlay
-            preload="metadata"
-            onLoadedData={() => {
-              const el = videoRef.current;
-              if (el) applyAudio(el);
-              setVideoReady(true);
-            }}
-            onCanPlay={() => {
-              setVideoReady(true);
-              void tryPlay();
-            }}
-            aria-hidden
-          />
-          <button
-            type="button"
-            onClick={toggleSound}
-            className="absolute bottom-28 right-4 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-black/45 px-3 py-2 text-xs text-white/90 backdrop-blur-sm transition hover:bg-black/60 sm:bottom-8 sm:right-8"
-            aria-label={soundOn ? "Mute hero video" : "Unmute hero video"}
-          >
-            {soundOn && !needsTapForSound ? (
-              <Volume2 className="h-4 w-4 text-bright-gold" />
-            ) : (
-              <VolumeX className="h-4 w-4 text-bright-gold" />
-            )}
-            <span className="hidden sm:inline">
-              {needsTapForSound ? "Tap for sound" : soundOn ? "Sound on" : "Sound off"}
-            </span>
-          </button>
-        </>
-      ) : (
-        <Image
-          src={poster}
-          alt="Thompson's Mobile Detailing technician rinsing a vehicle on site in Arizona"
-          fill
-          priority
-          className={HERO_MEDIA_CLASS}
-          sizes="100vw"
-        />
-      )}
+      <Image
+        src={heroImage}
+        alt="Finished mobile detail on a vehicle in Arizona sunlight"
+        fill
+        priority
+        className={HERO_MEDIA_CLASS}
+        sizes="100vw"
+      />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/45 to-black/15"
+        className="absolute inset-0 bg-gradient-to-r from-black/42 via-black/16 to-transparent"
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/25"
-        aria-hidden
-      />
-      <div className="page-hero-mesh absolute inset-0 opacity-25" aria-hidden />
-      <div
-        className="absolute inset-0 carbon-bg opacity-[0.08]"
+        className="absolute inset-0 bg-gradient-to-t from-midnight/50 via-transparent to-black/10"
         aria-hidden
       />
 

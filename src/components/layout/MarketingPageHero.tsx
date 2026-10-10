@@ -53,6 +53,7 @@ export function MarketingPageHero({
   const eyebrowText = resolvePageHeroEyebrow(pathname, eyebrow);
   const breadcrumbs = buildBreadcrumbs(pathname);
   const isBrightHero =
+    pathname === "/booking" ||
     pathname === "/areas" ||
     /^\/areas\/[^/]+$/.test(pathname) ||
     pathname === "/services" ||
@@ -87,7 +88,7 @@ export function MarketingPageHero({
             className={cn(
               "object-cover",
               isBrightHero
-                ? "object-[center_42%] brightness-[1.06] contrast-[1.05] saturate-[1.07]"
+                ? "object-cover object-center brightness-[1.08] contrast-[1.06] saturate-[1.08]"
                 : "object-center"
             )}
             sizes="100vw"
@@ -98,15 +99,15 @@ export function MarketingPageHero({
       {isBrightHero ? (
         <>
           <div
-            className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-black/38 via-black/12 to-transparent"
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-midnight/75 via-transparent to-black/15"
+            className="absolute inset-0 bg-gradient-to-t from-midnight/55 via-transparent to-transparent"
             aria-hidden
           />
           <div
-            className="absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-midnight/90 to-transparent md:h-32"
+            className="absolute inset-x-0 bottom-0 z-[1] h-20 bg-gradient-to-t from-midnight/75 to-transparent md:h-28"
             aria-hidden
           />
         </>

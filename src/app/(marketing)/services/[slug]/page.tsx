@@ -5,8 +5,8 @@ import { buildMetadata } from "@/lib/seo";
 import { PageShell } from "@/components/layout/PageShell";
 import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { buildServiceGallery } from "@/lib/service-gallery";
-import { SERVICE_SLUG_VIDEOS } from "@/lib/client-videos";
 import { resolveServiceCoverImage } from "@/lib/service-cover";
+import { SERVICE_SLUG_IMAGES } from "@/lib/site-images";
 
 export const dynamic = "force-dynamic";
 
@@ -45,13 +45,9 @@ export default async function ServiceDetailPage({
     .limit(3)
     .lean();
 
-  const coverImage = resolveServiceCoverImage(
-    service.slug,
-    service.images ?? []
-  );
-  const slugVideo = SERVICE_SLUG_VIDEOS[service.slug];
-  const heroVideo = slugVideo?.src;
-  const heroImage = slugVideo?.poster ?? coverImage;
+  const heroImage =
+    SERVICE_SLUG_IMAGES[service.slug] ??
+    resolveServiceCoverImage(service.slug, service.images ?? []);
 
   const galleryImages = buildServiceGallery(
     service.slug,
@@ -65,7 +61,6 @@ export default async function ServiceDetailPage({
       title={service.name}
       subtitle={service.shortDescription}
       heroImage={heroImage}
-      heroVideo={heroVideo}
       eyebrow="Service detail"
     >
       <ServiceDetailView

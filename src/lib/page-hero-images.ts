@@ -10,7 +10,7 @@ const PAGE_HERO_IMAGES: Record<string, string> = {
   "/about": "/images/client/about-escalade.jpg",
   "/services": SERVICES_INDEX_HERO,
   "/pricing": SITE_IMAGES.suvFullDetail,
-  "/booking": SITE_IMAGES.mobileSunsetSedan,
+  "/booking": CLIENT_IMAGES.bookingHeroOutdoor,
   "/contact": CLIENT_IMAGES.homeHeroPoster,
   "/results": CLIENT_IMAGES.porscheShowcaseBright,
   "/testimonials": SITE_IMAGES.ceramicCoating,

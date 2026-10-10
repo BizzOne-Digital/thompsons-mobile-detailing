@@ -1,28 +1,39 @@
-import { CLIENT_IMAGES } from "@/lib/client-images";
+import { CLIENT_IMAGES, CLIENT_WHITE_INTERIOR_GALLERY } from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
+
+const whiteInteriorExtras = CLIENT_WHITE_INTERIOR_GALLERY.slice(0, 2).map(
+  (item) => item.src
+);
 
 const EXTRA_GALLERY: Record<string, string[]> = {
   "refresh-detail": [
-    SITE_IMAGES.interiorExtraction,
-    SITE_IMAGES.foamWashArizona,
+    CLIENT_IMAGES.packageRefreshInterior,
+    CLIENT_IMAGES.interiorWhiteLexusDashboard,
+    CLIENT_IMAGES.interiorWhiteLexusFsport,
   ],
   "restore-detail": [
-    SITE_IMAGES.carpetExtraction,
-    SITE_IMAGES.suvFullDetail,
+    CLIENT_IMAGES.packageRestoreInterior,
+    ...whiteInteriorExtras,
   ],
   "reset-detail": [
-    SITE_IMAGES.carpetExtraction,
-    SITE_IMAGES.interiorExtraction,
+    CLIENT_IMAGES.packageResetInterior,
+    CLIENT_IMAGES.resetDetailHeroExterior,
+    CLIENT_IMAGES.interiorWhiteLexusDashboard,
   ],
   "signature-foam-hand-wash": [
-    "/images/client/signature-foam-wash.jpg",
-    "/images/client/ba-05-exterior-showcase.jpg",
-    SITE_IMAGES.foamWashArizona,
+    CLIENT_IMAGES.porscheOutdoorFront,
+    CLIENT_IMAGES.paintAfter,
+    CLIENT_IMAGES.baExteriorShowcase,
+  ],
+  "recurring-maintenance-wash": [
+    CLIENT_IMAGES.restoreDetailHeroExterior,
+    CLIENT_IMAGES.baExteriorShowcase,
+    CLIENT_IMAGES.porscheOutdoorFront,
   ],
   "ceramic-coating": [
-    "/images/client/ceramic-coating-finish.jpg",
     "/images/client/ceramic-coating-finish-alt.jpg",
-    SITE_IMAGES.paintCorrection,
+    "/images/client/ceramic-coating-finish.jpg",
+    CLIENT_IMAGES.porscheOutdoorFront,
   ],
   "paint-correction": [
     CLIENT_IMAGES.paintHoodBefore,
@@ -63,13 +74,15 @@ export function buildServiceGallery(
     out.push({ url, alt });
   };
 
-  fromDb.forEach((i) => {
-    if (i.url !== heroImage) push(i.url, i.alt);
-  });
+  const curated = EXTRA_GALLERY[slug];
+  if (!curated) {
+    fromDb.forEach((i) => {
+      if (i.url !== heroImage) push(i.url, i.alt);
+    });
+  }
 
-  const extras = EXTRA_GALLERY[slug] ?? [
+  const extras = curated ?? [
     SERVICE_SLUG_IMAGES[slug] ?? SITE_IMAGES.mobileVanSetup,
-    SITE_IMAGES.engineBay,
   ];
   extras.forEach((url, i) => {
     if (url !== heroImage) push(url, `${name} — detailing photo ${i + 1}`);

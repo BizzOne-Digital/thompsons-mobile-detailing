@@ -28,8 +28,8 @@ export const CLIENT_IMAGES = {
   aboutEscalade: v("vernon-18-escalade-angle.jpg"),
   ownerPortrait: `${base}/owner.jpg`,
   teamGroup: `${base}/team-group.jpg`,
-  /** Home hero still (frame from showcase wash video) */
-  homeHeroPoster: v("hero-gray-charger-foam-wash.jpg"),
+  /** Home hero still — finished exterior (outdoor gloss) */
+  homeHeroPoster: march2026("paint-correction-charger-finished-exterior.jpg"),
   /** Link previews (iMessage, texts, social) — branded van, not client vehicles */
   siteLinkShareImage: v("og-share.jpg"),
   /** Electric blue Charger — portfolio gallery only */
@@ -56,6 +56,11 @@ export const CLIENT_IMAGES = {
   packageRefreshInterior: march2026("package-refresh-white-suv-interior.jpg"),
   packageRestoreInterior: march2026("package-restore-red-charger-interior.jpg"),
   packageResetInterior: march2026("package-reset-bmw-interior.jpg"),
+  /** Outdoor finished exterior — booking & marketing heroes */
+  bookingHeroOutdoor: march2026("paint-correction-charger-finished-exterior.jpg"),
+  resetDetailHeroExterior: march2026("bmw-x7-exterior-gloss.jpg"),
+  /** White vehicle outdoor finish (Restore detail hero) */
+  restoreDetailHeroExterior: v("vernon-19-escalade-front.jpg"),
 } as const;
 
 export const CLIENT_WHITE_INTERIOR_GALLERY = [

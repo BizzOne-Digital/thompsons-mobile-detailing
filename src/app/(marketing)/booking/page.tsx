@@ -1,6 +1,7 @@
 import { buildMetadata } from "@/lib/seo";
 import { getAddOns, getPublicServices } from "@/lib/data";
 import { PageShell } from "@/components/layout/PageShell";
+import { CLIENT_IMAGES } from "@/lib/client-images";
 import { BookingWizard } from "@/components/booking/BookingWizard";
 
 export const metadata = buildMetadata({ title: "Book Online", path: "/booking" });
@@ -13,6 +14,7 @@ export default async function BookingPage() {
     <PageShell
       title="Book Your Detail"
       subtitle="Submit a booking request for review. Your appointment is not confirmed until we contact you."
+      heroImage={CLIENT_IMAGES.bookingHeroOutdoor}
     >
       <BookingWizard
         services={services.map((s) => ({

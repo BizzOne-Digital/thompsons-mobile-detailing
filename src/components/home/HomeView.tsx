@@ -111,12 +111,8 @@ function PackageCards({ packages }: { packages: Service[] }) {
                     src={PACKAGE_IMAGES[pkg.slug]}
                     alt={`${pkg.name} — finished detail`}
                     fill
-                    className="object-cover brightness-[1.03]"
+                    className="object-cover object-center brightness-[1.05] contrast-[1.03] saturate-[1.05]"
                     sizes="(max-width:1024px) 100vw, 33vw"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-navy/85 via-navy/25 to-transparent"
-                    aria-hidden
                   />
                 </div>
               )}
@@ -235,7 +231,7 @@ export function HomeView({
                       src={SERVICE_SLUG_IMAGES[service.slug]}
                       alt={service.name}
                       fill
-                      className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                      className="object-cover object-center brightness-[1.04] contrast-[1.03] transition duration-300 group-hover:scale-[1.02]"
                       sizes="(max-width:1024px) 100vw, 33vw"
                     />
                   </div>
@@ -402,14 +398,14 @@ export function HomeView({
       <section className="mx-auto max-w-7xl px-4 pb-24 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl p-10 text-center">
           <Image
-            src={CLIENT_IMAGES.aboutFoamWash}
+            src={CLIENT_IMAGES.bookingHeroOutdoor}
             alt=""
             fill
-            className="object-cover"
+            className="object-cover object-center brightness-[1.05] contrast-[1.04]"
             sizes="100vw"
             aria-hidden
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-royal/80 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/35 to-black/45" />
           <div className="relative">
             <h2 className="font-display text-3xl md:text-4xl gold-gradient-text">
               Ready for Factory-Fresh Results?
