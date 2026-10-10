@@ -15,6 +15,8 @@ import { BRAND, VEHICLE_TYPES, type VehicleTypeId } from "@/lib/constants";
 import { getServicePrice } from "@/lib/pricing-helpers";
 import { formatCurrency } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { ServiceProcessStorySection } from "@/components/services/ServiceProcessStorySection";
+import type { ServiceProcessStory } from "@/lib/service-process-stories";
 
 export type ServiceDetailData = {
   _id: string;
@@ -46,10 +48,12 @@ type GalleryImage = { url: string; alt: string };
 export function ServiceDetailView({
   service,
   galleryImages,
+  processStory,
   relatedServices,
 }: {
   service: ServiceDetailData;
   galleryImages: GalleryImage[];
+  processStory?: ServiceProcessStory | null;
   relatedServices: RelatedService[];
 }) {
   const [vehicleType, setVehicleType] = useState<VehicleTypeId>("sedan");
@@ -108,36 +112,46 @@ export function ServiceDetailView({
             </div>
           </section>
 
-          {galleryImages.length > 0 && (
-            <section>
-              <h2 className="font-display text-xl text-bright-gold">
-                What this service looks like
-              </h2>
-              <div
-                className={`mt-6 grid gap-4 ${
-                  galleryImages.length === 1
-                    ? "grid-cols-1"
-                    : "sm:grid-cols-2 lg:grid-cols-3"
-                }`}
-              >
-                {galleryImages.slice(0, 3).map((img, i) => (
-                  <div
-                    key={`${img.url}-${i}`}
-                    className={`relative overflow-hidden rounded-2xl border border-gold/15 ${
-                      galleryImages.length === 1 ? "aspect-[21/9]" : "aspect-[4/3]"
-                    }`}
-                  >
-                    <Image
-                      src={img.url}
-                      alt={img.alt}
-                      fill
-                      className="object-cover brightness-[1.04] contrast-[1.03] saturate-[1.05] transition duration-500 hover:scale-[1.02]"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
+          {processStory ? (
+            <ServiceProcessStorySection
+              story={processStory}
+              serviceName={service.name}
+              bookingHref={bookingHref}
+            />
+          ) : (
+            galleryImages.length > 0 && (
+              <section>
+                <h2 className="font-display text-xl text-bright-gold">
+                  What this service looks like
+                </h2>
+                <div
+                  className={`mt-6 grid gap-4 ${
+                    galleryImages.length === 1
+                      ? "grid-cols-1"
+                      : "sm:grid-cols-2 lg:grid-cols-3"
+                  }`}
+                >
+                  {galleryImages.slice(0, 3).map((img, i) => (
+                    <div
+                      key={`${img.url}-${i}`}
+                      className={`relative overflow-hidden rounded-2xl border border-gold/15 ${
+                        galleryImages.length === 1
+                          ? "aspect-[21/9]"
+                          : "aspect-[4/3]"
+                      }`}
+                    >
+                      <Image
+                        src={img.url}
+                        alt={img.alt}
+                        fill
+                        className="object-cover brightness-[1.04] contrast-[1.03] saturate-[1.05] transition duration-500 hover:scale-[1.02]"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )
           )}
 
           <section>

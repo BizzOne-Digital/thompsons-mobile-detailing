@@ -5,6 +5,7 @@ import { buildMetadata } from "@/lib/seo";
 import { PageShell } from "@/components/layout/PageShell";
 import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { buildServiceGallery } from "@/lib/service-gallery";
+import { getServiceProcessStory } from "@/lib/service-process-stories";
 import { resolveServiceCoverImage } from "@/lib/service-cover";
 import { VIDEOS8_RECURRING_MAINTENANCE } from "@/lib/client-videos8";
 import { SERVICE_SLUG_IMAGES } from "@/lib/site-images";
@@ -61,6 +62,7 @@ export default async function ServiceDetailPage({
     heroImage,
     service.images ?? []
   );
+  const processStory = getServiceProcessStory(service.slug);
 
   return (
     <PageShell
@@ -72,6 +74,7 @@ export default async function ServiceDetailPage({
     >
       <ServiceDetailView
         galleryImages={galleryImages}
+        processStory={processStory}
         service={{
           _id: String(service._id),
           name: service.name,
