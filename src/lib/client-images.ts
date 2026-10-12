@@ -99,6 +99,20 @@ export const CLIENT_PORSCHE_GALLERY = [
   { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Paint refinement on Porsche hood" },
 ] as const;
 
+/** Signature Foam Hand Wash — one white Porsche story (7 stills + one video in videos9) */
+export const SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS = [
+  { src: v("vernon-08-porsche-front.jpg"), alt: "White Porsche Cayenne before foam hand wash" },
+  { src: v("vernon-09-porsche-side.jpg"), alt: "White Porsche side profile before hand wash" },
+  { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Porsche hood during foam and hand wash prep" },
+] as const;
+
+export const SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS = [
+  { src: v("vernon-13-porsche-front-outdoor.jpg"), alt: "White Porsche Cayenne after signature foam hand wash" },
+  { src: v("vernon-10-porsche-rear.jpg"), alt: "White Porsche rear finish after hand wash" },
+  { src: v("porsche-showcase-bright.jpg"), alt: "White Porsche gloss showcase after mobile detail" },
+  { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Deep gloss on white Porsche hood after wash" },
+] as const;
+
 export const CLIENT_ESCALADE_GALLERY = [
   { src: v("vernon-18-escalade-angle.jpg"), alt: "White Escalade after full detail" },
   { src: v("vernon-19-escalade-front.jpg"), alt: "Escalade front-end finish" },

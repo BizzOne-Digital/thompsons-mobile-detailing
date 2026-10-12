@@ -2,46 +2,42 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import type {
-  ProcessMediaItem,
-  ServiceProcessStory,
-} from "@/lib/service-process-stories";
+import type { ServiceProcessStory } from "@/lib/service-process-stories";
+import { AutoplayShowcaseVideo } from "@/components/media/AutoplayShowcaseVideo";
 import { Button } from "@/components/ui/Button";
 
 const MEDIA_CLASS =
   "object-cover object-center brightness-[1.05] contrast-[1.04] saturate-[1.05]";
 
-function MediaCard({ item }: { item: ProcessMediaItem }) {
-  const isProcess = item.phase === "process";
+function StillCard({
+  src,
+  alt,
+  phase,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  phase: "process" | "result";
+  caption?: string;
+}) {
+  const isProcess = phase === "process";
 
   return (
     <figure
       className={`relative overflow-hidden rounded-2xl border ${
-        isProcess ? "border-white/15" : "border-bright-gold/35 shadow-[0_0_32px_rgba(255,201,40,0.12)]"
+        isProcess
+          ? "border-white/15"
+          : "border-bright-gold/35 shadow-[0_0_32px_rgba(255,201,40,0.12)]"
       }`}
     >
       <div className="relative aspect-[4/3] sm:aspect-[16/10]">
-        {item.type === "video" ? (
-          <video
-            className={`absolute inset-0 h-full w-full ${MEDIA_CLASS}`}
-            src={item.src}
-            poster={item.poster}
-            muted
-            loop
-            playsInline
-            autoPlay
-            preload="metadata"
-            aria-label={item.alt}
-          />
-        ) : (
-          <Image
-            src={item.src}
-            alt={item.alt}
-            fill
-            className={MEDIA_CLASS}
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        )}
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className={MEDIA_CLASS}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
         <span
           className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${
             isProcess
@@ -52,9 +48,9 @@ function MediaCard({ item }: { item: ProcessMediaItem }) {
           {isProcess ? "Process" : "Finished"}
         </span>
       </div>
-      {item.caption && (
+      {caption && (
         <figcaption className="border-t border-gold/10 bg-navy/40 px-4 py-3 text-sm text-off-white/75">
-          {item.caption}
+          {caption}
         </figcaption>
       )}
     </figure>
@@ -83,6 +79,22 @@ export function ServiceProcessStorySection({
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-off-white/75 md:text-base">
           {story.processIntro}
         </p>
+
+        {story.featuredVideo && !reduce && (
+          <div className="mt-6 overflow-hidden rounded-2xl border border-gold/25">
+            <AutoplayShowcaseVideo
+              src={story.featuredVideo.src}
+              poster={story.featuredVideo.poster}
+              label={story.featuredVideo.alt}
+              aspectClassName="aspect-[16/10] min-h-[200px] sm:min-h-[280px]"
+              showControls
+            />
+            <p className="border-t border-gold/10 bg-navy/40 px-4 py-3 text-center text-xs text-off-white/70">
+              One highlight clip — remaining photos are the same vehicle.
+            </p>
+          </div>
+        )}
+
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {processItems.map((item, i) => (
             <motion.div
@@ -92,7 +104,12 @@ export function ServiceProcessStorySection({
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.06, duration: 0.45 }}
             >
-              <MediaCard item={item} />
+              <StillCard
+                src={item.src}
+                alt={item.alt}
+                phase="process"
+                caption={item.caption}
+              />
             </motion.div>
           ))}
         </div>
@@ -118,7 +135,12 @@ export function ServiceProcessStorySection({
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
             >
-              <MediaCard item={item} />
+              <StillCard
+                src={item.src}
+                alt={item.alt}
+                phase="result"
+                caption={item.caption}
+              />
             </motion.div>
           ))}
         </div>

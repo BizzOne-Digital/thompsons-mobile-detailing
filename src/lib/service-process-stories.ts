@@ -1,21 +1,15 @@
-import { CLIENT_IMAGES } from "@/lib/client-images";
 import {
-  VIDEOS7_CERAMIC,
-  VIDEOS7_CLIP_C,
-  VIDEOS7_ENGINE,
-  VIDEOS7_INTERIOR,
-  VIDEOS7_SIGNATURE_FOAM,
-} from "@/lib/client-videos7.generated";
-import {
-  VIDEOS8_HOME_HERO,
-  VIDEOS8_RECURRING_MAINTENANCE,
-} from "@/lib/client-videos8";
+  CLIENT_IMAGES,
+  CLIENT_ESCALADE_GALLERY,
+  SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS,
+  SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS,
+} from "@/lib/client-images";
+import { SERVICE_PROCESS_FEATURED_VIDEO } from "@/lib/service-hero-media";
 
 export type ProcessMediaItem = {
-  type: "image" | "video";
+  type: "image";
   phase: "process" | "result";
   src: string;
-  poster?: string;
   alt: string;
   caption?: string;
 };
@@ -23,6 +17,8 @@ export type ProcessMediaItem = {
 export type ServiceProcessStory = {
   processIntro: string;
   resultIntro: string;
+  /** One short clip per service — remaining media are stills of the same vehicle. */
+  featuredVideo?: { src: string; poster: string; alt: string };
   items: ProcessMediaItem[];
 };
 
@@ -39,46 +35,24 @@ const img = (
   caption,
 });
 
-const vid = (
-  src: string,
-  poster: string,
-  alt: string,
-  phase: "process" | "result",
-  caption?: string
-): ProcessMediaItem => ({
-  type: "video",
-  phase,
-  src,
-  poster,
-  alt,
-  caption,
-});
-
-const STORIES: Record<string, ServiceProcessStory> = {
+const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
   "refresh-detail": {
     processIntro:
-      "Every Refresh starts with how the vehicle looks today — dust, light buildup, and everyday wear.",
+      "Refresh Detail focuses on one well-kept vehicle — light buildup, fingerprints, and everyday dust.",
     resultIntro:
-      "Then we deliver a maintenance-level reset: clean cabin, polished surfaces, and a refreshed feel.",
+      "Finished cabin surfaces, clean glass, and a refreshed feel — maintenance-level, not a full restoration.",
     items: [
       img(
         CLIENT_IMAGES.baInteriorBefore,
-        "Interior before Refresh Detail maintenance cleaning",
+        "Interior before Refresh Detail",
         "process",
-        "Starting condition"
+        "Starting point"
       ),
       img(
-        CLIENT_IMAGES.paintBefore,
-        "Exterior paint before wash and light renewal",
+        CLIENT_IMAGES.interiorWhiteLexusDashboard,
+        "Dashboard and console during interior refresh",
         "process",
-        "Exterior assessment"
-      ),
-      vid(
-        VIDEOS8_HOME_HERO,
-        CLIENT_IMAGES.homeHeroPoster,
-        "Mobile detailing process — wash and interior care",
-        "process",
-        "On-site professional care"
+        "Interior care"
       ),
       img(
         CLIENT_IMAGES.packageRefreshInterior,
@@ -87,30 +61,30 @@ const STORIES: Record<string, ServiceProcessStory> = {
         "Refresh result"
       ),
       img(
-        CLIENT_IMAGES.interiorWhiteLexusDashboard,
-        "Clean dashboard and console after Refresh Detail",
+        CLIENT_IMAGES.interiorWhiteLexusFsport,
+        "Clean F Sport cabin after Refresh Detail",
         "result",
-        "Interior finish"
+        "Finished interior"
       ),
     ],
   },
   "restore-detail": {
     processIntro:
-      "Restore is for visible stains, embedded dirt, and interiors that need more than a light wipe-down.",
+      "Restore Detail follows one vehicle through deep cleaning — stains, buildup, and worn surfaces.",
     resultIntro:
-      "Deep shampoo, extraction, and conditioning bring carpets, leather, and trim back to life.",
+      "Shampoo, extraction, and conditioning on the same interior — restored, not replaced.",
     items: [
       img(
         CLIENT_IMAGES.baInteriorBefore,
-        "Interior stains and buildup before Restore Detail",
-        "process"
-      ),
-      vid(
-        VIDEOS7_INTERIOR,
-        CLIENT_IMAGES.deepClean15,
-        "Deep interior cleaning and extraction in progress",
+        "Interior stains before Restore Detail",
         "process",
-        "Shampoo & extraction"
+        "Before deep clean"
+      ),
+      img(
+        CLIENT_IMAGES.deepClean15,
+        "Cabin buildup before shampoo and extraction",
+        "process",
+        "Deep clean in progress"
       ),
       img(
         CLIENT_IMAGES.packageRestoreInterior,
@@ -119,41 +93,40 @@ const STORIES: Record<string, ServiceProcessStory> = {
         "Restored cabin"
       ),
       img(
-        CLIENT_IMAGES.restoreDetailHeroExterior,
-        "White Escalade exterior gloss after detailing",
+        CLIENT_IMAGES.packageRestoreInterior,
+        "Red Charger seats and trim after Restore Detail",
         "result",
-        "Exterior finish"
+        "Finished interior"
       ),
     ],
   },
   "reset-detail": {
     processIntro:
-      "Reset tackles neglected interiors — heavy pet hair, odors, spills, and worn surfaces.",
+      "Reset Detail is one vehicle, maximum effort — pet hair, odors, spills, and neglected surfaces.",
     resultIntro:
-      "Intensive extraction and restoration leave the cabin factory-fresh again.",
+      "The same vehicle after intensive extraction and restoration — factory-fresh again.",
     items: [
       img(
         CLIENT_IMAGES.redLeatherBefore,
-        "Pet hair and debris on seats before Reset Detail",
+        "Pet hair and debris before Reset Detail",
         "process",
         "Before reset"
       ),
-      vid(
-        VIDEOS7_INTERIOR,
-        CLIENT_IMAGES.redLeatherBefore,
-        "Pet hair removal and deep interior restoration",
+      img(
+        CLIENT_IMAGES.packageResetInterior,
+        "BMW interior during Reset Detail restoration",
         "process",
-        "Pet hair & extraction"
+        "Deep restoration"
       ),
       img(
         CLIENT_IMAGES.packageResetInterior,
-        "BMW interior after Reset Detail restoration",
+        "BMW interior after Reset Detail",
         "result",
         "Reset interior"
       ),
       img(
         CLIENT_IMAGES.resetDetailHeroExterior,
-        "BMW exterior gloss after full Reset Detail",
+        "BMW exterior gloss after Reset Detail",
         "result",
         "Finished vehicle"
       ),
@@ -161,65 +134,55 @@ const STORIES: Record<string, ServiceProcessStory> = {
   },
   "signature-foam-hand-wash": {
     processIntro:
-      "Signature Foam Hand Wash safely lifts dirt and road film without harsh tunnel brushes.",
+      "Every step below is the same white Porsche Cayenne — foam, hand wash, and protection in your driveway.",
     resultIntro:
-      "You get a glossy, protected finish with wheels, glass, and jambs done by hand.",
+      "Finished gloss on the same vehicle — outdoor lighting so you see the real result.",
     items: [
-      vid(
-        VIDEOS7_CLIP_C,
-        CLIENT_IMAGES.porscheOutdoorFront,
-        "Signature foam hand wash in progress",
-        "process",
-        "Foam & hand wash"
+      ...SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS.map((photo, i) =>
+        img(
+          photo.src,
+          photo.alt,
+          "process",
+          i === 0 ? "Before wash" : i === 1 ? "Foam & hand wash" : "Paint prep"
+        )
       ),
-      img(
-        CLIENT_IMAGES.paintProcessFoam,
-        "Foam application on vehicle paint",
-        "process",
-        "Safe foam prep"
-      ),
-      img(
-        CLIENT_IMAGES.porscheOutdoorFront,
-        "Porsche Cayenne after signature foam hand wash",
-        "result",
-        "Outdoor gloss finish"
-      ),
-      img(
-        CLIENT_IMAGES.paintAfter,
-        "Deep gloss exterior after hand wash and protection",
-        "result",
-        "Protected shine"
+      ...SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS.map((photo, i) =>
+        img(
+          photo.src,
+          photo.alt,
+          "result",
+          i === 0 ? "Outdoor gloss finish" : "Protected shine"
+        )
       ),
     ],
   },
   "recurring-maintenance-wash": {
     processIntro:
-      "Maintenance washes keep your vehicle sharp between full details — same pro care on a regular schedule.",
+      "Recurring maintenance is built around your white Escalade — same vehicle, same pro standard every visit.",
     resultIntro:
-      "Consistent hand washing preserves gloss and makes every full detail go further.",
+      "Consistent gloss between full details — the hero video above shows the wash; stills are the same SUV.",
     items: [
-      vid(
-        VIDEOS8_RECURRING_MAINTENANCE,
-        CLIENT_IMAGES.restoreDetailHeroExterior,
-        "Recurring maintenance wash at the customer location",
-        "process",
-        "Maintenance wash"
-      ),
       img(
         CLIENT_IMAGES.aboutEscalade,
-        "White Escalade during professional maintenance wash",
+        "White Escalade before maintenance wash",
         "process",
         "On your driveway"
       ),
       img(
         CLIENT_IMAGES.restoreDetailHeroExterior,
-        "White Escalade front end after maintenance wash",
+        "Escalade front end during maintenance wash",
+        "process",
+        "Hand wash"
+      ),
+      img(
+        CLIENT_ESCALADE_GALLERY[1].src,
+        "White Escalade after maintenance wash",
         "result",
         "Crisp front finish"
       ),
       img(
         CLIENT_IMAGES.baExteriorShowcase,
-        "Luxury SUV gloss after recurring maintenance program",
+        "Escalade gloss after recurring maintenance",
         "result",
         "Showroom shine"
       ),
@@ -227,39 +190,31 @@ const STORIES: Record<string, ServiceProcessStory> = {
   },
   "ceramic-coating": {
     processIntro:
-      "Ceramic coating starts with corrected, decontaminated paint so protection bonds properly.",
+      "Ceramic coating on this Porsche Cayenne — prep, correction, and protection on one paint finish.",
     resultIntro:
-      "The finish gains deep gloss, easier washes, and long-term UV and environmental defense.",
+      "Deep gloss and beading on the same exterior — easier washes for months to come.",
     items: [
       img(
-        CLIENT_IMAGES.paintHoodBefore,
-        "Paint surface before ceramic coating prep",
+        CLIENT_IMAGES.porscheOutdoorFront,
+        "Porsche exterior before ceramic prep",
         "process",
         "Paint prep"
       ),
-      vid(
-        VIDEOS7_SIGNATURE_FOAM,
-        CLIENT_IMAGES.paintHoodBefore,
-        "Paint refinement before ceramic application",
+      img(
+        CLIENT_IMAGES.porscheOutdoorFront,
+        "Porsche paint during ceramic prep and refinement",
         "process",
-        "Refinement"
-      ),
-      vid(
-        VIDEOS7_CERAMIC,
-        "/images/client/ceramic-coating-finish.jpg",
-        "Ceramic coating application and gloss development",
-        "process",
-        "Coating application"
+        "Surface correction"
       ),
       img(
         "/images/client/ceramic-coating-finish-alt.jpg",
-        "Ceramic-coated paint with water beading and gloss",
+        "Ceramic-coated Porsche with water beading",
         "result",
         "Ceramic gloss"
       ),
       img(
         CLIENT_IMAGES.porscheOutdoorFront,
-        "Protected exterior finish after ceramic coating",
+        "Protected Porsche exterior after ceramic coating",
         "result",
         "Long-term protection"
       ),
@@ -267,38 +222,31 @@ const STORIES: Record<string, ServiceProcessStory> = {
   },
   "paint-correction": {
     processIntro:
-      "Paint correction removes oxidation, swirls, and haze through measured machine polishing.",
+      "Paint correction on this red Charger — oxidation, swirls, and haze on one paint finish.",
     resultIntro:
-      "Clarity and depth return — the finish people notice in Arizona sun.",
+      "Clarity and depth on the same vehicle — what Arizona sun is meant to show off.",
     items: [
       img(
-        CLIENT_IMAGES.paintHoodBefore,
-        "Oxidized hood paint before correction",
+        CLIENT_IMAGES.paintBefore,
+        "Oxidized red paint before correction",
         "process",
         "Before correction"
       ),
       img(
-        CLIENT_IMAGES.paintBefore,
-        "Faded red paint before paint correction",
+        CLIENT_IMAGES.paintHoodBefore,
+        "Hood oxidation before machine polishing",
         "process",
-        "Oxidation & swirls"
-      ),
-      vid(
-        VIDEOS7_SIGNATURE_FOAM,
-        CLIENT_IMAGES.paintProcessFoam,
-        "Paint correction and refinement in progress",
-        "process",
-        "Machine polishing"
+        "Swirls & haze"
       ),
       img(
         CLIENT_IMAGES.paintHoodAfter,
-        "Hood paint after correction and gloss restoration",
+        "Hood after paint correction",
         "result",
         "Corrected hood"
       ),
       img(
         CLIENT_IMAGES.paintAfter,
-        "Deep gloss red exterior after paint correction",
+        "Red Charger exterior after paint correction",
         "result",
         "Finished correction"
       ),
@@ -306,60 +254,54 @@ const STORIES: Record<string, ServiceProcessStory> = {
   },
   "pet-hair-removal": {
     processIntro:
-      "Pet hair embeds in fabric and carpet — we treat seats, floors, cargo areas, and creases.",
+      "Pet hair removal on this interior — seats, carpet, and cargo on one vehicle.",
     resultIntro:
-      "Hair is lifted and extracted so the interior looks and feels clean again.",
+      "The same cabin after extraction — hair lifted and surfaces refreshed.",
     items: [
       img(
         CLIENT_IMAGES.redLeatherBefore,
-        "Seats and carpet with embedded pet hair before service",
+        "Seats and carpet with embedded pet hair",
         "process",
-        "Embedded pet hair"
+        "Before"
       ),
-      vid(
-        VIDEOS7_INTERIOR,
+      img(
         CLIENT_IMAGES.redLeatherBefore,
-        "Interior pet hair removal and extraction",
+        "Pet hair removal in progress",
         "process",
-        "Removal process"
+        "Extraction"
       ),
       img(
         CLIENT_IMAGES.redLeatherAfter,
-        "Clean seats and carpet after pet hair removal",
+        "Clean seats after pet hair removal",
         "result",
         "Hair-free interior"
       ),
       img(
-        CLIENT_IMAGES.packageRefreshInterior,
-        "Refreshed cabin after pet hair detail",
+        CLIENT_IMAGES.redLeatherAfter,
+        "Refreshed carpet and leather after pet hair service",
         "result",
-        "Ready to enjoy"
+        "Finished cabin"
       ),
     ],
   },
   "engine-bay-cleaning": {
-    processIntro: "Engine bays collect grease, dust, and road grime that dull the whole presentation.",
-    resultIntro: "Degreasing and careful detailing leave components clean and presentable.",
+    processIntro: "One engine bay — grease, dust, and grime before professional degreasing.",
+    resultIntro: "The same bay cleaned, detailed, and ready to show.",
     items: [
       img(CLIENT_IMAGES.engineBefore, "Engine bay before cleaning", "process"),
-      vid(
-        VIDEOS7_ENGINE,
-        CLIENT_IMAGES.engineBefore,
-        "Engine bay cleaning process",
-        "process"
-      ),
-      img(CLIENT_IMAGES.engineAfter, "Engine bay after detail", "result"),
-      img(CLIENT_IMAGES.engineShowcase, "Showcase clean engine bay finish", "result"),
+      img(CLIENT_IMAGES.engineShowcase, "Engine bay cleaning in progress", "process"),
+      img(CLIENT_IMAGES.engineAfter, "Engine bay after cleaning", "result"),
+      img(CLIENT_IMAGES.engineShowcase, "Finished engine bay", "result"),
     ],
   },
   "engine-bay-detail": {
-    processIntro: "Engine bays collect grease, dust, and road grime that dull the whole presentation.",
-    resultIntro: "Degreasing and careful detailing leave components clean and presentable.",
+    processIntro: "One engine bay — grease, dust, and grime before professional degreasing.",
+    resultIntro: "The same bay cleaned, detailed, and ready to show.",
     items: [
       img(CLIENT_IMAGES.engineBefore, "Engine bay before detail", "process"),
-      img(CLIENT_IMAGES.engineShowcase, "Engine bay cleaning in progress", "process"),
-      img(CLIENT_IMAGES.engineAfter, "Detailed engine bay after service", "result"),
-      img(CLIENT_IMAGES.engineShowcase, "Finished engine bay presentation", "result"),
+      img(CLIENT_IMAGES.engineShowcase, "Engine bay detail in progress", "process"),
+      img(CLIENT_IMAGES.engineAfter, "Engine bay after detail", "result"),
+      img(CLIENT_IMAGES.engineShowcase, "Finished engine bay", "result"),
     ],
   },
 };
@@ -367,5 +309,8 @@ const STORIES: Record<string, ServiceProcessStory> = {
 export function getServiceProcessStory(
   slug: string
 ): ServiceProcessStory | null {
-  return STORIES[slug] ?? null;
+  const base = STORIES[slug];
+  if (!base) return null;
+  const featuredVideo = SERVICE_PROCESS_FEATURED_VIDEO[slug];
+  return featuredVideo ? { ...base, featuredVideo } : base;
 }

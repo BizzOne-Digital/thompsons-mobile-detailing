@@ -31,7 +31,7 @@ export function MobileActionBar() {
           className="flex flex-col items-center gap-1 py-3 text-bright-gold font-semibold"
         >
           <Calendar className="h-4 w-4" />
-          Book
+          Book Now
         </Link>
       </div>
     </div>

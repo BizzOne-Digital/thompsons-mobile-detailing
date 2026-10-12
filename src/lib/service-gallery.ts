@@ -1,4 +1,9 @@
-import { CLIENT_IMAGES, CLIENT_WHITE_INTERIOR_GALLERY } from "@/lib/client-images";
+import {
+  CLIENT_IMAGES,
+  CLIENT_WHITE_INTERIOR_GALLERY,
+  SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS,
+  SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS,
+} from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
 const whiteInteriorExtras = CLIENT_WHITE_INTERIOR_GALLERY.slice(0, 2).map(
@@ -22,8 +27,8 @@ const EXTRA_GALLERY: Record<string, string[]> = {
   ],
   "signature-foam-hand-wash": [
     CLIENT_IMAGES.porscheOutdoorFront,
-    CLIENT_IMAGES.paintAfter,
-    CLIENT_IMAGES.baExteriorShowcase,
+    ...SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS.map((p) => p.src),
+    ...SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS.map((p) => p.src),
   ],
   "recurring-maintenance-wash": [
     CLIENT_IMAGES.restoreDetailHeroExterior,

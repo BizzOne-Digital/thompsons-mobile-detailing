@@ -7,7 +7,10 @@ import { ServiceDetailView } from "@/components/services/ServiceDetailView";
 import { buildServiceGallery } from "@/lib/service-gallery";
 import { getServiceProcessStory } from "@/lib/service-process-stories";
 import { resolveServiceCoverImage } from "@/lib/service-cover";
-import { VIDEOS8_RECURRING_MAINTENANCE } from "@/lib/client-videos8";
+import {
+  SERVICE_HERO_IMAGE,
+  SERVICE_HERO_VIDEO,
+} from "@/lib/service-hero-media";
 import { SERVICE_SLUG_IMAGES } from "@/lib/site-images";
 
 export const dynamic = "force-dynamic";
@@ -48,13 +51,11 @@ export default async function ServiceDetailPage({
     .lean();
 
   const heroImage =
+    SERVICE_HERO_IMAGE[service.slug] ??
     SERVICE_SLUG_IMAGES[service.slug] ??
     resolveServiceCoverImage(service.slug, service.images ?? []);
 
-  const heroVideo =
-    service.slug === "recurring-maintenance-wash"
-      ? VIDEOS8_RECURRING_MAINTENANCE
-      : undefined;
+  const heroVideo = SERVICE_HERO_VIDEO[service.slug];
 
   const galleryImages = buildServiceGallery(
     service.slug,
