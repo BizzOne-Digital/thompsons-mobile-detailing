@@ -1,6 +1,7 @@
 import {
   CLIENT_IMAGES,
   CLIENT_ESCALADE_GALLERY,
+  SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA,
   SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS,
   SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS,
 } from "@/lib/client-images";
@@ -38,97 +39,121 @@ const img = (
 const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
   "refresh-detail": {
     processIntro:
-      "Refresh Detail focuses on one well-kept vehicle — light buildup, fingerprints, and everyday dust.",
+      "Same blue Toyota Tundra throughout — light daily use, factory-fresh cabin, and a protected exterior finish.",
     resultIntro:
-      "Finished cabin surfaces, clean glass, and a refreshed feel — maintenance-level, not a full restoration.",
+      "Finished interior and outdoor gloss on the same truck — maintenance-level Refresh Detail.",
     items: [
       img(
-        CLIENT_IMAGES.baInteriorBefore,
-        "Interior before Refresh Detail",
-        "process",
-        "Starting point"
-      ),
-      img(
-        CLIENT_IMAGES.interiorWhiteLexusDashboard,
-        "Dashboard and console during interior refresh",
-        "process",
-        "Interior care"
-      ),
-      img(
         CLIENT_IMAGES.packageRefreshInterior,
-        "White SUV interior after Refresh Detail",
-        "result",
-        "Refresh result"
+        "Toyota Tundra driver cabin after Refresh Detail",
+        "process",
+        "Dashboard & steering wheel"
       ),
       img(
-        CLIENT_IMAGES.interiorWhiteLexusFsport,
-        "Clean F Sport cabin after Refresh Detail",
+        CLIENT_IMAGES.refreshTundraConsole,
+        "Tundra center console and TRD trim after refresh",
+        "process",
+        "Center console"
+      ),
+      img(
+        CLIENT_IMAGES.refreshTundraPassengerSeat,
+        "Tundra passenger seat and door panel after refresh",
+        "process",
+        "Seats & trim"
+      ),
+      img(
+        CLIENT_IMAGES.refreshTundraRearInterior,
+        "Tundra rear cabin after Refresh Detail",
+        "process",
+        "Rear interior"
+      ),
+      img(
+        CLIENT_IMAGES.refreshTundraDriverDoor,
+        "Tundra driver entry and carpet after refresh",
+        "process",
+        "Carpet & entry"
+      ),
+      img(
+        CLIENT_IMAGES.refreshTundraExteriorFront,
+        "Blue Tundra front finish after mobile detail",
         "result",
-        "Finished interior"
+        "Outdoor gloss"
+      ),
+      img(
+        CLIENT_IMAGES.refreshTundraExteriorAngle,
+        "Blue Tundra exterior angle after Refresh Detail",
+        "result",
+        "Protected shine"
       ),
     ],
   },
   "restore-detail": {
     processIntro:
-      "Restore Detail follows one vehicle through deep cleaning — stains, buildup, and worn surfaces.",
+      "Same red Dodge Charger throughout — stains, grime, and worn plastics brought back to factory-fresh.",
     resultIntro:
-      "Shampoo, extraction, and conditioning on the same interior — restored, not replaced.",
+      "Deep-cleaned leather, carpets, and trim on the same vehicle after Restore Detail.",
     items: [
       img(
-        CLIENT_IMAGES.baInteriorBefore,
-        "Interior stains before Restore Detail",
+        CLIENT_IMAGES.restoreChargerDaytonaDash,
+        "Dodge Charger dash and Daytona trim after Restore Detail",
         "process",
-        "Before deep clean"
-      ),
-      img(
-        CLIENT_IMAGES.deepClean15,
-        "Cabin buildup before shampoo and extraction",
-        "process",
-        "Deep clean in progress"
+        "Dashboard & vents"
       ),
       img(
         CLIENT_IMAGES.packageRestoreInterior,
-        "Red Charger interior after Restore Detail",
-        "result",
-        "Restored cabin"
+        "Charger driver seat and steering wheel after restore",
+        "process",
+        "Driver cabin"
       ),
       img(
-        CLIENT_IMAGES.packageRestoreInterior,
-        "Red Charger seats and trim after Restore Detail",
+        CLIENT_IMAGES.restoreChargerRearSeats,
+        "Charger rear leather after shampoo and conditioning",
+        "process",
+        "Rear seats"
+      ),
+      img(
+        CLIENT_IMAGES.restoreChargerDashboard,
+        "Charger instrument panel and console after restore",
         "result",
-        "Finished interior"
+        "Finished dash"
+      ),
+      img(
+        CLIENT_IMAGES.restoreChargerCenterConsole,
+        "Charger center stack and shifter after Restore Detail",
+        "result",
+        "Center console"
+      ),
+      img(
+        CLIENT_IMAGES.restoreChargerRearCabin,
+        "Charger rear cabin and headliner after Restore Detail",
+        "result",
+        "Factory-fresh interior"
       ),
     ],
   },
   "reset-detail": {
     processIntro:
-      "Reset Detail is one vehicle, maximum effort — pet hair, odors, spills, and neglected surfaces.",
+      "Same red Dodge Charger — maximum effort for neglected interiors, odors, and severe buildup.",
     resultIntro:
-      "The same vehicle after intensive extraction and restoration — factory-fresh again.",
+      "Intensive restoration on the same vehicle — engine bay, exterior, and cabin reset.",
     items: [
       img(
-        CLIENT_IMAGES.redLeatherBefore,
-        "Pet hair and debris before Reset Detail",
+        CLIENT_IMAGES.resetChargerEngineBay,
+        "Charger HEMI engine bay after Reset-level cleaning",
         "process",
-        "Before reset"
+        "Engine bay detail"
       ),
       img(
-        CLIENT_IMAGES.packageResetInterior,
-        "BMW interior during Reset Detail restoration",
-        "process",
-        "Deep restoration"
-      ),
-      img(
-        CLIENT_IMAGES.packageResetInterior,
-        "BMW interior after Reset Detail",
+        CLIENT_IMAGES.resetChargerExteriorDriveway,
+        "Red Charger after full Reset Detail — driveway finish",
         "result",
-        "Reset interior"
+        "Finished exterior"
       ),
       img(
-        CLIENT_IMAGES.resetDetailHeroExterior,
-        "BMW exterior gloss after Reset Detail",
+        CLIENT_IMAGES.resetChargerExteriorRear,
+        "Red Charger rear quarter gloss after Reset Detail",
         "result",
-        "Finished vehicle"
+        "Protected shine"
       ),
     ],
   },
@@ -153,6 +178,9 @@ const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
           "result",
           i === 0 ? "Outdoor gloss finish" : "Protected shine"
         )
+      ),
+      ...SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA.map((photo) =>
+        img(photo.src, photo.alt, "result", "White Porsche finish")
       ),
     ],
   },

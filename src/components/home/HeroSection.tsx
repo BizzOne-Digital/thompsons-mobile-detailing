@@ -12,7 +12,7 @@ import {
   Star,
 } from "lucide-react";
 import { CLIENT_IMAGES } from "@/lib/client-images";
-import { VIDEOS8_HOME_HERO } from "@/lib/client-videos8";
+import { VIDEOS10_HOME_HERO } from "@/lib/client-videos10";
 import type { PublicSiteSettings } from "@/lib/public-settings";
 
 type HeroSectionProps = {
@@ -80,7 +80,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
           className={`${HERO_MEDIA_CLASS} transition-opacity duration-500 ${
             videoReady ? "opacity-100" : "opacity-0"
           }`}
-          src={VIDEOS8_HOME_HERO}
+          src={VIDEOS10_HOME_HERO}
           poster={poster}
           loop
           muted

@@ -28,8 +28,8 @@ export const CLIENT_IMAGES = {
   aboutEscalade: v("vernon-18-escalade-angle.jpg"),
   ownerPortrait: `${base}/owner.jpg`,
   teamGroup: `${base}/team-group.jpg`,
-  /** Home hero poster (videos8 Escalade showcase) */
-  homeHeroPoster: v("vernon-19-escalade-front.jpg"),
+  /** Home hero poster (videos10 Dodge rinse clip) */
+  homeHeroPoster: "/images/portfolio/gray-dodge-challenger/01-front.jpg",
   /** Link previews (iMessage, texts, social) — branded van, not client vehicles */
   siteLinkShareImage: v("og-share.jpg"),
   /** Electric blue Charger — portfolio gallery only */
@@ -52,10 +52,26 @@ export const CLIENT_IMAGES = {
   aboutMobileSetup:
     "/images/portfolio/ford-fusion-mobile-process/01-equipment.jpg",
   aboutFoamWash: "/images/portfolio/classic-car-foam-wash/01-foam.jpg",
-  /** Homepage package cards — interior-focused finished results (Mar 2026) */
-  packageRefreshInterior: march2026("package-refresh-white-suv-interior.jpg"),
-  packageRestoreInterior: march2026("package-restore-red-charger-interior.jpg"),
-  packageResetInterior: march2026("package-reset-bmw-interior.jpg"),
+  /** Package cards & detail heroes — one vehicle per package (Mar 2026) */
+  packageRefreshInterior: march2026("refresh-tundra-driver-cabin.jpg"),
+  packageRestoreInterior: march2026("restore-charger-driver-interior.jpg"),
+  packageResetInterior: march2026("reset-charger-engine-bay.jpg"),
+  refreshTundraRearInterior: march2026("refresh-tundra-rear-interior.jpg"),
+  refreshTundraConsole: march2026("refresh-tundra-console.jpg"),
+  refreshTundraPassengerSeat: march2026("refresh-tundra-passenger-seat.jpg"),
+  refreshTundraDriverDoor: march2026("refresh-tundra-driver-door.jpg"),
+  refreshTundraExteriorFront: march2026("refresh-tundra-exterior-front.jpg"),
+  refreshTundraExteriorAngle: march2026(
+    "refresh-tundra-exterior-front-angle.jpg"
+  ),
+  restoreChargerDaytonaDash: march2026("restore-charger-daytona-dash.jpg"),
+  restoreChargerRearSeats: march2026("restore-charger-rear-seats.jpg"),
+  restoreChargerDashboard: march2026("restore-charger-dashboard.jpg"),
+  restoreChargerCenterConsole: march2026("restore-charger-center-console.jpg"),
+  restoreChargerRearCabin: march2026("restore-charger-rear-cabin.jpg"),
+  resetChargerExteriorRear: march2026("reset-charger-exterior-rear.jpg"),
+  resetChargerExteriorDriveway: march2026("reset-charger-exterior-driveway.jpg"),
+  resetChargerEngineBay: march2026("reset-charger-engine-bay.jpg"),
   /** Outdoor finished exterior — booking & marketing heroes */
   bookingHeroOutdoor: march2026("paint-correction-charger-finished-exterior.jpg"),
   resetDetailHeroExterior: march2026("bmw-x7-exterior-gloss.jpg"),
@@ -113,6 +129,16 @@ export const SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS = [
   { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Deep gloss on white Porsche hood after wash" },
 ] as const;
 
+/** Additional white Porsche stills — Signature Foam detail only */
+export const SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA = [
+  { src: march2026("signature-porsche-extra-01.jpg"), alt: "White Porsche Cayenne exterior detail finish" },
+  { src: march2026("signature-porsche-extra-02.jpg"), alt: "White Porsche mobile hand wash result" },
+  { src: march2026("signature-porsche-extra-03.jpg"), alt: "White Porsche gloss after foam hand wash" },
+  { src: march2026("signature-porsche-extra-04.jpg"), alt: "White Porsche side profile after detailing" },
+  { src: march2026("signature-porsche-extra-05.jpg"), alt: "White Porsche paint depth after protection" },
+  { src: march2026("signature-porsche-extra-06.jpg"), alt: "White Porsche showcase after Signature Foam wash" },
+] as const;
+
 export const CLIENT_ESCALADE_GALLERY = [
   { src: v("vernon-18-escalade-angle.jpg"), alt: "White Escalade after full detail" },
   { src: v("vernon-19-escalade-front.jpg"), alt: "Escalade front-end finish" },
@@ -156,15 +182,15 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
   },
   {
     title: "Paint Correction",
-    category: "Paint Correction",
+    category: "Exterior",
     beforeSrc: CLIENT_IMAGES.paintBefore,
     afterSrc: CLIENT_IMAGES.paintAfter,
     beforeAlt: "Faded, oxidized red paint before correction",
     afterAlt: "Deep gloss red finish after paint correction",
   },
   {
-    title: "Red Leather & Pet Hair Reset",
-    category: "Leather & Seats",
+    title: "Leather Cleaning & Pet Hair Removal",
+    category: "Interior",
     beforeSrc: CLIENT_IMAGES.redLeatherBefore,
     afterSrc: CLIENT_IMAGES.redLeatherAfter,
     beforeAlt:

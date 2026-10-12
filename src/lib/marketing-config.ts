@@ -8,7 +8,7 @@ function envFlag(name: string, defaultOn = true) {
 }
 
 export function getPromoConfig() {
-  const enabled = envFlag("NEXT_PUBLIC_PROMO_ENABLED", true);
+  const enabled = envFlag("NEXT_PUBLIC_PROMO_ENABLED", false);
   const percent = Number(process.env.NEXT_PUBLIC_PROMO_PERCENT || 10);
   const code = (
     process.env.NEXT_PUBLIC_PROMO_CODE?.trim() || "WELCOME10"

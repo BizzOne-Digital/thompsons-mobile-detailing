@@ -30,8 +30,8 @@ export const PACKAGE_IMAGES: Record<string, string> = {
 
 export const SERVICE_SLUG_IMAGES: Record<string, string> = {
   "refresh-detail": PACKAGE_IMAGES["refresh-detail"],
-  "restore-detail": CLIENT_IMAGES.restoreDetailHeroExterior,
-  "reset-detail": CLIENT_IMAGES.resetDetailHeroExterior,
+  "restore-detail": PACKAGE_IMAGES["restore-detail"],
+  "reset-detail": PACKAGE_IMAGES["reset-detail"],
   "signature-foam-hand-wash": CLIENT_IMAGES.porscheOutdoorFront,
   "recurring-maintenance-wash": CLIENT_IMAGES.restoreDetailHeroExterior,
   "ceramic-coating": "/images/client/ceramic-coating-finish-alt.jpg",

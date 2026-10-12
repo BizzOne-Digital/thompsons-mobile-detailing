@@ -1,34 +1,40 @@
 import {
   CLIENT_IMAGES,
-  CLIENT_WHITE_INTERIOR_GALLERY,
+  SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA,
   SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS,
   SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS,
 } from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
-const whiteInteriorExtras = CLIENT_WHITE_INTERIOR_GALLERY.slice(0, 2).map(
-  (item) => item.src
-);
-
+/** Curated galleries only — no extra vehicles on package / Signature Foam pages. */
 const EXTRA_GALLERY: Record<string, string[]> = {
   "refresh-detail": [
     CLIENT_IMAGES.packageRefreshInterior,
-    CLIENT_IMAGES.interiorWhiteLexusDashboard,
-    CLIENT_IMAGES.interiorWhiteLexusFsport,
+    CLIENT_IMAGES.refreshTundraConsole,
+    CLIENT_IMAGES.refreshTundraPassengerSeat,
+    CLIENT_IMAGES.refreshTundraRearInterior,
+    CLIENT_IMAGES.refreshTundraDriverDoor,
+    CLIENT_IMAGES.refreshTundraExteriorFront,
+    CLIENT_IMAGES.refreshTundraExteriorAngle,
   ],
   "restore-detail": [
+    CLIENT_IMAGES.restoreChargerDaytonaDash,
     CLIENT_IMAGES.packageRestoreInterior,
-    ...whiteInteriorExtras,
+    CLIENT_IMAGES.restoreChargerRearSeats,
+    CLIENT_IMAGES.restoreChargerDashboard,
+    CLIENT_IMAGES.restoreChargerCenterConsole,
+    CLIENT_IMAGES.restoreChargerRearCabin,
   ],
   "reset-detail": [
-    CLIENT_IMAGES.packageResetInterior,
-    CLIENT_IMAGES.resetDetailHeroExterior,
-    CLIENT_IMAGES.interiorWhiteLexusDashboard,
+    CLIENT_IMAGES.resetChargerEngineBay,
+    CLIENT_IMAGES.resetChargerExteriorDriveway,
+    CLIENT_IMAGES.resetChargerExteriorRear,
   ],
   "signature-foam-hand-wash": [
     CLIENT_IMAGES.porscheOutdoorFront,
     ...SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS.map((p) => p.src),
     ...SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS.map((p) => p.src),
+    ...SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA.map((p) => p.src),
   ],
   "recurring-maintenance-wash": [
     CLIENT_IMAGES.restoreDetailHeroExterior,
@@ -74,19 +80,24 @@ export function buildServiceGallery(
   const out: { url: string; alt: string }[] = [];
 
   const push = (url: string, alt: string) => {
-    if (seen.has(url)) return;
+    if (seen.has(url) || url === heroImage) return;
     seen.add(url);
     out.push({ url, alt });
   };
 
   const curated = EXTRA_GALLERY[slug];
-  if (!curated) {
-    fromDb.forEach((i) => {
-      if (i.url !== heroImage) push(i.url, i.alt);
+  if (curated) {
+    curated.forEach((url, i) => {
+      push(url, `${name} — photo ${i + 1}`);
     });
+    return out;
   }
 
-  const extras = curated ?? [
+  fromDb.forEach((i) => {
+    if (i.url !== heroImage) push(i.url, i.alt);
+  });
+
+  const extras = [
     SERVICE_SLUG_IMAGES[slug] ?? SITE_IMAGES.mobileVanSetup,
   ];
   extras.forEach((url, i) => {

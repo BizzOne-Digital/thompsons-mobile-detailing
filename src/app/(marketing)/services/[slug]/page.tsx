@@ -11,6 +11,7 @@ import {
   SERVICE_HERO_IMAGE,
   SERVICE_HERO_VIDEO,
 } from "@/lib/service-hero-media";
+import { getPackageShortDescription } from "@/lib/package-display-copy";
 import { SERVICE_SLUG_IMAGES } from "@/lib/site-images";
 
 export const dynamic = "force-dynamic";
@@ -64,11 +65,15 @@ export default async function ServiceDetailPage({
     service.images ?? []
   );
   const processStory = getServiceProcessStory(service.slug);
+  const subtitle = getPackageShortDescription(
+    service.slug,
+    service.shortDescription
+  );
 
   return (
     <PageShell
       title={service.name}
-      subtitle={service.shortDescription}
+      subtitle={subtitle}
       heroImage={heroImage}
       heroVideo={heroVideo}
       eyebrow="Service detail"

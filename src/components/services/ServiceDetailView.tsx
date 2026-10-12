@@ -17,6 +17,7 @@ import { formatCurrency } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { ServiceProcessStorySection } from "@/components/services/ServiceProcessStorySection";
 import type { ServiceProcessStory } from "@/lib/service-process-stories";
+import { getPackageShortDescription } from "@/lib/package-display-copy";
 
 export type ServiceDetailData = {
   _id: string;
@@ -71,12 +72,19 @@ export function ServiceDetailView({
     [service, vehicleType]
   );
 
-  const descriptionParagraphs = service.fullDescription
-    .split(/\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
   const isPackage = PACKAGE_SLUGS.includes(service.slug);
+
+  const descriptionParagraphs = isPackage
+    ? [
+        getPackageShortDescription(
+          service.slug,
+          service.shortDescription || service.fullDescription
+        ),
+      ]
+    : service.fullDescription
+        .split(/\n+/)
+        .map((p) => p.trim())
+        .filter(Boolean);
   const otherPackages = PACKAGE_SLUGS.filter((s) => s !== service.slug);
 
   const bookingHref = `/booking?service=${service.slug}&vehicle=${vehicleType}`;

@@ -9,6 +9,11 @@ import { Button } from "@/components/ui/Button";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HomeGoogleReviewsSection } from "@/components/home/HomeGoogleReviewsSection";
 import {
+  getPackageShortDescription,
+  PACKAGE_BADGES,
+  PACKAGE_SECTION_SUBTITLE,
+} from "@/lib/package-display-copy";
+import {
   CLIENT_IMAGES,
   HOME_FEATURED_BEFORE_AFTER,
 } from "@/lib/client-images";
@@ -30,16 +35,24 @@ type Service = {
   vehiclePrices?: { sedan?: number; midsize?: number; large?: number };
 };
 
-type FeaturedReviewFallback = {
-  _id: string;
-  customerName: string;
-  rating: number;
-  review: string;
-  vehicle?: string;
-  serviceReceived?: string;
-};
-
 const PACKAGE_SLUGS = ["refresh-detail", "restore-detail", "reset-detail"] as const;
+
+function PackageBadge({ slug }: { slug: string }) {
+  const badge = PACKAGE_BADGES[slug];
+  if (!badge) return null;
+  const popular = badge.variant === "popular";
+  return (
+    <span
+      className={`absolute right-3 top-3 z-10 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide ${
+        popular
+          ? "border border-bright-gold/80 bg-gradient-to-b from-bright-gold via-gold to-soft-gold text-midnight shadow-[0_3px_0_rgba(0,0,0,0.35),0_0_20px_rgba(255,201,40,0.55)]"
+          : "border border-gold/50 bg-gradient-to-b from-navy/90 to-midnight text-bright-gold shadow-[0_3px_0_rgba(0,0,0,0.4),0_0_12px_rgba(255,201,40,0.2)]"
+      }`}
+    >
+      {badge.label}
+    </span>
+  );
+}
 
 const MAIN_SERVICE_SLUGS = [
   "signature-foam-hand-wash",
@@ -88,7 +101,7 @@ function PackageCards({ packages }: { packages: Service[] }) {
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <SectionHeading
           title="Refresh, Restore & Reset"
-          subtitle="Our main packages — matched to how your vehicle looks and feels today."
+          subtitle={PACKAGE_SECTION_SUBTITLE}
           align="center"
         />
         <div className="grid gap-6 lg:grid-cols-3">
@@ -99,12 +112,13 @@ function PackageCards({ packages }: { packages: Service[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className={`glass-panel overflow-hidden rounded-3xl ${
-                pkg.slug === "reset-detail"
+              className={`glass-panel relative overflow-hidden rounded-3xl ${
+                pkg.slug === "restore-detail"
                   ? "ring-2 ring-bright-gold shadow-[0_0_40px_rgba(255,201,40,0.25)]"
                   : ""
               }`}
             >
+              <PackageBadge slug={pkg.slug} />
               {PACKAGE_IMAGES[pkg.slug] && (
                 <div className="relative aspect-[16/9] overflow-hidden bg-midnight/40">
                   <Image
@@ -119,7 +133,7 @@ function PackageCards({ packages }: { packages: Service[] }) {
               <div className="p-6">
                 <h3 className="font-display text-2xl text-bright-gold">{pkg.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-off-white/80">
-                  {pkg.shortDescription}
+                  {getPackageShortDescription(pkg.slug, pkg.shortDescription)}
                 </p>
                 <p className="mt-4 text-lg">
                   Starting at{" "}
@@ -154,7 +168,6 @@ function PackageCards({ packages }: { packages: Service[] }) {
 export function HomeView({
   services,
   faqs,
-  featuredReviewFallbacks,
   siteSettings,
   ownerPhotoUrl,
   teamGroupPhotoUrl,
@@ -162,7 +175,6 @@ export function HomeView({
 }: {
   services: Service[];
   faqs: FaqItem[];
-  featuredReviewFallbacks: FeaturedReviewFallback[];
   googleReviews: GoogleReviewsSnapshot;
   siteSettings: Pick<
     PublicSiteSettings,
@@ -186,17 +198,14 @@ export function HomeView({
     <div className="w-full min-w-0 overflow-x-clip">
       <HeroSection settings={siteSettings} />
 
-      <HomeGoogleReviewsSection
-        data={googleReviews}
-        featuredFallbacks={featuredReviewFallbacks}
-      />
+      <HomeGoogleReviewsSection data={googleReviews} />
 
       <PackageCards packages={packages} />
 
       <section className="mx-auto max-w-7xl px-4 py-16 md:py-20 lg:px-8">
         <SectionHeading
           title="Before & After Results"
-          subtitle="A few of our strongest transformations — see the full gallery on Results."
+          subtitle="See the difference expert detailing makes—from neglected to factory fresh."
           align="center"
         />
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -206,7 +215,7 @@ export function HomeView({
         </div>
         <div className="mt-8 text-center">
           <Button href="/results" variant="outline">
-            View Full Results Gallery
+            Explore More Transformations
           </Button>
         </div>
       </section>

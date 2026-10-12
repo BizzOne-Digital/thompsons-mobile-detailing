@@ -4,7 +4,7 @@ export const seedServices = [
     slug: "refresh-detail",
     category: "Full Detail Packages",
     shortDescription:
-      "Maintenance-level full detail for well-maintained vehicles needing professional upkeep.",
+      "For well-maintained vehicles showing light signs of daily use—dust, fingerprints, smudges, and minor dirt. For interiors without stains, pet hair, or heavy buildup—bringing back a factory-fresh appearance and a fresh, inviting scent.",
     fullDescription:
       "Designed for well-maintained vehicles that are regularly cleaned and need professional upkeep to remove everyday dust, light debris, fingerprints, and normal surface buildup while keeping the interior and exterior clean, polished, and properly maintained.",
     features: [
@@ -28,7 +28,7 @@ export const seedServices = [
     slug: "restore-detail",
     category: "Full Detail Packages",
     shortDescription:
-      "Deep clean full detail for vehicles with visible buildup, stains, and worn interior surfaces.",
+      "For surface stains and spills on seats and carpets, accumulated grime, dull or worn-looking hard plastics, and thick dust and lint around buttons, crevices, and the steering wheel—bringing back a factory-fresh appearance and a fresh, inviting scent.",
     fullDescription:
       "Designed for vehicles that need more than routine maintenance due to visible buildup, stains, spills, embedded dirt, carpet discoloration, and interior surfaces that have started to look worn or neglected. Includes everything in Refresh Detail, plus deep shampoo and extraction, leather conditioning, and headliner spot treatment.",
     features: [
@@ -50,7 +50,7 @@ export const seedServices = [
     slug: "reset-detail",
     category: "Full Detail Packages",
     shortDescription:
-      "Complete restoration for heavily neglected vehicles needing the highest level of cleaning.",
+      "Our most intensive restoration for severely neglected interiors—deeply embedded stains, excessive pet hair, overpowering odors, and heavy layers of stubborn dirt and grime. Intensive cleaning, deep extraction, odor treatment, and hard plastic restoration remove severe buildup and revive faded, dull, and worn-looking surfaces, bringing back a factory-fresh appearance and a fresh, inviting scent.",
     fullDescription:
       "Designed for heavily neglected vehicles that need the highest level of cleaning and restoration due to severe buildup, embedded stains, excessive pet hair, spills, odors, and worn or faded interior surfaces. Includes everything in Restore Detail, plus intensive extraction, odor treatment, full headliner cleaning, and exterior trim restoration.",
     features: [

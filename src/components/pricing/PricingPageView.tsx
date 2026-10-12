@@ -12,6 +12,10 @@ import {
   type PricingService,
 } from "@/lib/pricing-helpers";
 import { Button } from "@/components/ui/Button";
+import {
+  getPackageShortDescription,
+  PACKAGE_SECTION_SUBTITLE,
+} from "@/lib/package-display-copy";
 
 const PACKAGE_SLUGS = ["refresh-detail", "restore-detail", "reset-detail"];
 
@@ -124,14 +128,13 @@ export function PricingPageView({
             Full detail packages
           </h2>
           <p className="mt-2 text-sm text-off-white/70">
-            Refresh for maintenance, Restore for deep cleaning, Reset for maximum
-            restoration. Book online to choose your package, optional add-ons, and
-            see your estimated total before submitting.
+            {PACKAGE_SECTION_SUBTITLE} Book online to choose your package,
+            optional add-ons, and see your estimated total before submitting.
           </p>
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
           {packages.map((pkg) => {
-            const highlight = pkg.slug === "reset-detail";
+            const highlight = pkg.slug === "restore-detail";
             return (
               <article
                 key={pkg._id}
@@ -146,7 +149,7 @@ export function PricingPageView({
                     {pkg.name}
                   </h3>
                   <p className="mt-2 text-sm text-off-white/70">
-                    {pkg.shortDescription}
+                    {getPackageShortDescription(pkg.slug, pkg.shortDescription)}
                   </p>
                   <p className="mt-5 font-display text-4xl text-white">
                     {formatServicePrice(pkg, vehicleType)}

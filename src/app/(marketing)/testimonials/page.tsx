@@ -17,24 +17,9 @@ export default async function TestimonialsPage() {
     getGoogleReviews(),
   ]);
 
-  const featuredFallbacks = testimonials
-    .filter((t) => t.featured)
-    .slice(0, 4)
-    .map((t) => ({
-      _id: String(t._id),
-      customerName: t.customerName,
-      rating: t.rating,
-      review: t.review,
-      vehicle: t.vehicle,
-      serviceReceived: t.serviceReceived,
-    }));
-
   return (
     <>
-      <HomeGoogleReviewsSection
-        data={googleReviews}
-        featuredFallbacks={featuredFallbacks}
-      />
+      <HomeGoogleReviewsSection data={googleReviews} />
       <PageShell
         title="More Customer Feedback"
         subtitle="Additional reviews from Valley drivers — packages, paint work, and add-ons."

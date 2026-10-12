@@ -55,8 +55,14 @@ const RESET_FEATURES = [
   FOAM_INCLUDED,
 ];
 
-const RESTORE_FULL_DESCRIPTION =
-  "Designed for vehicles that need more than routine maintenance due to visible buildup, stains, spills, embedded dirt, carpet discoloration, and interior surfaces that have started to look worn or neglected. Includes everything in Refresh Detail, plus deep shampoo and extraction, leather conditioning, and headliner spot treatment.";
+const REFRESH_SHORT =
+  "For well-maintained vehicles showing light signs of daily use—dust, fingerprints, smudges, and minor dirt. For interiors without stains, pet hair, or heavy buildup—bringing back a factory-fresh appearance and a fresh, inviting scent.";
+
+const RESTORE_SHORT =
+  "For surface stains and spills on seats and carpets, accumulated grime, dull or worn-looking hard plastics, and thick dust and lint around buttons, crevices, and the steering wheel—bringing back a factory-fresh appearance and a fresh, inviting scent.";
+
+const RESET_SHORT =
+  "Our most intensive restoration for severely neglected interiors—deeply embedded stains, excessive pet hair, overpowering odors, and heavy layers of stubborn dirt and grime. Intensive cleaning, deep extraction, odor treatment, and hard plastic restoration remove severe buildup and revive faded, dull, and worn-looking surfaces, bringing back a factory-fresh appearance and a fresh, inviting scent.";
 
 const RECURRING_MAINTENANCE = {
   name: "Recurring Customer Maintenance Wash",
@@ -99,6 +105,8 @@ async function main() {
       $set: {
         estimatedDuration: "1.5 to 3 hours",
         features: REFRESH_FEATURES,
+        shortDescription: REFRESH_SHORT,
+        fullDescription: REFRESH_SHORT,
       },
     }
   );
@@ -109,7 +117,8 @@ async function main() {
       $set: {
         startingPrice: 229,
         vehiclePrices: { sedan: 229, midsize: 249, large: 289 },
-        fullDescription: RESTORE_FULL_DESCRIPTION,
+        shortDescription: RESTORE_SHORT,
+        fullDescription: RESTORE_SHORT,
         features: RESTORE_FEATURES,
       },
     }
@@ -117,7 +126,13 @@ async function main() {
 
   await Service.updateOne(
     { slug: "reset-detail" },
-    { $set: { features: RESET_FEATURES } }
+    {
+      $set: {
+        features: RESET_FEATURES,
+        shortDescription: RESET_SHORT,
+        fullDescription: RESET_SHORT,
+      },
+    }
   );
 
   await Service.updateOne(
