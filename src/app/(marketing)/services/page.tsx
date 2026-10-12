@@ -4,7 +4,12 @@ import { getAddOns, getPublicServices } from "@/lib/data";
 import { formatAddOnStartingPrice } from "@/lib/add-on-display";
 import { PageShell } from "@/components/layout/PageShell";
 import { SERVICES_INDEX_HERO } from "@/lib/page-hero-images";
-import { formatCurrency } from "@/lib/utils";
+import {
+  getServiceDisplayName,
+  getServiceTagline,
+  serviceTitleColorClass,
+} from "@/lib/service-catalog-copy";
+import { VehiclePriceTiers } from "@/components/pricing/PriceDisplay";
 
 export const metadata = buildMetadata({
   title: "Services",
@@ -119,21 +124,33 @@ export default async function ServicesPage({
         </p>
       ) : (
         <div className="grid gap-6 md:grid-cols-2">
-          {serviceCards.map((service) => (
+          {serviceCards.map((service, index) => (
             <article
               key={String(service._id)}
               className="glass-panel rounded-2xl p-6"
             >
-              <h2 className="text-xl font-semibold text-bright-gold">
-                {service.name}
+              <h2
+                className={`font-display text-xl font-semibold ${serviceTitleColorClass(index)}`}
+              >
+                {getServiceDisplayName(service.slug, service.name)}
               </h2>
-              <p className="mt-2 text-sm font-medium text-off-white/90">
-                {service.customQuote
-                  ? "Custom quote"
-                  : `Starting at ${formatCurrency(service.startingPrice)}`}
+              <p className="mt-2 text-sm leading-relaxed text-off-white/80">
+                {getServiceTagline(
+                  service.slug,
+                  service.shortDescription
+                )}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-off-white/75">
-                {service.fullDescription || service.shortDescription}
+              {!service.customQuote && (
+                <div className="mt-4">
+                  <VehiclePriceTiers
+                    vehiclePrices={service.vehiclePrices}
+                    startingPrice={service.startingPrice}
+                    compact
+                  />
+                </div>
+              )}
+              <p className="mt-4 text-sm leading-relaxed text-off-white/65">
+                Full process and inclusions on the detail page.
               </p>
               <div className="mt-4 flex gap-3 text-sm">
                 <Link

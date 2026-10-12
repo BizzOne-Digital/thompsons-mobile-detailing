@@ -8,8 +8,8 @@ const march2026 = (name: string) => `${base}/vernon-2026/${name}`;
 export const CLIENT_IMAGES = {
   baInteriorBefore: `${base}/ba-02-interior-before.jpg`,
   baInteriorAfter: `${base}/ba-01-interior-after.jpg`,
-  baHeadlightBefore: `${base}/ba-03-headlight-before.jpg`,
-  baHeadlightAfter: `${base}/ba-04-headlight-after.jpg`,
+  baHeadlightBefore: march2026("charger-headlight-before.jpg"),
+  baHeadlightAfter: march2026("charger-headlight-after.jpg"),
   baTaillightBefore: v("vernon-06-taillight-before.jpg"),
   baTaillightAfter: v("vernon-07-taillight-after.jpg"),
   baExteriorShowcase: v("vernon-18-escalade-angle.jpg"),
@@ -169,8 +169,8 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
     category: "Exterior",
     beforeSrc: CLIENT_IMAGES.baHeadlightBefore,
     afterSrc: CLIENT_IMAGES.baHeadlightAfter,
-    beforeAlt: "Oxidized headlight lens before restoration",
-    afterAlt: "Clear headlight lens after polish and restoration",
+    beforeAlt: "Red Dodge Charger headlight before restoration",
+    afterAlt: "Red Dodge Charger headlight after restoration",
   },
   {
     title: "Tail Light Restoration",

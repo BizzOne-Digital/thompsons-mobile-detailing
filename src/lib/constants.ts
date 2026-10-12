@@ -39,9 +39,9 @@ export const SERVICE_AREAS = [
 ] as const;
 
 export const VEHICLE_TYPES = [
-  { id: "sedan", label: "Sedan or Small Car" },
+  { id: "sedan", label: "Sedan or Compact" },
   { id: "midsize", label: "Midsize SUV or Small Truck" },
-  { id: "large", label: "Large SUV or Full-Size Truck" },
+  { id: "large", label: "Large SUV, Large Truck, Van, or Work Truck" },
 ] as const;
 
 export type VehicleTypeId = (typeof VEHICLE_TYPES)[number]["id"];

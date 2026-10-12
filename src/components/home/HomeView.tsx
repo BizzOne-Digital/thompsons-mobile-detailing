@@ -14,6 +14,12 @@ import {
   PACKAGE_SECTION_SUBTITLE,
 } from "@/lib/package-display-copy";
 import {
+  getServiceDisplayName,
+  getServiceTagline,
+  serviceTitleColorClass,
+} from "@/lib/service-catalog-copy";
+import { VehiclePriceTiers } from "@/components/pricing/PriceDisplay";
+import {
   CLIENT_IMAGES,
   HOME_FEATURED_BEFORE_AFTER,
 } from "@/lib/client-images";
@@ -131,16 +137,21 @@ function PackageCards({ packages }: { packages: Service[] }) {
                 </div>
               )}
               <div className="p-6">
-                <h3 className="font-display text-2xl text-bright-gold">{pkg.name}</h3>
+                <h3
+                  className={`font-display text-2xl ${serviceTitleColorClass(index)}`}
+                >
+                  {pkg.name}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-off-white/80">
                   {getPackageShortDescription(pkg.slug, pkg.shortDescription)}
                 </p>
-                <p className="mt-4 text-lg">
-                  Starting at{" "}
-                  <span className="font-semibold text-bright-gold">
-                    {formatCurrency(pkg.startingPrice)}
-                  </span>
-                </p>
+                <div className="mt-5">
+                  <VehiclePriceTiers
+                    vehiclePrices={pkg.vehiclePrices}
+                    startingPrice={pkg.startingPrice}
+                    compact
+                  />
+                </div>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Button
                     href={`/services/${pkg.slug}`}
@@ -228,7 +239,7 @@ export function HomeView({
             align="center"
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {mainServices.map((service) => (
+            {mainServices.map((service, serviceIndex) => (
               <Link
                 key={service._id}
                 href={`/services/${service.slug}`}
@@ -246,14 +257,22 @@ export function HomeView({
                   </div>
                 )}
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-display text-lg text-bright-gold">
-                    {service.name}
+                  <h3
+                    className={`font-display text-lg ${serviceTitleColorClass(serviceIndex)}`}
+                  >
+                    {getServiceDisplayName(service.slug, service.name)}
                   </h3>
                   <p className="mt-2 line-clamp-2 flex-1 text-sm text-off-white/75">
-                    {service.shortDescription}
+                    {getServiceTagline(service.slug, service.shortDescription)}
                   </p>
                   <p className="mt-3 text-sm font-semibold text-off-white">
-                    From {formatCurrency(service.startingPrice)}
+                    {formatCurrency(
+                      service.vehiclePrices?.sedan ?? service.startingPrice
+                    )}
+                    <span className="font-normal text-off-white/55">
+                      {" "}
+                      sedan · see tiers on details
+                    </span>
                   </p>
                 </div>
               </Link>

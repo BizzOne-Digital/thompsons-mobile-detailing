@@ -38,7 +38,7 @@ export const SERVICE_SLUG_IMAGES: Record<string, string> = {
   "paint-correction": CLIENT_IMAGES.paintAfter,
   "engine-bay-cleaning": CLIENT_IMAGES.engineAfter,
   "engine-bay-detail": CLIENT_IMAGES.engineAfter,
-  "headlight-restoration": "/images/client/ba-04-headlight-after.jpg",
+  "headlight-restoration": CLIENT_IMAGES.baHeadlightAfter,
   "pet-hair-removal": CLIENT_IMAGES.redLeatherAfter,
 };
 

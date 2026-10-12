@@ -36,7 +36,7 @@ export function formatServicePrice(
   vehicleType: VehicleTypeId
 ) {
   if (service.customQuote) {
-    return `Starting at ${formatCurrency(service.startingPrice)}`;
+    return formatCurrency(service.startingPrice);
   }
   const price = getServicePrice(service, vehicleType);
   return price != null ? formatCurrency(price) : "—";
@@ -46,9 +46,6 @@ export function formatAddOnPrice(addOn: PricingAddOn, vehicleType: VehicleTypeId
   if (addOn.pricingType === "vehicle" && addOn.vehiclePrices) {
     const p = addOn.vehiclePrices[vehicleType] ?? addOn.fixedPrice;
     return p != null ? formatCurrency(p) : "—";
-  }
-  if (addOn.pricingType === "starting") {
-    return `Starting at ${formatCurrency(addOn.fixedPrice ?? 0)}`;
   }
   return formatCurrency(addOn.fixedPrice ?? 0);
 }

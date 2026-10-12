@@ -30,6 +30,7 @@ const SERVICE_SLUGS = [
   "reset-detail",
   "signature-foam-hand-wash",
   "recurring-maintenance-wash",
+  "monthly-maintenance-membership",
   "ceramic-coating",
   "paint-correction",
   "pet-hair-removal",

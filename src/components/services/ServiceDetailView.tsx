@@ -18,6 +18,11 @@ import { Button } from "@/components/ui/Button";
 import { ServiceProcessStorySection } from "@/components/services/ServiceProcessStorySection";
 import type { ServiceProcessStory } from "@/lib/service-process-stories";
 import { getPackageShortDescription } from "@/lib/package-display-copy";
+import { getServiceCatalogEntry } from "@/lib/service-catalog-copy";
+import {
+  PricePop,
+  VehiclePriceTiers,
+} from "@/components/pricing/PriceDisplay";
 
 export type ServiceDetailData = {
   _id: string;
@@ -73,18 +78,25 @@ export function ServiceDetailView({
   );
 
   const isPackage = PACKAGE_SLUGS.includes(service.slug);
+  const catalog = getServiceCatalogEntry(service.slug);
 
-  const descriptionParagraphs = isPackage
-    ? [
-        getPackageShortDescription(
-          service.slug,
-          service.shortDescription || service.fullDescription
-        ),
-      ]
-    : service.fullDescription
-        .split(/\n+/)
-        .map((p) => p.trim())
-        .filter(Boolean);
+  const descriptionParagraphs = catalog
+    ? [catalog.overview, ...(catalog.notes ?? [])]
+    : isPackage
+      ? [
+          getPackageShortDescription(
+            service.slug,
+            service.shortDescription || service.fullDescription
+          ),
+        ]
+      : service.fullDescription
+          .split(/\n+/)
+          .map((p) => p.trim())
+          .filter(Boolean);
+
+  const featureList =
+    catalog?.features?.length ? catalog.features : service.features;
+
   const otherPackages = PACKAGE_SLUGS.filter((s) => s !== service.slug);
 
   const bookingHref = `/booking?service=${service.slug}&vehicle=${vehicleType}`;
@@ -170,7 +182,7 @@ export function ServiceDetailView({
               </h2>
             </div>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {service.features.map((feature) => (
+              {featureList.map((feature) => (
                 <li
                   key={feature}
                   className="flex gap-3 rounded-xl border border-gold/15 bg-navy/25 px-4 py-3.5 text-sm text-off-white/88"
@@ -264,46 +276,23 @@ export function ServiceDetailView({
                 ))}
               </div>
 
-              <p className="mt-6 font-display text-4xl text-white">
-                {service.customQuote
-                  ? "Custom quote"
-                  : price != null
-                    ? formatCurrency(price)
-                    : "—"}
-              </p>
-              {!service.customQuote && (
-                <p className="mt-1 text-xs text-off-white/55">
-                  {VEHICLE_TYPES.find((v) => v.id === vehicleType)?.label}
-                </p>
-              )}
-              {service.customQuote && (
-                <p className="mt-3 text-sm leading-relaxed text-off-white/65">
-                  Starting at {formatCurrency(service.startingPrice)}. Final
-                  price depends on paint condition — upload photos when booking.
-                </p>
+              {price != null && (
+                <div className="mt-6">
+                  <PricePop>{formatCurrency(price)}</PricePop>
+                  <p className="mt-2 text-xs text-off-white/55">
+                    {VEHICLE_TYPES.find((v) => v.id === vehicleType)?.label}
+                  </p>
+                </div>
               )}
 
-              <ul className="mt-6 space-y-2 border-t border-gold/15 pt-6 text-sm text-off-white/75">
-                {VEHICLE_TYPES.map((v) => {
-                  const p =
-                    service.vehiclePrices?.[v.id] ?? service.startingPrice;
-                  return (
-                    <li
-                      key={v.id}
-                      className={`flex justify-between gap-2 ${
-                        vehicleType === v.id ? "text-bright-gold" : ""
-                      }`}
-                    >
-                      <span className="text-off-white/60">{v.label}</span>
-                      <span className="font-medium">
-                        {service.customQuote
-                          ? "Quote"
-                          : formatCurrency(p)}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
+              <div className="mt-6 border-t border-gold/15 pt-6">
+                <VehiclePriceTiers
+                  vehiclePrices={service.vehiclePrices}
+                  startingPrice={service.startingPrice}
+                  highlightType={vehicleType}
+                  compact
+                />
+              </div>
 
               <Button href={bookingHref} className="mt-8 w-full">
                 Book this service
@@ -353,7 +342,7 @@ export function ServiceDetailView({
                 <p className="mt-3 text-sm font-medium text-bright-gold">
                   {rel.customQuote
                     ? "Custom quote"
-                    : `From ${formatCurrency(rel.startingPrice)}`}
+                    : formatCurrency(rel.startingPrice)}
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1 text-xs text-off-white/50 group-hover:text-bright-gold">
                   View details

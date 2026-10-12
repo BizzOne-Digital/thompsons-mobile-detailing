@@ -49,6 +49,19 @@ export type BookableAddOnLike = {
 };
 
 /** Whether an add-on should appear in booking for the selected package. */
+/** Services that already include clay bar — do not offer clay add-on. */
+const CLAY_INCLUDED_SERVICE_SLUGS = new Set([
+  "signature-foam-hand-wash",
+  "paint-correction",
+  "ceramic-coating",
+]);
+
+export function isClayBarAddOnBlocked(serviceSlug: string | undefined): boolean {
+  return Boolean(
+    serviceSlug && CLAY_INCLUDED_SERVICE_SLUGS.has(serviceSlug)
+  );
+}
+
 export function isAddOnBookableForPackage(
   addOn: BookableAddOnLike,
   packageSlug: string | undefined
@@ -56,6 +69,13 @@ export function isAddOnBookableForPackage(
   if (
     !packageSlug ||
     !DETAIL_PACKAGE_SLUGS.includes(packageSlug as DetailPackageSlug)
+  ) {
+    return false;
+  }
+
+  if (
+    addOn.slug === "clay-bar-decontamination" &&
+    isClayBarAddOnBlocked(packageSlug)
   ) {
     return false;
   }

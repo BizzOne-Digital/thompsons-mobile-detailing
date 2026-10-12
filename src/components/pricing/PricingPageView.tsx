@@ -14,8 +14,11 @@ import {
 import { Button } from "@/components/ui/Button";
 import {
   getPackageShortDescription,
+  PACKAGE_BADGES,
   PACKAGE_SECTION_SUBTITLE,
 } from "@/lib/package-display-copy";
+import { serviceTitleColorClass } from "@/lib/service-catalog-copy";
+import { VehiclePriceTiers } from "@/components/pricing/PriceDisplay";
 
 const PACKAGE_SLUGS = ["refresh-detail", "restore-detail", "reset-detail"];
 
@@ -133,29 +136,48 @@ export function PricingPageView({
           </p>
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
-          {packages.map((pkg) => {
+          {packages.map((pkg, index) => {
             const highlight = pkg.slug === "restore-detail";
+            const badge = PACKAGE_BADGES[pkg.slug];
             return (
               <article
                 key={pkg._id}
-                className={`flex flex-col overflow-hidden rounded-2xl border ${
+                className={`relative flex flex-col overflow-hidden rounded-2xl border ${
                   highlight
                     ? "border-bright-gold/60 bg-gradient-to-b from-gold/10 to-navy/40 shadow-[0_0_40px_rgba(255,201,40,0.12)]"
                     : "border-gold/20 bg-navy/30"
                 }`}
               >
+                {badge && (
+                  <span
+                    className={`absolute right-3 top-3 z-10 rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-wide ${
+                      badge.variant === "popular"
+                        ? "border border-bright-gold/80 bg-gradient-to-b from-bright-gold to-gold text-midnight shadow-[0_2px_0_rgba(0,0,0,0.35),0_0_16px_rgba(255,201,40,0.45)]"
+                        : "border border-gold/45 bg-navy/90 text-bright-gold"
+                    }`}
+                  >
+                    {badge.label}
+                  </span>
+                )}
                 <div className="border-b border-gold/15 p-6">
-                  <h3 className="font-display text-xl text-bright-gold">
+                  <h3
+                    className={`font-display text-xl ${serviceTitleColorClass(index)}`}
+                  >
                     {pkg.name}
                   </h3>
                   <p className="mt-2 text-sm text-off-white/70">
                     {getPackageShortDescription(pkg.slug, pkg.shortDescription)}
                   </p>
-                  <p className="mt-5 font-display text-4xl text-white">
-                    {formatServicePrice(pkg, vehicleType)}
-                  </p>
+                  <div className="mt-5">
+                    <VehiclePriceTiers
+                      vehiclePrices={pkg.vehiclePrices}
+                      startingPrice={pkg.startingPrice}
+                      highlightType={vehicleType}
+                      compact
+                    />
+                  </div>
                   {pkg.estimatedDuration && (
-                    <p className="mt-1 text-xs text-off-white/50">
+                    <p className="mt-3 text-xs text-off-white/50">
                       Est. {pkg.estimatedDuration}
                     </p>
                   )}
@@ -249,9 +271,8 @@ export function PricingPageView({
           <Info className="h-5 w-5 shrink-0 text-gold" aria-hidden />
           <div className="space-y-3 text-sm text-off-white/75">
             <p>
-              <strong className="text-off-white">Starting at</strong> and{" "}
-              <strong className="text-off-white">custom quote</strong> services
-              are priced after we review vehicle condition, size, and scope.
+              Listed prices are for the vehicle size you select. Final totals may
+              adjust for condition and scope after we review your booking.
             </p>
             <p>
               Online booking submits a{" "}
