@@ -5,8 +5,9 @@ export const SEO_GOOGLE_ACCESS_EMAIL =
 export const BRAND = {
   name: "Thompson's Mobile Detailing AZ",
   tagline: "Factory Fresh Results Guaranteed",
-  headline:
-    "Professional Mobile Auto Detailing in Avondale and Across the Phoenix Metro",
+  headline: "Mobile Detailing Across the Valley",
+  /** Short line under the home hero headline */
+  heroSupportingLine: "Mobile Detailing Across the Valley",
   phone: "623-999-7500",
   phoneHref: "tel:+16239997500",
   smsHref: "sms:+16239997500",

@@ -36,8 +36,7 @@ export function toPublicSiteSettings(
     heroHeadline: raw?.heroHeadline || "Factory Fresh",
     heroSubheadline: raw?.heroSubheadline || "Results Guaranteed",
     heroDescription:
-      raw?.heroDescription ||
-      "Professional mobile auto detailing in Avondale and across the Phoenix metro—delivered to your home, office, or preferred location.",
+      raw?.heroDescription || BRAND.heroSupportingLine,
     heroMediaUrl: raw?.heroMediaUrl || "",
     ownerPhotoUrl: raw?.ownerPhotoUrl || "",
     teamGroupPhotoUrl: raw?.teamGroupPhotoUrl || "",

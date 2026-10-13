@@ -99,37 +99,45 @@ export function HeroSection({ settings }: HeroSectionProps) {
         />
       )}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/42 via-black/16 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-black/28 via-black/10 to-transparent"
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-midnight/50 via-transparent to-black/10"
+        className="absolute inset-0 bg-gradient-to-t from-midnight/40 via-transparent to-black/5"
         aria-hidden
       />
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full min-w-0 max-w-7xl flex-col justify-center px-4 pb-32 pt-28 sm:px-5 sm:pb-28 sm:pt-32 lg:px-8">
+      <div className="relative mx-auto flex min-h-[100svh] w-full min-w-0 max-w-7xl flex-col items-center justify-center px-4 pb-28 pt-24 text-center sm:px-5 sm:pb-24 sm:pt-28 lg:px-8">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75 }}
-          className="max-w-2xl"
+          className="w-full max-w-3xl"
         >
-          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-bright-gold sm:text-[11px] sm:tracking-[0.3em] md:text-xs md:tracking-[0.35em]">
+          <p
+            className="text-xs font-bold uppercase tracking-[0.2em] text-bright-gold sm:text-sm sm:tracking-[0.28em] [text-shadow:0_0_24px_rgba(255,201,40,0.65),0_0_48px_rgba(255,201,40,0.35)]"
+          >
             5-Star Mobile Auto Detailing
           </p>
 
-          <h1 className="mt-4 max-w-full break-words font-display text-[2rem] font-bold leading-[1.05] tracking-tight sm:mt-5 sm:text-5xl md:text-6xl lg:text-7xl">
-            <span className="block text-white">{settings.heroHeadline}</span>
-            <span className="mt-1 block bg-gradient-to-r from-soft-gold via-bright-gold to-gold bg-clip-text text-transparent">
+          <h1 className="mt-2 max-w-full break-words font-display text-[1.65rem] font-bold leading-[1.08] tracking-tight sm:mt-3 sm:text-4xl md:text-[2.75rem] lg:text-5xl">
+            <span
+              className="block text-white [text-shadow:0_0_28px_rgba(255,201,40,0.45),0_2px_12px_rgba(0,0,0,0.5)]"
+            >
+              {settings.heroHeadline}
+            </span>
+            <span
+              className="mt-0.5 block bg-gradient-to-r from-soft-gold via-bright-gold to-gold bg-clip-text text-transparent [filter:drop-shadow(0_0_22px_rgba(255,201,40,0.55))]"
+            >
               {settings.heroSubheadline}
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/85 md:text-lg">
+          <p className="mx-auto mt-3 max-w-md text-sm font-medium leading-snug text-white/90 sm:mt-4 sm:text-base sm:whitespace-nowrap">
             {settings.heroDescription}
           </p>
 
-          <ul className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium text-bright-gold">
+          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-medium text-bright-gold">
             <li className="flex items-center gap-2">
               <Star className="h-4 w-4 fill-bright-gold text-bright-gold" />
               Fully Mobile — We Come to You
@@ -146,7 +154,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
             </li>
           </ul>
 
-          <div className="mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4">
+          <div className="mt-6 flex w-full max-w-md flex-col gap-3 sm:mx-auto sm:mt-8 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
             <Link href="/booking" className="hero-cta-primary w-full justify-center sm:w-auto">
               Book Your Detail
               <ChevronRight className="h-5 w-5" aria-hidden />

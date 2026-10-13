@@ -61,7 +61,9 @@ export const CLIENT_IMAGES = {
   /** Package cards & detail heroes — one vehicle per package (Mar 2026) */
   packageRefreshInterior: march2026("refresh-tundra-driver-cabin.jpg"),
   packageRestoreInterior: march2026("restore-charger-driver-interior.jpg"),
-  packageResetInterior: march2026("reset-charger-engine-bay.jpg"),
+  packageResetInterior: march2026("signature-porsche-extra-01.jpg"),
+  resetEscaladeExteriorFront: march2026("signature-porsche-extra-05.jpg"),
+  resetEscaladeExteriorSide: march2026("signature-porsche-extra-06.jpg"),
   refreshTundraRearInterior: march2026("refresh-tundra-rear-interior.jpg"),
   refreshTundraConsole: march2026("refresh-tundra-console.jpg"),
   refreshTundraPassengerSeat: march2026("refresh-tundra-passenger-seat.jpg"),
@@ -144,8 +146,8 @@ export const SIGNATURE_FOAM_BLACK_PORSCHE_STILLS = [
   },
 ] as const;
 
-/** Cadillac Escalade — Signature Foam section (black SUV + white interior / white SUV) */
-export const SIGNATURE_FOAM_ESCALADE_STILLS = [
+/** Cadillac Escalade exteriors — Signature Foam (interiors live on Reset Detail) */
+export const SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS = [
   {
     src: v("vernon-17-porsche-hood-gloss.jpg"),
     alt: "White Cadillac Escalade front finish after mobile detail",
@@ -157,36 +159,43 @@ export const SIGNATURE_FOAM_ESCALADE_STILLS = [
     caption: "White Cadillac Escalade — protected finish",
   },
   {
-    src: march2026("signature-porsche-extra-05.jpg"),
+    src: CLIENT_IMAGES.resetEscaladeExteriorFront,
     alt: "Black Cadillac Escalade front after mobile detail",
     caption: "Black Cadillac Escalade — front finish",
   },
   {
-    src: march2026("signature-porsche-extra-06.jpg"),
+    src: CLIENT_IMAGES.resetEscaladeExteriorSide,
     alt: "Black Cadillac Escalade side profile after detail",
     caption: "Black Cadillac Escalade — side profile",
   },
+] as const;
+
+/** Black Cadillac Escalade — Reset Detail (interior restoration + cargo) */
+export const RESET_ESCALADE_INTERIOR_STILLS = [
   {
     src: march2026("signature-porsche-extra-02.jpg"),
-    alt: "Black Cadillac Escalade white leather rear seats after interior care",
+    alt: "Black Cadillac Escalade white leather rear seats after Reset Detail",
     caption: "Black Escalade — white leather rear cabin",
   },
   {
     src: march2026("signature-porsche-extra-01.jpg"),
-    alt: "Black Cadillac Escalade white leather front interior",
+    alt: "Black Cadillac Escalade white leather front interior after Reset Detail",
     caption: "Black Escalade — white leather interior",
   },
   {
     src: march2026("signature-porsche-extra-03.jpg"),
-    alt: "Black Cadillac Escalade driver cabin with white leather",
+    alt: "Black Cadillac Escalade driver cabin with white leather after Reset Detail",
     caption: "Black Escalade — driver cabin",
   },
   {
     src: march2026("signature-porsche-extra-04.jpg"),
-    alt: "Black Cadillac Escalade cargo area after detail",
+    alt: "Black Cadillac Escalade cargo area after Reset Detail",
     caption: "Black Escalade — cargo area",
   },
 ] as const;
+
+/** @deprecated Use SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS */
+export const SIGNATURE_FOAM_ESCALADE_STILLS = SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS;
 
 export const CLIENT_ESCALADE_GALLERY = [
   { src: v("vernon-18-escalade-angle.jpg"), alt: "White Escalade after full detail" },

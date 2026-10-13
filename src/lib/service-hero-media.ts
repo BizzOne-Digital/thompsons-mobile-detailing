@@ -19,19 +19,19 @@ export const SERVICE_PROCESS_FEATURED_VIDEO: Partial<
   Record<string, { src: string; poster: string; alt: string }>
 > = {
   "refresh-detail": {
-    src: VIDEOS10_PACKAGE_REFRESH,
+    src: VIDEOS11_PACKAGE_RESTORE,
     poster: CLIENT_IMAGES.packageRefreshInterior,
     alt: "Refresh Detail on a blue Toyota Tundra — maintenance wash and interior care",
   },
   "restore-detail": {
-    src: VIDEOS11_PACKAGE_RESTORE,
+    src: VIDEOS12_PACKAGE_RESET,
     poster: CLIENT_IMAGES.packageRestoreInterior,
     alt: "Restore Detail on a red Dodge Charger — deep interior restoration",
   },
   "reset-detail": {
-    src: VIDEOS12_PACKAGE_RESET,
-    poster: CLIENT_IMAGES.resetChargerEngineBay,
-    alt: "Reset Detail on a red Dodge Charger — maximum interior restoration",
+    src: VIDEOS10_PACKAGE_REFRESH,
+    poster: CLIENT_IMAGES.resetEscaladeExteriorFront,
+    alt: "Reset Detail on a black Cadillac Escalade — maximum interior restoration",
   },
   "signature-foam-hand-wash": {
     src: VIDEOS9_SIGNATURE_FOAM_WASH,

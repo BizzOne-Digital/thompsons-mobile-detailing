@@ -1,7 +1,8 @@
 import {
   CLIENT_IMAGES,
+  RESET_ESCALADE_INTERIOR_STILLS,
   SIGNATURE_FOAM_BLACK_PORSCHE_STILLS,
-  SIGNATURE_FOAM_ESCALADE_STILLS,
+  SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS,
   SIGNATURE_FOAM_WHITE_PORSCHE_STILLS,
 } from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
@@ -24,17 +25,20 @@ const EXTRA_GALLERY: Record<string, string[]> = {
     CLIENT_IMAGES.restoreChargerDashboard,
     CLIENT_IMAGES.restoreChargerCenterConsole,
     CLIENT_IMAGES.restoreChargerRearCabin,
-  ],
-  "reset-detail": [
     CLIENT_IMAGES.resetChargerEngineBay,
     CLIENT_IMAGES.resetChargerExteriorDriveway,
     CLIENT_IMAGES.resetChargerExteriorRear,
+  ],
+  "reset-detail": [
+    CLIENT_IMAGES.resetEscaladeExteriorFront,
+    CLIENT_IMAGES.resetEscaladeExteriorSide,
+    ...RESET_ESCALADE_INTERIOR_STILLS.map((p) => p.src),
   ],
   "signature-foam-hand-wash": [
     CLIENT_IMAGES.porscheOutdoorFront,
     ...SIGNATURE_FOAM_WHITE_PORSCHE_STILLS.map((p) => p.src),
     ...SIGNATURE_FOAM_BLACK_PORSCHE_STILLS.map((p) => p.src),
-    ...SIGNATURE_FOAM_ESCALADE_STILLS.map((p) => p.src),
+    ...SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS.map((p) => p.src),
   ],
   "recurring-maintenance-wash": [
     CLIENT_IMAGES.restoreDetailHeroExterior,

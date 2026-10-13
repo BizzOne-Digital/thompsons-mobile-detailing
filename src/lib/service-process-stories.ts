@@ -1,8 +1,9 @@
 import {
   CLIENT_IMAGES,
   CLIENT_ESCALADE_GALLERY,
+  RESET_ESCALADE_INTERIOR_STILLS,
   SIGNATURE_FOAM_BLACK_PORSCHE_STILLS,
-  SIGNATURE_FOAM_ESCALADE_STILLS,
+  SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS,
   SIGNATURE_FOAM_WHITE_PORSCHE_STILLS,
 } from "@/lib/client-images";
 import { SERVICE_PROCESS_FEATURED_VIDEO } from "@/lib/service-hero-media";
@@ -129,31 +130,52 @@ const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
         "result",
         "Factory-fresh interior"
       ),
-    ],
-  },
-  "reset-detail": {
-    processIntro:
-      "Same red Dodge Charger — maximum effort for neglected interiors, odors, and severe buildup.",
-    resultIntro:
-      "Intensive restoration on the same vehicle — engine bay, exterior, and cabin reset.",
-    items: [
       img(
         CLIENT_IMAGES.resetChargerEngineBay,
-        "Charger HEMI engine bay after Reset-level cleaning",
+        "Charger HEMI engine bay after Restore-level cleaning",
         "process",
         "Engine bay detail"
       ),
       img(
         CLIENT_IMAGES.resetChargerExteriorDriveway,
-        "Red Charger after full Reset Detail — driveway finish",
+        "Red Charger after Restore Detail — driveway finish",
         "result",
         "Finished exterior"
       ),
       img(
         CLIENT_IMAGES.resetChargerExteriorRear,
-        "Red Charger rear quarter gloss after Reset Detail",
+        "Red Charger rear quarter gloss after Restore Detail",
         "result",
         "Protected shine"
+      ),
+    ],
+  },
+  "reset-detail": {
+    processIntro:
+      "Same black Cadillac Escalade — white leather interior, cargo area, and exterior brought back with Reset-level care.",
+    resultIntro:
+      "Deep-restored cabin and protected exterior on the same Escalade after Reset Detail.",
+    items: [
+      img(
+        CLIENT_IMAGES.resetEscaladeExteriorFront,
+        "Black Cadillac Escalade front before Reset Detail",
+        "process",
+        "Exterior assessment"
+      ),
+      img(
+        CLIENT_IMAGES.resetEscaladeExteriorSide,
+        "Black Cadillac Escalade side profile during Reset Detail",
+        "process",
+        "Exterior prep"
+      ),
+      ...RESET_ESCALADE_INTERIOR_STILLS.map((photo) =>
+        img(photo.src, photo.alt, "process", photo.caption)
+      ),
+      img(
+        CLIENT_IMAGES.resetEscaladeExteriorFront,
+        "Black Cadillac Escalade front after Reset Detail",
+        "result",
+        "Finished exterior"
       ),
     ],
   },
@@ -161,7 +183,7 @@ const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
     processIntro:
       "Watch the white Porsche Cayenne clip above, then scroll process stills — white Porsche first, then a black Porsche garage hand wash.",
     resultIntro:
-      "Finished exteriors on the white and black Cadillac Escalades, plus the black Escalade’s white leather interior — each caption names the vehicle.",
+      "Finished exteriors on the white and black Cadillac Escalades — each caption names the vehicle.",
     items: [
       img(
         SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[0].src,
@@ -178,7 +200,7 @@ const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
       ...SIGNATURE_FOAM_BLACK_PORSCHE_STILLS.map((photo) =>
         img(photo.src, photo.alt, "process", photo.caption)
       ),
-      ...SIGNATURE_FOAM_ESCALADE_STILLS.map((photo) =>
+      ...SIGNATURE_FOAM_ESCALADE_EXTERIOR_STILLS.map((photo) =>
         img(photo.src, photo.alt, "result", photo.caption)
       ),
     ],

@@ -51,8 +51,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     heroSubheadline: { type: String, default: BRAND.headline },
     heroDescription: {
       type: String,
-      default:
-        "We bring spotless water, power, professional equipment, and premium detailing products directly to your home, workplace, or preferred location.",
+      default: BRAND.heroSupportingLine,
     },
     heroMediaUrl: { type: String, default: "" },
     ownerPhotoUrl: { type: String, default: "" },
