@@ -37,7 +37,13 @@ export const CLIENT_IMAGES = {
   porscheTanInteriorBright: v("porsche-tan-interior-bright.jpg"),
   /** Garage shot — do not use for link previews or home hero */
   porscheShowcaseBright: v("porsche-showcase-bright.jpg"),
-  porscheOutdoorFront: v("vernon-13-porsche-front-outdoor.jpg"),
+  /** White Porsche Cayenne — Signature Foam hero & cards */
+  porscheOutdoorFront: march2026("signature-white-porsche-exterior-hero.jpg"),
+  porscheWhiteExteriorAngle: march2026("signature-white-porsche-exterior-angle.jpg"),
+  /** Black Porsche Cayenne — oxidized before / gloss after (B&A only) */
+  blackPorscheOxidizedBefore: v("vernon-10-porsche-rear.jpg"),
+  blackPorscheGlossAfter: v("vernon-08-porsche-front.jpg"),
+  blackPorscheGarageFront: v("vernon-14-porsche-garage-front.jpg"),
   interiorWhiteLexusDashboard: v("vernon-01-lexus-white-dash.jpg"),
   interiorWhiteLexusFsport: v("vernon-02-lexus-fsport-driver.jpg"),
   redLeatherBefore: v("red-leather-before.jpg"),
@@ -115,28 +121,71 @@ export const CLIENT_PORSCHE_GALLERY = [
   { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Paint refinement on Porsche hood" },
 ] as const;
 
-/** Signature Foam Hand Wash — one white Porsche story (7 stills + one video in videos9) */
-export const SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS = [
-  { src: v("vernon-08-porsche-front.jpg"), alt: "White Porsche Cayenne before foam hand wash" },
-  { src: v("vernon-09-porsche-side.jpg"), alt: "White Porsche side profile before hand wash" },
-  { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Porsche hood during foam and hand wash prep" },
+/** Signature Foam — white Porsche stills (video in videos9) */
+export const SIGNATURE_FOAM_WHITE_PORSCHE_STILLS = [
+  {
+    src: CLIENT_IMAGES.porscheOutdoorFront,
+    alt: "White Porsche Cayenne after Signature Foam hand wash and clay bar",
+    caption: "White Porsche — outdoor gloss finish",
+  },
+  {
+    src: CLIENT_IMAGES.porscheWhiteExteriorAngle,
+    alt: "White Porsche Cayenne exterior after foam, clay bar, and sealant",
+    caption: "White Porsche — protected shine",
+  },
 ] as const;
 
-export const SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS = [
-  { src: v("vernon-13-porsche-front-outdoor.jpg"), alt: "White Porsche Cayenne after signature foam hand wash" },
-  { src: v("vernon-10-porsche-rear.jpg"), alt: "White Porsche rear finish after hand wash" },
-  { src: v("porsche-showcase-bright.jpg"), alt: "White Porsche gloss showcase after mobile detail" },
-  { src: v("vernon-17-porsche-hood-gloss.jpg"), alt: "Deep gloss on white Porsche hood after wash" },
+/** Black Porsche Cayenne — lower in Signature Foam gallery (not hero) */
+export const SIGNATURE_FOAM_BLACK_PORSCHE_STILLS = [
+  {
+    src: CLIENT_IMAGES.blackPorscheGarageFront,
+    alt: "Black Porsche Cayenne hand wash inside residential garage",
+    caption: "Black Porsche Cayenne — foam & hand wash",
+  },
 ] as const;
 
-/** Additional white Porsche stills — Signature Foam detail only */
-export const SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA = [
-  { src: march2026("signature-porsche-extra-01.jpg"), alt: "White Porsche Cayenne exterior detail finish" },
-  { src: march2026("signature-porsche-extra-02.jpg"), alt: "White Porsche mobile hand wash result" },
-  { src: march2026("signature-porsche-extra-03.jpg"), alt: "White Porsche gloss after foam hand wash" },
-  { src: march2026("signature-porsche-extra-04.jpg"), alt: "White Porsche side profile after detailing" },
-  { src: march2026("signature-porsche-extra-05.jpg"), alt: "White Porsche paint depth after protection" },
-  { src: march2026("signature-porsche-extra-06.jpg"), alt: "White Porsche showcase after Signature Foam wash" },
+/** Cadillac Escalade — Signature Foam section (black SUV + white interior / white SUV) */
+export const SIGNATURE_FOAM_ESCALADE_STILLS = [
+  {
+    src: v("vernon-17-porsche-hood-gloss.jpg"),
+    alt: "White Cadillac Escalade front finish after mobile detail",
+    caption: "White Cadillac Escalade — outdoor gloss",
+  },
+  {
+    src: v("vernon-19-escalade-front.jpg"),
+    alt: "White Cadillac Escalade front after Signature Foam service",
+    caption: "White Cadillac Escalade — protected finish",
+  },
+  {
+    src: march2026("signature-porsche-extra-05.jpg"),
+    alt: "Black Cadillac Escalade front after mobile detail",
+    caption: "Black Cadillac Escalade — front finish",
+  },
+  {
+    src: march2026("signature-porsche-extra-06.jpg"),
+    alt: "Black Cadillac Escalade side profile after detail",
+    caption: "Black Cadillac Escalade — side profile",
+  },
+  {
+    src: march2026("signature-porsche-extra-02.jpg"),
+    alt: "Black Cadillac Escalade white leather rear seats after interior care",
+    caption: "Black Escalade — white leather rear cabin",
+  },
+  {
+    src: march2026("signature-porsche-extra-01.jpg"),
+    alt: "Black Cadillac Escalade white leather front interior",
+    caption: "Black Escalade — white leather interior",
+  },
+  {
+    src: march2026("signature-porsche-extra-03.jpg"),
+    alt: "Black Cadillac Escalade driver cabin with white leather",
+    caption: "Black Escalade — driver cabin",
+  },
+  {
+    src: march2026("signature-porsche-extra-04.jpg"),
+    alt: "Black Cadillac Escalade cargo area after detail",
+    caption: "Black Escalade — cargo area",
+  },
 ] as const;
 
 export const CLIENT_ESCALADE_GALLERY = [
@@ -205,6 +254,14 @@ export const CLIENT_BEFORE_AFTER_PAIRS = [
     afterSrc: CLIENT_IMAGES.engineAfter,
     beforeAlt: "Engine bay before degreasing and detail",
     afterAlt: "Clean detailed engine bay after service",
+  },
+  {
+    title: "Black Porsche Cayenne — Exterior Refinement",
+    category: "Exterior",
+    beforeSrc: CLIENT_IMAGES.blackPorscheOxidizedBefore,
+    afterSrc: CLIENT_IMAGES.blackPorscheGlossAfter,
+    beforeAlt: "Black Porsche Cayenne with oxidized headlights and dull paint before detail",
+    afterAlt: "Black Porsche Cayenne with deep gloss finish after Signature Foam and refinement",
   },
 ] as const;
 

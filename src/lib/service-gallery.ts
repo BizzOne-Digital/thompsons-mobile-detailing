@@ -1,8 +1,8 @@
 import {
   CLIENT_IMAGES,
-  SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA,
-  SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS,
-  SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS,
+  SIGNATURE_FOAM_BLACK_PORSCHE_STILLS,
+  SIGNATURE_FOAM_ESCALADE_STILLS,
+  SIGNATURE_FOAM_WHITE_PORSCHE_STILLS,
 } from "@/lib/client-images";
 import { SERVICE_SLUG_IMAGES, SITE_IMAGES } from "@/lib/site-images";
 
@@ -32,9 +32,9 @@ const EXTRA_GALLERY: Record<string, string[]> = {
   ],
   "signature-foam-hand-wash": [
     CLIENT_IMAGES.porscheOutdoorFront,
-    ...SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS.map((p) => p.src),
-    ...SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS.map((p) => p.src),
-    ...SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA.map((p) => p.src),
+    ...SIGNATURE_FOAM_WHITE_PORSCHE_STILLS.map((p) => p.src),
+    ...SIGNATURE_FOAM_BLACK_PORSCHE_STILLS.map((p) => p.src),
+    ...SIGNATURE_FOAM_ESCALADE_STILLS.map((p) => p.src),
   ],
   "recurring-maintenance-wash": [
     CLIENT_IMAGES.restoreDetailHeroExterior,

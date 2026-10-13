@@ -1,9 +1,9 @@
 import {
   CLIENT_IMAGES,
   CLIENT_ESCALADE_GALLERY,
-  SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA,
-  SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS,
-  SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS,
+  SIGNATURE_FOAM_BLACK_PORSCHE_STILLS,
+  SIGNATURE_FOAM_ESCALADE_STILLS,
+  SIGNATURE_FOAM_WHITE_PORSCHE_STILLS,
 } from "@/lib/client-images";
 import { SERVICE_PROCESS_FEATURED_VIDEO } from "@/lib/service-hero-media";
 
@@ -159,28 +159,27 @@ const STORIES: Record<string, Omit<ServiceProcessStory, "featuredVideo">> = {
   },
   "signature-foam-hand-wash": {
     processIntro:
-      "Every step below is the same white Porsche Cayenne — foam, hand wash, and protection in your driveway.",
+      "Watch the white Porsche Cayenne clip above, then scroll process stills — white Porsche first, then a black Porsche garage hand wash.",
     resultIntro:
-      "Finished gloss on the same vehicle — outdoor lighting so you see the real result.",
+      "Finished exteriors on the white and black Cadillac Escalades, plus the black Escalade’s white leather interior — each caption names the vehicle.",
     items: [
-      ...SIGNATURE_FOAM_WHITE_PORSCHE_PROCESS.map((photo, i) =>
-        img(
-          photo.src,
-          photo.alt,
-          "process",
-          i === 0 ? "Before wash" : i === 1 ? "Foam & hand wash" : "Paint prep"
-        )
+      img(
+        SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[0].src,
+        SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[0].alt,
+        "process",
+        SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[0].caption
       ),
-      ...SIGNATURE_FOAM_WHITE_PORSCHE_RESULTS.map((photo, i) =>
-        img(
-          photo.src,
-          photo.alt,
-          "result",
-          i === 0 ? "Outdoor gloss finish" : "Protected shine"
-        )
+      img(
+        SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[1].src,
+        SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[1].alt,
+        "result",
+        SIGNATURE_FOAM_WHITE_PORSCHE_STILLS[1].caption
       ),
-      ...SIGNATURE_FOAM_WHITE_PORSCHE_EXTRA.map((photo) =>
-        img(photo.src, photo.alt, "result", "White Porsche finish")
+      ...SIGNATURE_FOAM_BLACK_PORSCHE_STILLS.map((photo) =>
+        img(photo.src, photo.alt, "process", photo.caption)
+      ),
+      ...SIGNATURE_FOAM_ESCALADE_STILLS.map((photo) =>
+        img(photo.src, photo.alt, "result", photo.caption)
       ),
     ],
   },
