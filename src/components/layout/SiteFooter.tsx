@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "@/lib/constants";
-import { slugForAreaName, serviceAreaPath } from "@/lib/service-areas";
+import { SERVICE_AREA_PAGES, serviceAreaPath } from "@/lib/service-areas";
 import { Button } from "@/components/ui/Button";
 import { useSiteSettings } from "@/components/layout/SiteSettingsProvider";
 import { phoneHref } from "@/lib/public-settings";
@@ -54,24 +54,17 @@ export function SiteFooter() {
         </div>
         <div>
           <h3 className="font-semibold text-bright-gold">Service Areas</h3>
-          <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-off-white/75">
-            {site.serviceAreas.slice(0, 20).map((area) => {
-              const slug = slugForAreaName(area);
-              return (
-                <li key={area}>
-                  {slug ? (
-                    <Link
-                      href={serviceAreaPath(slug)}
-                      className="hover:text-bright-gold"
-                    >
-                      {area}
-                    </Link>
-                  ) : (
-                    area
-                  )}
-                </li>
-              );
-            })}
+          <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-off-white/75">
+            {SERVICE_AREA_PAGES.map((area) => (
+              <li key={area.slug}>
+                <Link
+                  href={serviceAreaPath(area.slug)}
+                  className="hover:text-bright-gold"
+                >
+                  {area.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>

@@ -9,9 +9,11 @@ export const BRAND = {
   /** Home hero — line under “Factory Fresh Results Guaranteed” (mockup) */
   heroSupportingLine:
     "Serving Avondale, the West Valley & the Greater Phoenix Metro",
-  /** Gold pin line beneath hero CTAs (West Valley focus) */
-  heroServiceAreaLine:
-    "Avondale • Litchfield Park • Goodyear • Buckeye • Surprise • Sun City & the West Valley",
+  /** Gold pin rows beneath hero CTAs (balanced layout) */
+  heroServiceAreaRows: [
+    ["Avondale", "Litchfield Park", "Goodyear"],
+    ["Buckeye", "Surprise", "Sun City & the West Valley"],
+  ] as const,
   phone: "623-999-7500",
   phoneHref: "tel:+16239997500",
   smsHref: "sms:+16239997500",

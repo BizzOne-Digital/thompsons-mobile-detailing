@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
-import { BRAND, SERVICE_AREAS } from "@/lib/constants";
+import { BRAND } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HomeGoogleReviewsSection } from "@/components/home/HomeGoogleReviewsSection";
@@ -30,7 +30,6 @@ import { FaqAccordion, type FaqItem } from "@/components/faq/FaqAccordion";
 import { formatCurrency } from "@/lib/utils";
 import type { PublicSiteSettings } from "@/lib/public-settings";
 import type { GoogleReviewsSnapshot } from "@/lib/google-reviews";
-import { serviceAreaPath, slugForAreaName } from "@/lib/service-areas";
 
 type Service = {
   _id: string;
@@ -376,39 +375,6 @@ export function HomeView({
           </ol>
           <div className="mt-8 text-center">
             <Button href="/booking">Start Your Booking</Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-navy/50 py-16 md:py-20">
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          <SectionHeading
-            title="Service Areas"
-            subtitle="Avondale and the West Valley first — then the greater Phoenix Metro."
-            align="center"
-          />
-          <div className="glass-panel mx-auto max-w-4xl rounded-3xl p-8">
-            <div className="grid grid-cols-2 gap-3 text-sm md:grid-cols-3 lg:grid-cols-4">
-              {SERVICE_AREAS.map((city) => {
-                const slug = slugForAreaName(city);
-                return slug ? (
-                  <Link
-                    key={city}
-                    href={serviceAreaPath(slug)}
-                    className="rounded-full border border-gold/25 px-3 py-2 text-center text-off-white/85 transition hover:border-gold/50 hover:text-bright-gold"
-                  >
-                    {city}
-                  </Link>
-                ) : (
-                  <span
-                    key={city}
-                    className="rounded-full border border-gold/25 px-3 py-2 text-center text-off-white/85"
-                  >
-                    {city}
-                  </span>
-                );
-              })}
-            </div>
           </div>
         </div>
       </section>
