@@ -47,8 +47,8 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     serviceAreas: { type: [String], default: () => [...SERVICE_AREAS] },
     instagramUrl: { type: String, default: "" },
     facebookUrl: { type: String, default: "" },
-    heroHeadline: { type: String, default: BRAND.tagline },
-    heroSubheadline: { type: String, default: BRAND.headline },
+    heroHeadline: { type: String, default: "Factory Fresh" },
+    heroSubheadline: { type: String, default: "Results Guaranteed" },
     heroDescription: {
       type: String,
       default: BRAND.heroSupportingLine,

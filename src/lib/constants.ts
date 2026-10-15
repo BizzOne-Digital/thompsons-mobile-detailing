@@ -8,6 +8,9 @@ export const BRAND = {
   headline: "Mobile Detailing Across the Valley",
   /** Short line under the home hero headline */
   heroSupportingLine: "Mobile Detailing Across the Valley",
+  /** Gold pin line beneath hero CTAs (West Valley focus) */
+  heroServiceAreaLine:
+    "Avondale • Litchfield Park • Goodyear • Buckeye • Surprise • Sun City & the West Valley",
   phone: "623-999-7500",
   phoneHref: "tel:+16239997500",
   smsHref: "sms:+16239997500",

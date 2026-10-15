@@ -35,24 +35,34 @@ async function main() {
   }
 
   const current = (doc.heroDescription || "").trim();
+  const sub = (doc.heroSubheadline || "").trim();
   const shouldReplace =
     !current ||
-    LEGACY_HERO_DESCRIPTION_PATTERNS.some((re) => re.test(current));
+    LEGACY_HERO_DESCRIPTION_PATTERNS.some((re) => re.test(current)) ||
+    LEGACY_HERO_DESCRIPTION_PATTERNS.some((re) => re.test(sub));
 
   if (!shouldReplace) {
-    console.log(
-      "heroDescription left unchanged (already custom):",
-      current.slice(0, 80)
-    );
+    console.log("Site settings hero copy already matches Vernon mockup.");
     await mongoose.disconnect();
     return;
   }
 
   await SiteSettings.updateOne(
     { _id: doc._id },
-    { $set: { heroDescription: BRAND.heroSupportingLine } }
+    {
+      $set: {
+        heroHeadline: "Factory Fresh",
+        heroSubheadline: "Results Guaranteed",
+        heroDescription: BRAND.heroSupportingLine,
+        mainHeadline: BRAND.heroSupportingLine,
+      },
+    }
   );
-  console.log("Updated heroDescription to:", BRAND.heroSupportingLine);
+  console.log("Updated hero copy:", {
+    heroHeadline: "Factory Fresh",
+    heroSubheadline: "Results Guaranteed",
+    heroDescription: BRAND.heroSupportingLine,
+  });
   await mongoose.disconnect();
 }
 

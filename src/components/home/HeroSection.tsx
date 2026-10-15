@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Calendar, ChevronRight, Leaf, Star } from "lucide-react";
+import { Calendar, ChevronRight, Leaf, MapPin, Star } from "lucide-react";
 import { BRAND } from "@/lib/constants";
 import { CLIENT_IMAGES } from "@/lib/client-images";
 import { VIDEOS10_HOME_HERO } from "@/lib/client-videos10";
@@ -177,6 +177,16 @@ export function HeroSection({ settings }: HeroSectionProps) {
               <ChevronRight className="h-5 w-5" aria-hidden />
             </Link>
           </div>
+
+          <p
+            className={`mt-6 flex max-w-md items-start justify-center gap-2 text-left text-[11px] leading-relaxed text-white/80 sm:mx-auto sm:text-xs ${HERO_SUPPORT_SHADOW}`}
+          >
+            <MapPin
+              className="mt-0.5 h-4 w-4 shrink-0 text-bright-gold"
+              aria-hidden
+            />
+            <span>{BRAND.heroServiceAreaLine}</span>
+          </p>
         </motion.div>
       </div>
     </section>
