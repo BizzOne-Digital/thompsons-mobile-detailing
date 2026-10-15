@@ -4,13 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import {
-  Calendar,
-  ChevronRight,
-  Leaf,
-  MapPin,
-  Star,
-} from "lucide-react";
+import { Calendar, ChevronRight, Leaf, Star } from "lucide-react";
+import { BRAND } from "@/lib/constants";
 import { CLIENT_IMAGES } from "@/lib/client-images";
 import { VIDEOS10_HOME_HERO } from "@/lib/client-videos10";
 import type { PublicSiteSettings } from "@/lib/public-settings";
@@ -25,6 +20,16 @@ type HeroSectionProps = {
 const HERO_MEDIA_CLASS =
   "absolute inset-0 h-full w-full object-cover object-center brightness-[1.1] contrast-[1.06] saturate-[1.1]";
 
+/** Mockup: soft dark shadow on white serif headline over bright foam video */
+const HERO_HEADLINE_SHADOW =
+  "[text-shadow:0_2px_6px_rgba(0,0,0,0.92),0_4px_28px_rgba(0,0,0,0.72),0_0_2px_rgba(0,0,0,0.85)]";
+
+const HERO_EYEBROW_SHADOW =
+  "[text-shadow:0_1px_4px_rgba(0,0,0,0.85),0_2px_12px_rgba(0,0,0,0.55)]";
+
+const HERO_SUPPORT_SHADOW =
+  "[text-shadow:0_1px_3px_rgba(0,0,0,0.8),0_2px_10px_rgba(0,0,0,0.5)]";
+
 export function HeroSection({ settings }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -32,6 +37,9 @@ export function HeroSection({ settings }: HeroSectionProps) {
   const [videoReady, setVideoReady] = useState(false);
   const poster = CLIENT_IMAGES.homeHeroPoster;
   const useLiveVideo = !reduceMotion;
+
+  const supportingLine =
+    settings.heroDescription?.trim() || BRAND.heroSupportingLine;
 
   const tryPlay = useCallback(async () => {
     const el = videoRef.current;
@@ -99,11 +107,11 @@ export function HeroSection({ settings }: HeroSectionProps) {
         />
       )}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/28 via-black/10 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-black/32 via-black/12 to-transparent"
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-midnight/40 via-transparent to-black/5"
+        className="absolute inset-0 bg-gradient-to-t from-midnight/45 via-transparent to-black/8"
         aria-hidden
       />
 
@@ -112,72 +120,64 @@ export function HeroSection({ settings }: HeroSectionProps) {
           initial={reduceMotion ? false : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75 }}
-          className="w-full max-w-3xl"
+          className="w-full max-w-2xl"
         >
           <p
-            className="text-xs font-bold uppercase tracking-[0.2em] text-bright-gold sm:text-sm sm:tracking-[0.28em] [text-shadow:0_0_24px_rgba(255,201,40,0.65),0_0_48px_rgba(255,201,40,0.35)]"
+            className={`text-[11px] font-bold uppercase tracking-[0.22em] text-bright-gold sm:text-xs sm:tracking-[0.32em] md:text-sm md:tracking-[0.36em] ${HERO_EYEBROW_SHADOW}`}
           >
             5-Star Mobile Auto Detailing
           </p>
 
-          <h1 className="mt-2 max-w-full break-words font-display text-[1.65rem] font-bold leading-[1.08] tracking-tight sm:mt-3 sm:text-4xl md:text-[2.75rem] lg:text-5xl">
-            <span
-              className="block text-white [text-shadow:0_0_28px_rgba(255,201,40,0.45),0_2px_12px_rgba(0,0,0,0.5)]"
-            >
-              {settings.heroHeadline}
-            </span>
-            <span
-              className="mt-0.5 block bg-gradient-to-r from-soft-gold via-bright-gold to-gold bg-clip-text text-transparent [filter:drop-shadow(0_0_22px_rgba(255,201,40,0.55))]"
-            >
-              {settings.heroSubheadline}
-            </span>
+          <h1
+            className={`mt-3 font-display text-[1.85rem] font-bold uppercase leading-[1.1] tracking-[0.02em] text-white sm:mt-4 sm:text-[2.35rem] md:text-5xl lg:text-[3.25rem] ${HERO_HEADLINE_SHADOW}`}
+          >
+            <span className="block">Factory Fresh</span>
+            <span className="block">Results Guaranteed</span>
           </h1>
 
-          <p className="mx-auto mt-3 max-w-md text-sm font-medium leading-snug text-white/90 sm:mt-4 sm:text-base sm:whitespace-nowrap">
-            {settings.heroDescription}
+          <p
+            className={`mx-auto mt-3 max-w-lg text-sm font-medium leading-snug text-white sm:mt-4 sm:text-base sm:whitespace-nowrap ${HERO_SUPPORT_SHADOW}`}
+          >
+            {supportingLine}
           </p>
 
-          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-medium text-bright-gold">
-            <li className="flex items-center gap-2">
-              <Star className="h-4 w-4 fill-bright-gold text-bright-gold" />
-              Fully Mobile — We Come to You
-            </li>
-            <li className="hidden h-4 w-px bg-gold/40 sm:block" aria-hidden />
-            <li className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-bright-gold" />
-              Open 7 Days
-            </li>
-            <li className="hidden h-4 w-px bg-gold/40 sm:block" aria-hidden />
-            <li className="flex items-center gap-2">
-              <Leaf className="h-4 w-4 text-bright-gold" />
+          <div className="mt-5 flex flex-col items-center gap-2.5 sm:mt-6">
+            <ul
+              className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] font-semibold text-bright-gold sm:gap-x-6 sm:text-xs md:text-sm"
+            >
+              <li className="flex items-center gap-1.5 sm:gap-2">
+                <Star className="h-3.5 w-3.5 fill-bright-gold text-bright-gold sm:h-4 sm:w-4" />
+                Fully Mobile — We Come to You
+              </li>
+              <li className="hidden h-3.5 w-px bg-gold/45 sm:block" aria-hidden />
+              <li className="flex items-center gap-1.5 sm:gap-2">
+                <Calendar className="h-3.5 w-3.5 text-bright-gold sm:h-4 sm:w-4" />
+                Open 7 Days
+              </li>
+            </ul>
+            <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-bright-gold sm:gap-2 sm:text-xs md:text-sm">
+              <Leaf className="h-3.5 w-3.5 text-bright-gold sm:h-4 sm:w-4" />
               Premium Products
-            </li>
-          </ul>
+            </p>
+          </div>
 
-          <div className="mt-6 flex w-full max-w-md flex-col gap-3 sm:mx-auto sm:mt-8 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
-            <Link href="/booking" className="hero-cta-primary w-full justify-center sm:w-auto">
+          <div className="mt-6 flex w-full max-w-sm flex-col gap-3 sm:mx-auto sm:mt-7 sm:max-w-md sm:gap-3.5">
+            <Link
+              href="/booking"
+              className="hero-cta-primary w-full justify-center"
+            >
               Book Your Detail
               <ChevronRight className="h-5 w-5" aria-hidden />
             </Link>
-            <Link href="/pricing" className="hero-cta-secondary w-full justify-center sm:w-auto">
+            <Link
+              href="/pricing"
+              className="hero-cta-secondary w-full justify-center"
+            >
               View Packages
               <ChevronRight className="h-5 w-5" aria-hidden />
             </Link>
           </div>
         </motion.div>
-
-        <motion.p
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.6 }}
-          className="relative mt-10 flex max-w-full items-start gap-2 text-xs text-white/75 sm:absolute sm:bottom-8 sm:left-4 sm:mt-0 sm:max-w-xl md:left-8 md:text-sm"
-        >
-          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-bright-gold" />
-          <span>
-            Avondale • Litchfield Park • Goodyear • Buckeye • Surprise • Sun
-            City & the West Valley
-          </span>
-        </motion.p>
       </div>
     </section>
   );

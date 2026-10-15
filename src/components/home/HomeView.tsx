@@ -92,13 +92,13 @@ const bookingSteps = [
 ] as const;
 
 const whyChoose = [
-  "Professional-grade products and equipment on every job",
-  "Precision and attention to detail on every vehicle",
-  "Complete interior and exterior solutions",
-  "Paint protection and ceramic coating options",
-  "Transparent package pricing",
-  "West Valley and Phoenix Metro coverage",
-  "Quality inspection after every detail",
+  "Driven by passion. Committed to excellence.",
+  "Quality in every step. Sharp attention to detail.",
+  "Respect for your vehicle. Value for your time.",
+  "Service built on integrity, honest recommendations, and clear pricing.",
+  "Professional-grade products and equipment for a superior finish.",
+  "Every detail ends with a final inspection.",
+  "Factory Fresh Results Guaranteed.",
 ];
 
 function PackageCards({ packages }: { packages: Service[] }) {
