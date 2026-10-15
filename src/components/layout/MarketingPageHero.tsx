@@ -76,7 +76,7 @@ export function MarketingPageHero({
               isBrightHero &&
                 "brightness-[1.08] contrast-[1.06] saturate-[1.08]",
               isPricingHero &&
-                "brightness-[1.14] contrast-[1.08] saturate-[1.1]"
+                "brightness-[1.18] contrast-[1.1] saturate-[1.12]"
             )}
             src={heroVideo}
             poster={imageSrc}
@@ -98,7 +98,7 @@ export function MarketingPageHero({
               isBrightHero &&
                 "brightness-[1.08] contrast-[1.06] saturate-[1.08]",
               isPricingHero &&
-                "brightness-[1.14] contrast-[1.08] saturate-[1.1]"
+                "brightness-[1.18] contrast-[1.1] saturate-[1.12]"
             )}
             sizes="100vw"
           />
@@ -108,15 +108,15 @@ export function MarketingPageHero({
       {isPricingHero ? (
         <>
           <div
-            className="absolute inset-0 bg-gradient-to-r from-black/22 via-black/6 to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-black/16 via-black/4 to-transparent"
             aria-hidden
           />
           <div
-            className="absolute inset-0 bg-gradient-to-t from-midnight/48 via-black/5 to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-midnight/42 via-transparent to-transparent"
             aria-hidden
           />
           <div
-            className="absolute inset-x-0 bottom-0 z-[1] h-16 bg-gradient-to-t from-midnight/80 to-transparent md:h-24"
+            className="absolute inset-x-0 bottom-0 z-[1] h-14 bg-gradient-to-t from-midnight/72 to-transparent md:h-20"
             aria-hidden
           />
         </>
