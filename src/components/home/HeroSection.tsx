@@ -28,27 +28,18 @@ const HERO_EYEBROW_SHADOW =
   "[text-shadow:0_1px_4px_rgba(0,0,0,0.85),0_2px_12px_rgba(0,0,0,0.55)]";
 
 const HERO_SUPPORT_SHADOW =
-  "[text-shadow:0_1px_3px_rgba(0,0,0,0.8),0_2px_10px_rgba(0,0,0,0.5)]";
+  "[text-shadow:0_1px_4px_rgba(0,0,0,0.88),0_2px_14px_rgba(0,0,0,0.62)]";
 
-const LEGACY_HERO_SUPPORTING = /professional mobile auto detailing|avondale and across the phoenix|spotless water, power, professional equipment/i;
+const HERO_CITY_SHADOW =
+  "[text-shadow:0_1px_4px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.65)]";
 
-function resolveHomeHeroSupportingLine(raw?: string) {
-  const trimmed = raw?.trim() ?? "";
-  if (!trimmed || LEGACY_HERO_SUPPORTING.test(trimmed)) {
-    return BRAND.heroSupportingLine;
-  }
-  return trimmed;
-}
-
-export function HeroSection({ settings }: HeroSectionProps) {
+export function HeroSection(_props: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [videoReady, setVideoReady] = useState(false);
   const poster = CLIENT_IMAGES.homeHeroPoster;
   const useLiveVideo = !reduceMotion;
-
-  const supportingLine = resolveHomeHeroSupportingLine(settings.heroDescription);
 
   const tryPlay = useCallback(async () => {
     const el = videoRef.current;
@@ -132,25 +123,25 @@ export function HeroSection({ settings }: HeroSectionProps) {
           className="w-full max-w-2xl"
         >
           <p
-            className={`-translate-y-0.5 text-xs font-extrabold uppercase tracking-[0.26em] text-bright-gold sm:text-sm sm:tracking-[0.34em] md:text-base md:tracking-[0.38em] ${HERO_EYEBROW_SHADOW}`}
+            className={`-translate-y-1 text-[13px] font-extrabold uppercase tracking-[0.28em] text-bright-gold sm:text-sm sm:tracking-[0.36em] md:text-[15px] md:tracking-[0.4em] ${HERO_EYEBROW_SHADOW}`}
           >
             5-Star Mobile Auto Detailing
           </p>
 
           <h1
-            className={`mt-2.5 font-display text-[1.85rem] font-bold uppercase leading-[1.08] tracking-[0.02em] text-white sm:mt-3 sm:text-[2.35rem] md:text-5xl lg:text-[3.15rem] ${HERO_HEADLINE_SHADOW}`}
+            className={`mt-2 font-display text-[1.85rem] font-bold uppercase leading-[1.08] tracking-[0.02em] text-white sm:mt-2.5 sm:text-[2.35rem] md:text-5xl lg:text-[3.15rem] ${HERO_HEADLINE_SHADOW}`}
           >
             <span className="block">Factory Fresh</span>
             <span className="block">Results Guaranteed</span>
           </h1>
 
           <p
-            className={`mx-auto mt-3 max-w-lg text-sm font-medium leading-snug text-white sm:mt-4 sm:text-base sm:whitespace-nowrap ${HERO_SUPPORT_SHADOW}`}
+            className={`mx-auto mt-2.5 max-w-md px-1 text-sm font-medium leading-snug text-white sm:mt-3 sm:text-[15px] md:max-w-lg ${HERO_SUPPORT_SHADOW}`}
           >
-            {supportingLine}
+            {BRAND.heroSupportingLine}
           </p>
 
-          <div className="mt-5 flex flex-col items-center gap-2.5 sm:mt-6">
+          <div className="mt-4 flex flex-col items-center gap-2.5 sm:mt-5">
             <ul
               className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] font-semibold text-bright-gold sm:gap-x-6 sm:text-xs md:text-sm"
             >
@@ -188,13 +179,13 @@ export function HeroSection({ settings }: HeroSectionProps) {
           </div>
 
           <p
-            className={`mt-5 flex max-w-sm items-start justify-center gap-2 text-center text-[11px] leading-relaxed text-white/85 sm:mx-auto sm:max-w-md sm:text-left sm:text-xs ${HERO_SUPPORT_SHADOW}`}
+            className={`mt-5 flex max-w-sm items-start justify-center gap-2 text-center text-[11px] leading-relaxed text-white/90 sm:mx-auto sm:max-w-md sm:text-left sm:text-xs ${HERO_CITY_SHADOW}`}
           >
             <MapPin
-              className="mx-auto mt-0.5 h-4 w-4 shrink-0 text-bright-gold sm:mx-0"
+              className={`mx-auto mt-0.5 h-4 w-4 shrink-0 text-bright-gold drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)] sm:mx-0`}
               aria-hidden
             />
-            <span>{BRAND.heroServiceAreaLine}</span>
+            <span className={HERO_CITY_SHADOW}>{BRAND.heroServiceAreaLine}</span>
           </p>
         </motion.div>
       </div>

@@ -15,6 +15,7 @@ const LEGACY_HERO_DESCRIPTION_PATTERNS = [
   /Avondale and Across the Phoenix Metro/i,
   /across the Phoenix metro/i,
   /We bring spotless water, power, professional equipment/i,
+  /Mobile Detailing Across the Valley/i,
 ];
 
 async function main() {
