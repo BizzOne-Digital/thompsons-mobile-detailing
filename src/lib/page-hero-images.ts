@@ -9,7 +9,7 @@ export const SERVICES_INDEX_HERO =
 const PAGE_HERO_IMAGES: Record<string, string> = {
   "/about": "/images/client/about-escalade.jpg",
   "/services": SERVICES_INDEX_HERO,
-  "/pricing": SITE_IMAGES.suvFullDetail,
+  "/pricing": CLIENT_IMAGES.resetEscaladeExteriorFront,
   "/booking": CLIENT_IMAGES.bookingHeroOutdoor,
   "/contact": CLIENT_IMAGES.homeHeroPoster,
   "/results": CLIENT_IMAGES.porscheShowcaseBright,

@@ -52,7 +52,9 @@ export function MarketingPageHero({
   const imageSrc = resolvePageHeroImage(pathname, heroImage);
   const eyebrowText = resolvePageHeroEyebrow(pathname, eyebrow);
   const breadcrumbs = buildBreadcrumbs(pathname);
+  const isPricingHero = pathname === "/pricing";
   const isBrightHero =
+    isPricingHero ||
     pathname === "/booking" ||
     pathname === "/areas" ||
     /^\/areas\/[^/]+$/.test(pathname) ||
@@ -72,7 +74,9 @@ export function MarketingPageHero({
             className={cn(
               "h-full w-full object-cover object-center",
               isBrightHero &&
-                "brightness-[1.08] contrast-[1.06] saturate-[1.08]"
+                "brightness-[1.08] contrast-[1.06] saturate-[1.08]",
+              isPricingHero &&
+                "brightness-[1.14] contrast-[1.08] saturate-[1.1]"
             )}
             src={heroVideo}
             poster={imageSrc}
@@ -90,17 +94,33 @@ export function MarketingPageHero({
             fill
             priority
             className={cn(
-              "object-cover",
-              isBrightHero
-                ? "object-cover object-center brightness-[1.08] contrast-[1.06] saturate-[1.08]"
-                : "object-center"
+              "object-cover object-center",
+              isBrightHero &&
+                "brightness-[1.08] contrast-[1.06] saturate-[1.08]",
+              isPricingHero &&
+                "brightness-[1.14] contrast-[1.08] saturate-[1.1]"
             )}
             sizes="100vw"
           />
         )}
       </motion.div>
 
-      {isBrightHero ? (
+      {isPricingHero ? (
+        <>
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/22 via-black/6 to-transparent"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-midnight/48 via-black/5 to-transparent"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 z-[1] h-16 bg-gradient-to-t from-midnight/80 to-transparent md:h-24"
+            aria-hidden
+          />
+        </>
+      ) : isBrightHero ? (
         <>
           <div
             className="absolute inset-0 bg-gradient-to-r from-black/38 via-black/12 to-transparent"
@@ -208,7 +228,11 @@ export function MarketingPageHero({
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.22 }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 md:text-lg md:leading-relaxed"
+            className={cn(
+              "mt-6 max-w-2xl text-base leading-relaxed text-white/90 md:text-lg md:leading-relaxed",
+              isPricingHero &&
+                "[text-shadow:0_1px_4px_rgba(0,0,0,0.92),0_2px_14px_rgba(0,0,0,0.65)]"
+            )}
           >
             {subtitle}
           </motion.p>
